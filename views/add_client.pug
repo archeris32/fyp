@@ -1,0 +1,40 @@
+extends default
+
+block content
+
+    form(action="/add_client" method="POST") 
+        div(class="form-row")
+            div(class="col-md-4 mb-3")
+                label(for="validationDefault01") First name
+                input(type="text" class="form-control" id="validationDefault01" placeholder="First name" name="firstName" required)
+        div(class="form-row")        
+            div(class="col-md-4 mb-3")
+                label(for="validationDefault02") Last name
+                input(type="text" class="form-control" id="validationDefault02" placeholder="Last name" name="lastName" required)
+        div(class="form-row")   
+            div(class="col-md-4 mb-3")
+                label(for="validationDefaultUsername") Phone
+                div(class="input-group")
+                div(class="input-group-prepend")
+                input(type="text" class="form-control" id="validationDefaultUsername" placeholder="phone" name="phone" aria-describedby="inputGroupPrepend2" required)
+        div(class="form-row")
+            div(class="form-row")
+                div(class="col-md-6 mb-3")
+                    label(for="validationDefault03") Doctor Assigned
+                    input(type="text" class="form-control" id="validationDefault03" placeholder="Doctor" name="doctor" required)
+        div(class="form-row")        
+            div(class="col-md-3 mb-3")
+                label(for="validationDefault04") email
+                input(type="text" class="form-control" id="validationDefault04" placeholder="email" name="email" required)
+        div(class="form-row")
+            div(class="col-md-3 mb-3")
+                label(for="validationDefault05") Cost
+                input(type="text" class="form-control" id="validationDefault05" placeholder="cost" name="cost" required)
+
+        div( class="form-group")
+            div(class="form-check")
+                input(class="form-check-input" type="checkbox" value="" id="invalidCheck2" required)
+                label(class="form-check-label" for="invalidCheck2")
+                p Agree to terms and conditions
+ 
+        button(class="btn btn-primary" type="submit") Submit form

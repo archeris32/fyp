@@ -1,0 +1,23 @@
+div(class="container" bis_skin_checked="1")
+    header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 border-bottom")
+        a(href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none")
+            img(src="https://www.alphahousedentalpractice.co.uk/uploads/Icons/emergency-dentistry-birchington-kent-1.png" class="rounded-circle" width=50)
+        nav(class="navbar navbar-expand-sm")
+            button(class="navbar-toggler" type="button" data-target="#navigation")
+                span(class="navbar-toggler-icon")
+            div(class="collapse navbar-collapse")
+                ul(class="navbar-nav")
+                    li(class="nav-item active custom-nav-item")
+                        a(href="/" class="nav-link text-dark custom-nav-link") Home
+                    li(class="nav-item active custom-nav-item")
+                        a(href="/about" class="nav-link text-dark custom-nav-link") About
+                    li(class="nav-item active custom-nav-item")
+                        a(href="/services" class="nav-link text-dark custom-nav-link") Services
+                    li(class="nav-item active custom-nav-item")
+                        a(href="/team" class="nav-link text-dark custom-nav-link") Team   
+                    li(class="nav-item active custom-nav-item")
+                        a(href="/contact" class="nav-link text-dark custom-nav-link") Contact Us 
+        div(class="col-md-3 text-end" bis_skin_checked="1")
+            a(type="button" href=username ? "/logout" : "/login" class="btn btn-outline-primary me-2")  #{username ? "Logout": "Login"} 
+                 span(class="text-dark" style="padding-left:20px") #{username && username}
+            a(type="button" href="/register" class="btn btn-primary" style=username&& 'display:none') Sign up
