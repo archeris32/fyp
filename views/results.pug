@@ -1,10 +1,42 @@
 extends default
 
 block content
- body
-  h1 Clients Dashboard            `
+  style.
+    .xyz {
+        background-size: auto;
+        text-align: center;
+        padding-top: 100px;
+    }
+    .btn-circle.btn-sm {
+        width: 30px;
+        height: 30px;
+        padding: 6px 0px;
+        border-radius: 15px;
+        font-size: 8px;
+        text-align: center;
+    }
+    .btn-circle.btn-md {
+        width: 50px;
+        height: 50px;
+        padding: 7px 10px;
+        border-radius: 25px;
+        font-size: 10px;
+        text-align: center;
+    }
+    .btn-circle.btn-xl {
+        width: 70px;
+        height: 70px;
+        padding: 10px 16px;
+        border-radius: 35px;
+        font-size: 12px;
+        text-align: center;
+    }  
+
+  h1 Clients Dashboard 
     div.container(class="d-flex justify-content-around")
-      a.btn(href='/add_client' type="button" class="btn btn-outline-primary") Add Client 
-      a.btn(href='#' type="button" class="btn btn-outline-primary") Edit Client 
-      a.btn(href='#' type="button" class="btn btn-outline-primary") Delete Client 
-      a.btn(href='/show_customers' type="button" class="btn btn-outline-primary") Show All Customers
+      a.btn(href='/add_client' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary")
+        i.fab.fa-accusoft.fa-lg(aria-hidden='true') Add
+  
+      a.btn(href='#' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Edit Client 
+      a.btn(href='#' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Delete Client 
+      a.btn(href='/show_customers' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Show All
