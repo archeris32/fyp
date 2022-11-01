@@ -25,12 +25,53 @@ app.get('/', (req, res) => {
         username: req.session.username 
       });
   });
-  app.get("/results", (req, res) => {
+app.get("/results", (req, res) => {
     db.query('SELECT * FROM users ', function (err, rows) {
           res.render('results', { data: rows ,username: req.session.username })
         
       })
     })
+app.get('/delete_client', (req, res) => {
+        res.render('delete_client', {
+            title: 'delete Client',
+            username: req.session.username 
+          });
+      });
+app.get('/edit_client', (req, res) => {
+        res.render('edit_client', {
+            title: 'edit Client',
+            username: req.session.username 
+          });
+      });
+
+app.post("/delete_client",urlencodedParser,(req,res)=>{
+    const name = req.body.searchName
+    var sql = `select * FROM patient WHERE firstName='${name}';`
+    db.query(sql, (err,rows)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            return res.render('delete_client', { data: rows,username: req.session.username  })
+    }
+      })  
+    })
+app.post("/delete_client",urlencodedParser,(req,res)=>{
+    const name = req.body.searchName
+    var sql = `delete FROM patient WHERE firstName='${name}';`
+    db.query(sql, (err, result) => {
+        if(err) {
+            console.log(err)
+        } else {
+            return res.render('delete_client', {
+                message: "delete client",
+                username: req.session.username 
+               
+            })
+        }
+    })        
+    })
+
 app.get('/add_client', (req, res) => {
     res.render('add_client', {
         title: 'Add Client',
