@@ -1,45 +1,94 @@
 extends default
 
 block content
+    style.
+        .wrapp{
+            background: url('https://static-communitytable.parade.com/wp-content/uploads/2014/03/rethink-target-heart-rate-number-ftr.jpg') fixed;
+            background-size: cover;
+        }
+        *[role="form"] {
+            max-width: 530px;
+            padding: 15px;
+            margin: 0 auto;
+            border-radius: 0.3em;
+            background-color: #f2f2f2;
+        }
 
-    form(action="/add_client" method="POST") 
-        div(class="form-row")
-            div(class="col-md-4 mb-3")
-                label(for="validationDefault01") First name
-                input(type="text" class="form-control" id="validationDefault01" placeholder="First name" name="firstName" required)
-        div(class="form-row")        
-            div(class="col-md-4 mb-3")
-                label(for="validationDefault02") Last name
-                input(type="text" class="form-control" id="validationDefault02" placeholder="Last name" name="lastName" required)
-        div(class="form-row")
-            div(class="form-row")
-                div(class="col-md-6 mb-3")
-                    label(for="validationDefault03") Phone
-                    input(type="text" class="form-control" id="validationDefault03" placeholder="Phone" name="phone" required)
-        div(class="form-row")
-            label(for="validationDefault06") Choose Doctor 
-                select(name="doctor" class="form-select" ) 
-                    option(value="Dr. Kimia Aksir") Kimia Aksir 
-                    option(value="Dr. Pelumi Apantuku") Pelumi 
-        div(class="form-row")        
-            div(class="col-md-3 mb-3")
-                label(for="validationDefault04") email
-                input(type="text" class="form-control" id="validationDefault04" placeholder="email" name="email" required)
-        div(class="form-row ")
-            <div class="input-group form-outline w-25 ">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="cost" name="cost">
-                <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                </div>
+        *[role="form"] h2 { 
+            font-family: 'Open Sans' , sans-serif;
+            font-size: 40px;
+            font-weight: 600;
+            color: #000000;
+            margin-top: 5%;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+            
+    <div class="container">
+        <div class="wrapp">
+            <form class="form-horizontal" role="form" action="/add_client" method="POST" class="form-horizontal" role="form">
+                <h2>Registration</h2>
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="firstName" placeholder="First Name" name="firstName" class="form-control" autofocus>
+                    </div>
+                div(class="form-group")        
+                    label(for="Last Name" class="col-sm-3 control-label") Last name
+                    div(class="col-sm-9")
+                        input(type="text" class="form-control" id="validationDefault02" placeholder="Last name" name="lastName" required)
+                div(class="form-group")        
+                    label(for="email" class="col-sm-3 control-label") Email
+                    div(class="col-sm-9")
+                        input(type="text" class="form-control" id="validationDefault02" placeholder="email" name="email" required)
+                div(class="form-group")        
+                    label(for="Age" class="col-sm-3 control-label") Age
+                    div(class="col-sm-9")
+                        input(type="text" class="form-control" id="validationDefault02" placeholder="Age" name="age" required)
+                div(class="form-group")        
+                    label(for="Gender" class="col-sm-3 control-label") Gender
+                    div(class="col-sm-9")
+                        select(name="sex" class="form-select" ) 
+                            option(value="Masculin") M
+                            option(value="Feminin") F
+                div(class="form-group")        
+                    label(for="Phone" class="col-sm-3 control-label") Phone
+                    div(class="col-sm-9")
+                        input(type="text" class="form-control" id="validationDefault03" placeholder="Phone" name="phone" required)
+                div(class="form-group")        
+                    label(for="Address" class="col-sm-3 control-label") Address
+                    div(class="col-sm-9")
+                        input(type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" required)
+                div(class="form-group")        
+                    label(for="Walk-in" class="col-sm-3 control-label") Walk-in Date
+                    div(class="col-sm-9")
+                        input(type="date" class="form-control" id="validationDefault03" placeholder="Walk-in Date" name="walkin" required)
+                div(class="form-group")        
+                    label(for="Choose Doctor" class="col-sm-3 control-label") Choose Doctor
+                    div(class="col-sm-9")
+                        select(name="doctor" class="form-select" ) 
+                            option(value="Dr. Kimia Aksir") Kimia Aksir 
+                            option(value="Dr. Pelumi Apantuku") Pelumi    
+                div(class="form-group")        
+                    label(for="Walk-in" class="col-sm-3 control-label") Cost
+                    <div class="input-group form-outline w-30 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" style="text-align:right;" placeholder="cost" name="cost">
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                    </div>
+                div( class="form-group")
+                div(class="form-check")
+                    input(class="form-check-input" type="checkbox" value="" id="invalidCheck2"  required)
+                    label(class="form-check-label" for="invalidCheck2")
+                    p Agree to terms and conditions
+                button(type="submit" class="btn btn-primary" ) Submit
+                button(class="btn btn-primary" onclick="location.href='results'") Go Back 
             </div>
-        div( class="form-group")
-            div(class="form-check")
-                input(class="form-check-input" type="checkbox" value="" id="invalidCheck2"  required)
-                label(class="form-check-label" for="invalidCheck2")
-                p Agree to terms and conditions
- 
-        button(class="btn btn-primary" type="submit") Submit form
-        button(class="btn btn-primary" onclick="location.href='results'") Go Back
+            </form>
+        </div>
+    </div>

@@ -4,10 +4,14 @@ const app = express();
 var session = require('express-session')
 var cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const { json } = require('express');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
+
+
+
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -25,21 +29,37 @@ app.get('/', (req, res) => {
         username: req.session.username 
       });
   });
+app.get('/contact', (req, res) => {
+    res.render('contact', {
+        title: 'Homepage',
+        username: req.session.username 
+      });
+  });
+  app.get('/agenda', (req, res) => {
+    db.query('Select * from staff', function(err,rows){
+      res.render('Agenda', { data: rows,title: 'Contacts',username: req.session.username  })
+    })
+});
+
 app.get("/results", (req, res) => {
-    db.query('SELECT * FROM users ', function (err, rows) {
-          res.render('results', { data: rows ,username: req.session.username })
+    db.query('select * from patient order by nextapp asc limit 1', function (err, data) {
+          res.render('results', { data: data ,username: req.session.username })
         
       })
     })
+
+app.get('/profile', (req, res) =>  {
+    db.query(`SELECT * from users where name='${req.session.username}';`, function (err, rows) {
+          res.render('profile', { data: rows ,username: req.session.username })
+        
+      }) 
+    })
+
+
+
 app.get('/delete_client', (req, res) => {
         res.render('delete_client', {
             title: 'delete Client',
-            username: req.session.username 
-          });
-      });
-app.get('/edit_client', (req, res) => {
-        res.render('edit_client', {
-            title: 'edit Client',
             username: req.session.username 
           });
       });
@@ -125,11 +145,15 @@ app.get("/logout", (req, res) => {
 app.post("/add_client",urlencodedParser, (req, res) => {    
     const f_name =req.body.firstName
     const lastName=req.body.lastName
+    const age =req.body.age
+    const sex= req.body.sex
+    const address=req.body.address
+    const walkin=req.body.walkin
     const email=req.body.email
     const phone = req.body.phone
     const doctor=req.body.doctor
     const cost= req.body.cost
-    var sql = `INSERT INTO patient (firstName, lastName, email, phone, doctor,cost) VALUES ("${f_name}", "${lastName}", "${email}", "${phone}","${doctor}","${cost}")`;
+    var sql = `INSERT INTO patient (firstName, lastName,age,sex,address,walkin, email, phone, doctor,cost) VALUES ("${f_name}", "${lastName}","${age}","${sex}","${address}","${walkin}", "${email}", "${phone}","${doctor}","${cost}")`;
         db.query(sql, (err, result) => {
             if(err) {
                 console.log(err)
@@ -147,6 +171,58 @@ app.get('/show_customers', (req, res) => {
       res.render('show_customers', { data: rows,username: req.session.username  })
     })
 });
+app.post("/add_contact",urlencodedParser,(req,res)=>{
+    const FirstName=req.body.firstName
+    const lastName=req.body.lastName
+    const email=req.body.email
+    const phone = req.body.phone
+    const position = req.body.position
+    var sql=`INSERT INTO staff (FirstName, LastName,Position,email,phone) VALUES ("${FirstName}", "${lastName}","${position}","${email}", "${phone}")`;
+        db.query(sql,(err,result)=>{
+            if(err){
+                console.log(err)
+            }
+            else{
+                return res.render('agenda',{
+                    message:"Contact Added",
+                    username: req.session.username 
+                })
+            }
+        })
+})
+
+app.get("/edit/:data?",(req, res,) => {
+    const formData =JSON.parse(req.params.data);
+    return res.render("edit", {
+      data: formData,
+      username: req.session.username,
+      title: 'Edit'
+    });
+})
+
+app.post("/edit/:data?",urlencodedParser, (req, res) => {
+      const id = req.body.id;
+      const firstName = req.body.name;
+      const lastName = req.body.lastName;
+      const age = req.body.age;
+      const sex = req.body.sex;
+      const address = req.body.address;
+      const walkin = req.body.walkin;
+      const email = req.body.email;
+      const phone = req.body.phone;
+      const doctor = req.body.doctor;
+      const cost = req.body.cost;
+      let query = `UPDATE patient SET firstName='${firstName}',lastName='${lastName}',age='${age}',phone='${phone}',sex='${sex}',address='${address}',walkin='${walkin}',email='${email}',walkin='${walkin}',email='${email}',phone='${phone}',doctor='${doctor}',cost='${cost}' where id='${id}' `;
+      db.query(query, (err, data) => {
+        if (err) {
+          console.log("not able to update", err.message);
+          return;
+        }
+        res.render("results", { data:data , message: "client Edited", username: req.session.username });
+      });
+    });
+  
+  
 
 const server = app.listen(7000, () => {
     console.log(`Express running → http://localhost:7000/`);

@@ -1,24 +1,41 @@
 extends default
 
 block content
-    table(class="table table-hover")
+
+    script(type='text/javascript').
+        
+        function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+        }   
+
+    h5 Search by Name
+    input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by names.." title="Type in a name" style="border-radius:10px;")
+    table(class="table table-hover table-bordered " id="myTable")
         thead
             tr
                 th First Name                 
                 th Last Name 
                 th Phone 
-                th Doctor 
-                th Email 
-                th Cost
         tbody
             for cp,index in data
                 tr
                     td= cp.firstName
                     td= cp.lastName 
                     td=cp.phone 
-                    td=cp.doctor 
-                    td=cp.email 
-                    td=cp.cost
-                    td
-                        a(href=`#` class=`btn btn-primary` id=`edit-button`) Edit
-                        
+                    td 
+                       a(href=`/edit/${JSON.stringify(data[index])}` class=`btn btn-primary` id=`edit-button`) Edit Client

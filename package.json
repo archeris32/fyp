@@ -11,6 +11,7 @@
     "express-session": "^1.17.3",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
+    "seraphnet-bootstable": "^1.5.38",
     "urlencoded-parser": "^1.0.0"
   },
   "devDependencies": {

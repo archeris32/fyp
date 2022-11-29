@@ -1,8 +1,83 @@
+style.
+    .cont {
+        position: absolute;
+    }
+    .cont ul {
+        opacity: 0;
+        visibility: hidden;
+        text-align: left;
+        transition: all 200ms;
+    }
+    .cont:hover ul {
+        opacity: 1;
+        visibility: visible;
+    }
+    .cont ul {
+        position: absolute;
+        padding: 4px 0;
+        top: 28px;
+        right: 0;
+        width: 80px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 3px rgba(0, 0, 0, 0.05);
+        list-style-type: none;
+    }
+    .cont:hover ul:before {
+        content: '';
+        position: absolute;
+        top: -12px;
+        height: 12px;
+        width: 100%;
+        background-color: transparent;
+    }
+    .cont:hover ul:after {
+        content: '';
+        position: absolute;
+        right: 6px;
+        top: -16px;
+        height: 0;
+        width: 0;
+        border: 8px solid transparent;
+        border-bottom-color: #ccc;
+    }
+    .cont:hover ul li {
+        padding: 5px 10px;
+        color: #999;
+        cursor: pointer;
+        transition: all 100ms;
+    }
+    .cont:hover ul li:hover {
+        background-color: #e6e6e6;
+        color: black;
+    }
+    .cont:hover ul li:first-of-type:after {
+        content: '';
+        position: absolute;
+        right: 6px;
+        top: -15px;
+        height: 0;
+        width: 0;
+        z-index: 1;
+        border: 8px solid transparent;
+        border-bottom-color: white;
+        pointer-events: none;
+    }
+    .cont {
+        margin: auto;
+    }
+    .container{
+        margin-right:0px
+        margin-left:0px
+    }
+ 
 div(class="container" bis_skin_checked="1")
     header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 border-bottom")
         a(href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none")
             img(src="https://www.alphahousedentalpractice.co.uk/uploads/Icons/emergency-dentistry-birchington-kent-1.png" class="rounded-circle" width=50)
-        nav(class="navbar navbar-expand-sm")
+            p(style = "font-family:'Brush Script MT', cursive; font-size: 30px; ") Zentist
+        nav(class="navbar navbar-expand-sm d-flex")
             button(class="navbar-toggler" type="button" data-target="#navigation")
                 span(class="navbar-toggler-icon")
             div(class="collapse navbar-collapse")
@@ -17,7 +92,18 @@ div(class="container" bis_skin_checked="1")
                         a(href="/team" class="nav-link text-dark custom-nav-link") Team   
                     li(class="nav-item active custom-nav-item")
                         a(href="/contact" class="nav-link text-dark custom-nav-link") Contact Us 
-        div(class="col-md-3 text-end" bis_skin_checked="1")
-            a(type="button" href=username ? "/logout" : "/login" class="btn btn-outline-primary me-2")  #{username ? "Logout": "Login"} 
-            span(class="text-dark" style="padding-left:20px") #{username}
-            a(type="button" href="/register" class="btn btn-primary" style=username&& 'display:none') Sign up
+            div(class="col-md-3 text-end" bis_skin_checked="1")
+                a(type="button" href=username ? "/logout" : "/login" class="btn btn-outline-primary me-2" style= username&& 'display:none') Login
+                if(username)
+                    <div class="cont">
+                        <label >#{username}</label>
+                            <ul>
+                                li 
+                                    a(href="/profile") Profile
+                                    #{username}
+                                li 
+                                    a(href="/logout") Logout
+                            </ul>
+                        </div>
+                
+                a(type="button" href="/register" class="btn btn-primary" style=username&& 'display:none') Sign up
