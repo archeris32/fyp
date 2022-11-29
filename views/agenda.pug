@@ -60,9 +60,8 @@ block content
                                 td= d.FirstName
                                 td= d.LastName 
                                 td 
-                                    a(href=`/edit/${JSON.stringify(data[index])}` class=`btn btn-primary` id=`edit-button`) Edit Client
-                                    button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal") Show
-                                    div(class="modal fade" id="myModal" role="dialog")
+                                    button(href=`/edit/${JSON.stringify(data[index])}` type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2") Edit Client
+                                    div(class="modal fade" id="myModal2" role="dialog")
                                         div(class="modal-dialog")
                                         <!-- Modal content-->
                                             <div class="modal-content">
@@ -71,7 +70,13 @@ block content
                                                     <h4 class="modal-title">Modal Header</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    h1 Phone number:
+                                                    h1 Last Name:
+                                                    p=d.LastName
+                                                    h1 First Name:
+                                                    p=d.FirstName
+                                                    h1 Email:
+                                                    p=d.email
+                                                    h1 Phone:
                                                     p=d.phone
                                                 </div>
                                                 <div class="modal-footer">
