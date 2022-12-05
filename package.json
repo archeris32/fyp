@@ -3,6 +3,7 @@
     "start": "npx nodemon server.js"
   },
   "dependencies": {
+    "@appland/appmap-agent-js": "^12.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "bootstrap-icons": "^1.9.1",
