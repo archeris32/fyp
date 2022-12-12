@@ -5,5 +5,10 @@ block content
    p This clinic is the best
   div.container(class="d-flex justify-content-around")
    a(type="button" href= username ? "/results" : "/login" class="btn btn-outline-primary me-2") #{username ? "Results" : "Login"}
-   
+   if(username)
+    for d in data
+      if(d.role=='admin')
+        a.btn(href=`/Admin_dashboard` type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Dashboard
     
+   
+  

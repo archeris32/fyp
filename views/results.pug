@@ -137,6 +137,7 @@ block content
         max-width:1200px;
         }
         }
+    
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -178,8 +179,7 @@ block content
                       h1(style="text-align: center; margin-top: 50px;") Welcome #{username} 
                       h2(style="text-align: center; margin-bottom: 30px;")  Dashboard 
                       div.container(class="d-flex justify-content-around container")
-                        a.btn(href='/add_client' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary")
-                          i.fab.fa-accusoft.fa-lg(aria-hidden='true') Add Client
+                        a.btn(href='/add_client' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Add Client
                         a.btn(href='/delete_client' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Delete Client 
                         a.btn(href='/show_customers' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Clients Database
                    
@@ -188,18 +188,3 @@ block content
                             p(style="text-align: center; margin-top: 10px;") Your next appointment is with:
                             h3(style="text-align: center; margin-top: 50px;")= d.firstName
                             h5(style="text-align: center; margin-top: 50px;")=d.nextapp
-
-                        //<button href="#myModal" id="openBtn" data-toggle="modal" class="btn btn-default">Modal</button>
-
-                        //<div class="modal fade" id="myModal">
-                        //<div class="modal-dialog modal-xl">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                    <button onclick="hideDiv()">Hide Div</button>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h3 class="modal-title">Big Title</h3>
-                                </div>
-                              <div class="modal-body">
-                                iframe(id="myFrame" src="/show_customers", width="100%" height="300" style="border:none;") 
-                              </div>
-                              <button onclick="hideDiv()">Hide Div</button>

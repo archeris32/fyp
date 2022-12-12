@@ -1,172 +1,59 @@
 include default
 block content
-    script.
-        $(function(){
-            $.validator.setDefaults({
-                highlight: function(element){
-                    $(element)
-                    .closest('.form-group')
-                    .addClass('has-error')
-                },
-                unhighlight: function(element){
-                    $(element)
-                    .closest('.form-group')
-                    .removeClass('has-error')
-                }
-            });
-	
-        $.validate({
-                rules:
-                {	
-                    password: "required",
-                    birthDate: "required",
-                    weight: {
-                        required:true,
-                        number:true
-                    },
-                    height:  {
-                        required:true,
-                        number:true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    }
-                },
-                    messages:{			
-                        email: {
-                        required: true,
-                        email: true
-                    }
-                },
-                        password: {
-                            required: " Please enter password"
-                        },
-                        birthDate: {
-                            required: " Please enter birthdate"
-                        },
-                        email: {
-                            required: ' Please enter email',
-                            email: ' Please enter valid email'
-                        },
-                        weight: {
-                            required: " Please enter your weight",
-                            number: " Only numbers allowed"
-                        },
-                        height: {
-                            required: " Please enter your height",
-                            number: " Only numbers allowed"
-                        },
-                    }
-                    
-            });
-            });
     style.
-        .wrapp{
-            background: url('https://static-communitytable.parade.com/wp-content/uploads/2014/03/rethink-target-heart-rate-number-ftr.jpg') fixed;
-            background-size: cover;
+        .form-control{
+        border-radius: 20px !important;
+        box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF !Important;
+        border: none;
+        background: transparent !important;
+            
         }
-        *[role="form"] {
-            max-width: 530px;
-            padding: 15px;
-            margin: 0 auto;
-            border-radius: 0.3em;
-            background-color: #f2f2f2;
+        .wrap .container{
+            box-shadow:3px 3px 5px #BABECC,  -5px -5px 10px #FFF;
+
         }
 
-        *[role="form"] h2 { 
-            font-family: 'Open Sans' , sans-serif;
-            font-size: 40px;
-            font-weight: 600;
-            color: #000000;
-            margin-top: 5%;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 4px;
+        .form-control:hover{
+            box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF !important;
         }
-
-    <div class="container">
-        <div class="wrapp">
-            <form class="form-horizontal" role="form">
-                <h2>Registration</h2>
-                <div class="form-group">
-                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">Email* </label>
-                    <div class="col-sm-9">
-                        <input type="email" id="email" placeholder="Email" class="form-control" name= "email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Password*</label>
-                    <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
-                    <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
-                    <div class="col-sm-9">
-                        <input type="date" id="birthDate" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
-                    <div class="col-sm-9">
-                        <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
-                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
-                    </div>
-                </div>
-                <div class="form-group">
-                        <label for="Height" class="col-sm-3 control-label">Height* </label>
-                        <div class="col-sm-9">
-                            <input type="number" id="height" placeholder="Please write your height in centimetres" class="form-control">
-                        </div>
-                </div>
-                 <div class="form-group">
-                        <label for="weight" class="col-sm-3 control-label">Weight* </label>
-                        <div class="col-sm-9">
-                            <input type="number" id="weight" placeholder="Please write your weight in kilograms" class="form-control">
-                        </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-3">Gender</label>
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="femaleRadio" value="Female">Female
-                                </label>
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="maleRadio" value="Male">Male
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- /.form-group -->
-                <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-3">
-                        <span class="help-block">*Required fields</span>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
-            </form> <!-- /form -->
-        </div>
-    </div> <!-- ./container -->
+    form(action="https://formsubmit.co/contact.zentist@gmail.com" method="POST")
+        div(class="wrapp")
+            div(class="container my-5 py-5 ")
+                section(class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text")
+                    div(class="row")
+                        div(class="col-lg-5 col-md-12 mb-0 mb-md-0")
+                            h3(class="font-weight-bold") Contact us
+                            p(class="text-muted") Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente molestiae numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam, doloremque laborum.</p>
+                            p
+                                span(class="font-weight-bold mr-2") Email:
+                                    a(href="") contact.zentist@gmail.com
+                            p
+                                span(class="font-weight-bold mr-2") Phone:
+                                    a(href="") +44 07437728133
+                            p
+                                span(class="font-weight-bold mr-2") Address:
+                                a(href="https://www.google.com/maps/place/158+De+Havilland+Rd,+Edgware+HA8+5QB/data=!4m2!3m1!1s0x48761152d9338af9:0x68d896b7428a0668?sa=X&ved=2ahUKEwjbqqKF0-X7AhVwQ0EAHZIsBKoQ8gF6BAgPEAE") 158 DeHaviland Road
+                            iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.382927543036!2d-0.276263548762106!3d51.597871911805385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761152d9338af9%3A0x68d896b7428a0668!2s158%20De%20Havilland%20Rd%2C%20Edgware%20HA8%205QB!5e0!3m2!1sro!2suk!4v1670352567175!5m2!1sro!2suk" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade")
+                        div(class="col-lg-7 col-md-12 mb-4 mb-md-0")
+                            div(class="row")
+                                div(class="col-md-9")
+                                div(class="md-form md-outline mb-0")
+                                    input(type="text" id="form-name" class="form-control" name ="Name" placeholder="Name")
+                                div(class="md-form md-outline mt-3")
+                                    input(type="email" id="form-email" class="form-control" name="email" placeholder="Email Address")
+                                    div(class="col-md-9")
+                                    div(class="md-form md-outline mt-3")
+                                        select(class="mdb-select md-form  form-control" id="comp")
+                                            option(value="" disabled selected) Choose your branch
+                                            option(value="1") Computer
+                                            option(value="2") Civil
+                                            option(value="4") Mechanical
+                                            option(value="5") Electronics & TeleCommunication
+                                            option(value="6") Electronics
+                                    input(type="hidden" name="_next" value="http://localhost:7000/")
+                                    input(type="hidden" name="_autoresponse" value="Thank you for your feedback. One of our collegues will be in touch with you.")
+                                    input(type="hidden" name="_template" value="box")
+                                    div(class="md-form md-outline mt-2")
+                                        textarea(id="form-message" class="md-textarea form-control" rows="10" name="message" placeholder="Write Your Message Here...")
+                                    button(type="submit" class="btn btn-info btn-sm ml-0") Submit
+                                        i(class="far fa-paper-plane ml-2")

@@ -23,19 +23,19 @@ const db = mysql.createConnection({
 app.use(cookieParser());
 app.use(session({secret: "Shh, its a secret!"}));
 
+
 app.get('/', (req, res) => {
-    res.render('index', {
-        title: 'Homepage',
-        username: req.session.username 
-      });
-  });
+    db.query(`SELECT * from users where name='${req.session.username}';`, function(err,rows){
+      res.render('', { data: rows,title: 'Homepage',username: req.session.username  })
+    })
+});
 app.get('/contact', (req, res) => {
     res.render('contact', {
         title: 'Homepage',
         username: req.session.username 
       });
   });
-  app.get('/agenda', (req, res) => {
+app.get('/agenda', (req, res) => {
     db.query('Select * from staff', function(err,rows){
       res.render('Agenda', { data: rows,title: 'Contacts',username: req.session.username  })
     })
@@ -54,7 +54,6 @@ app.get('/profile', (req, res) =>  {
         
       }) 
     })
-
 
 
 app.get('/delete_client', (req, res) => {
@@ -199,7 +198,15 @@ app.get("/edit/:data?",(req, res,) => {
       title: 'Edit'
     });
 })
-
+app.get('/Admin_dashboard', (req, res) => {
+    db.query(`SELECT * from users where name='${req.session.username}';`, function(err,rows){
+    res.render('Admin_dashboard', {
+        data:rows,
+        title: 'Admin Dashboard',
+        username: req.session.username 
+      });
+  });
+})
 app.post("/edit/:data?",urlencodedParser, (req, res) => {
       const id = req.body.id;
       const firstName = req.body.name;
@@ -212,7 +219,8 @@ app.post("/edit/:data?",urlencodedParser, (req, res) => {
       const phone = req.body.phone;
       const doctor = req.body.doctor;
       const cost = req.body.cost;
-      let query = `UPDATE patient SET firstName='${firstName}',lastName='${lastName}',age='${age}',phone='${phone}',sex='${sex}',address='${address}',walkin='${walkin}',email='${email}',walkin='${walkin}',email='${email}',phone='${phone}',doctor='${doctor}',cost='${cost}' where id='${id}' `;
+      const nextapp= req.body.nextapp
+      let query = `UPDATE patient SET firstName='${firstName}',lastName='${lastName}',age='${age}',phone='${phone}',sex='${sex}',address='${address}',walkin='${walkin}',email='${email}',nextapp='${nextapp}',email='${email}',phone='${phone}',doctor='${doctor}',cost='${cost}' where id='${id}' `;
       db.query(query, (err, data) => {
         if (err) {
           console.log("not able to update", err.message);
@@ -223,6 +231,7 @@ app.post("/edit/:data?",urlencodedParser, (req, res) => {
     });
   
   
+
 
 const server = app.listen(7000, () => {
     console.log(`Express running → http://localhost:7000/`);
