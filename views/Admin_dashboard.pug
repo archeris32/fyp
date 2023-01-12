@@ -22,7 +22,7 @@ block content
           }
           }   
   if(username)
-    for d in data
+    for d in results1
         if (d.role == 'admin')
             h5 Search by Name
             input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by names.." title="Type in a name" style="border-radius:10px;")
@@ -35,13 +35,13 @@ block content
                         th Password 
                         th Role
                 tbody
-                    for cp,index in data
+                    for cp,index in results2
                         tr
                             td= cp.id
                             td= cp.name 
                             td=cp.email 
                             td=cp.password
                             td=cp.role  
-                               a(href=`/edit_user/${JSON.stringify(data[index])}` class=`btn btn-primary` id=`edit-button` style="float: right") Edit Client
+                               a(href=`/edit_user/${JSON.stringify(results2[index])}` class=`btn btn-primary` id=`edit-button` style="float: right") Edit Client
         else 
             h5 You're not a admin

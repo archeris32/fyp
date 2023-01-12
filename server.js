@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const { json } = require('express');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 
@@ -17,6 +17,7 @@ const db = mysql.createConnection({
     user: "root",
     password: "",
     database: "login-db",
+    multipleStatements: true
     
 })
 
@@ -40,14 +41,59 @@ app.get('/agenda', (req, res) => {
       res.render('Agenda', { data: rows,title: 'Contacts',username: req.session.username  })
     })
 });
+app.get("/results",(req,res)=>{
+    db.query(`select * from patient order by nextapp limit 1;`,function(err,data1){
+        if(err){
+            console.log(err)
+        }else{
+            db.query(`SELECT * from users where name='${req.session.username}';`,function(err,data2){
+                if(err){
+                    console.log(err)
+                }else{
+                    res.render('results',{results1:data1,results2:data2,username:req.session.username})
+                }
+            })
+        }
 
-app.get("/results", (req, res) => {
-    db.query('select * from patient order by nextapp asc limit 1', function (err, data) {
-          res.render('results', { data: data ,username: req.session.username })
-        
-      })
     })
-
+})
+app.get('/Admin_dashboard', (req, res) => {
+    db.query(`SELECT * from users where name='${req.session.username}';`, function(err,rows){
+        if(err){
+            console.log(err)
+        }else{
+            db.query(`select * from users`,function(err,data2){
+                if(err){
+                    console.log(err)
+                }else{
+                    res.render('Admin_dashboard', {results1:rows,results2:data2,title: 'Admin Dashboard',username: req.session.username});
+                }
+            })
+        }
+  });
+})
+app.get('/analytics', (req, res) => {
+    db.query(`SELECT * from patient ;`, function(err,data1){
+        if(err){
+            console.log(err)
+        }else{
+            db.query(`SELECT YEAR(walkin) AS Year, MONTHNAME(walkin) AS Month, SUM(cost) AS Count_Of_Sales FROM patient GROUP BY YEAR(walkin), MONTHNAME(walkin)`,function(err,data2){
+                if(err){
+                    console.log(err)
+                }else{
+                   db.query(`SELECT SUM(cost) AS Count_Of_Sales,doctor FROM patient GROUP BY doctor`,function(err,data3){
+                    if(err){
+                        console.log(err)
+                    }
+                    else{
+                        res.render('analytics', {results1:data1,results2:data2,result3:data3,title: 'Admin Dashboard',username: req.session.username});
+                    }
+                   })
+                }
+            })
+        }
+  });
+})
 app.get('/profile', (req, res) =>  {
     db.query(`SELECT * from users where name='${req.session.username}';`, function (err, rows) {
           res.render('profile', { data: rows ,username: req.session.username })
@@ -73,7 +119,7 @@ app.post("/delete_client",urlencodedParser,(req,res)=>{
         else{
             return res.render('delete_client', { data: rows,username: req.session.username  })
     }
-      })  
+      }) 
     })
 app.post("/delete_client",urlencodedParser,(req,res)=>{
     const name = req.body.searchName
@@ -167,9 +213,10 @@ app.post("/add_client",urlencodedParser, (req, res) => {
     })
 app.get('/show_customers', (req, res) => {
     db.query('Select * from patient', function(err,rows){
-      res.render('show_customers', { data: rows,username: req.session.username  })
+      res.render('show_customers', { data1: rows,username: req.session.username  })
     })
 });
+
 app.post("/add_contact",urlencodedParser,(req,res)=>{
     const FirstName=req.body.firstName
     const lastName=req.body.lastName
@@ -198,15 +245,24 @@ app.get("/edit/:data?",(req, res,) => {
       title: 'Edit'
     });
 })
-app.get('/Admin_dashboard', (req, res) => {
-    db.query(`SELECT * from users where name='${req.session.username}';`, function(err,rows){
-    res.render('Admin_dashboard', {
-        data:rows,
-        title: 'Admin Dashboard',
-        username: req.session.username 
-      });
-  });
+app.get("/invoice/:data?",(req, res,) => {
+    const formData =JSON.parse(req.params.data);
+    return res.render("invoice", {
+      data: formData,
+      username: req.session.username,
+      title: 'invoice'
+    });
 })
+
+app.get("/edit_user/:data?",(req, res,) => {
+    const formData =JSON.parse(req.params.data);
+    return res.render("edit_user", {
+      data: formData,
+      username: req.session.username,
+      title: 'Edit'
+    });
+})
+
 app.post("/edit/:data?",urlencodedParser, (req, res) => {
       const id = req.body.id;
       const firstName = req.body.name;
@@ -226,11 +282,25 @@ app.post("/edit/:data?",urlencodedParser, (req, res) => {
           console.log("not able to update", err.message);
           return;
         }
-        res.render("results", { data:data , message: "client Edited", username: req.session.username });
+        res.render("", {message: "client Edited", username: req.session.username });
       });
     });
   
-  
+    app.post("/edit_user/:data?",urlencodedParser, (req, res) => {
+        const id = req.body.id;
+        const username = req.body.name;
+        const email = req.body.email;
+        const password = req.body.password;
+        const role = req.body.role;
+        let query = `UPDATE users SET id='${id}',name='${username}',email='${email}',password='${password}',role='${role}' where id='${id}' `;
+        db.query(query, (err, data) => {
+          if (err) {
+            console.log("not able to update", err.message);
+            return;
+          }
+          res.render("", { data:data , message: "client Edited", username: req.session.username });
+        });
+      });
 
 
 const server = app.listen(7000, () => {

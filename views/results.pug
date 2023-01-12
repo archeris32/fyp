@@ -137,6 +137,8 @@ block content
         max-width:1200px;
         }
         }
+
+    
     
     <div id="wrapper">
 
@@ -160,10 +162,16 @@ block content
                     <a href="#">Events</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                if(username)
+                for d in results2
+                    if(d.role=='admin')
+                        <a href="/analytics">Analytics</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                if(username)
+                    for d in results2
+                        if(d.role=='admin')
+                            <a href="/admin_dashboard">Admin Dashboard</a>
                 </li>
                 <li>
                     <a href="/agenda">Contact</a>
@@ -183,7 +191,7 @@ block content
                         a.btn(href='/delete_client' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Delete Client 
                         a.btn(href='/show_customers' type="button" class="btn btn-light btn-circle btn-xl btn-outline-primary") Clients Database
                    
-                    for d in data 
+                    for d in results1
                         div(class="card" style="text-align: center; margin-top: 50px;" )
                             p(style="text-align: center; margin-top: 10px;") Your next appointment is with:
                             h3(style="text-align: center; margin-top: 50px;")= d.firstName

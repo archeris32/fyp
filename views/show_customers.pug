@@ -32,10 +32,11 @@ block content
                 th Last Name 
                 th Phone 
         tbody
-            for cp,index in data
+            for cp,index in data1
                 tr
                     td= cp.firstName
                     td= cp.lastName 
                     td=cp.phone 
                     td 
-                       a(href=`/edit/${JSON.stringify(data[index])}` class=`btn btn-primary` id=`edit-button`) Edit Client
+                       a(href=`/edit/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`edit-button`) Edit Client
+                       a(href=`/invoice/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`invoice-button`) Invoice   

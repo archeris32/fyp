@@ -1,0 +1,63 @@
+extends default
+
+block content
+    <div class="wrap" style="display:flex; justify-content: center; ">
+        <div id="pie-chart" style="float: left; width: 25%; height: 400px;"></div>
+        <div id="pie-chart2" style="float: left; width: 25%; height: 400px;"></div>
+    script.
+       var values=!{JSON.stringify(results2)}
+       let value=[]
+       for(i in values){
+        value.push(values[i]["Month"])
+       }
+       console.log(value)
+        let cost=[]
+        for(j in values){
+            cost.push(String(values[j]["Count_Of_Sales"]))
+        }
+
+        var pieDiv = document.getElementById("pie-chart");
+
+        var traceA = {
+        type: "pie",
+        values: cost,
+        labels: value
+        };
+
+        var data = [traceA];
+
+        var layout = {
+        title: "Total sales per months"
+        };
+
+        Plotly.plot(pieDiv, data, layout);
+
+
+       var values2=!{JSON.stringify(result3)}
+       let value2=[]
+       for(i in values2){
+        value2.push(values2[i]["doctor"])
+       }
+       console.log(value2)
+        let cost2=[]
+        for(j in values2){
+            cost2.push(String(values2[j]["Count_Of_Sales"]))
+        }
+
+        var pieDiv2 = document.getElementById("pie-chart2");
+
+        var traceb = {
+        type: "pie",
+        values: cost2,
+        labels: value2
+        };
+
+        var data2 = [traceb];
+
+        var layout2 = {
+        title: "Sales of each Doctor"
+        };
+
+        Plotly.plot(pieDiv2, data2, layout2);
+
+    
