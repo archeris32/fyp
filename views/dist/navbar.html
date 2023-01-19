@@ -1,0 +1,92 @@
+
+<style>
+  label{
+      margin: 20px;
+  }
+  .cont ul {
+      opacity: 0;
+      visibility: hidden;
+      text-align: left;
+      transition: all 200ms;
+  }
+  .cont:hover ul {
+      opacity: 1;
+      visibility: visible;
+  }
+  .cont ul {
+      position: absolute;
+      padding: 4px 0;
+      top: 28px;
+      right: 0;
+      width: 80px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 3px rgba(0, 0, 0, 0.05);
+      list-style-type: none;
+  }
+  .cont:hover ul:before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      height: 12px;
+      width: 100%;
+      background-color: transparent;
+  }
+  .cont:hover ul:after {
+      content: '';
+      position: absolute;
+      right: 6px;
+      top: -16px;
+      height: 0;
+      width: 0;
+      border: 8px solid transparent;
+      border-bottom-color: #ccc;
+  }
+  .cont:hover ul li {
+      padding: 5px 10px;
+      color: #999;
+      cursor: pointer;
+      transition: all 100ms;
+  }
+  .cont:hover ul li:hover {
+      background-color: #e6e6e6;
+      color: black;
+  }
+  .cont:hover ul li:first-of-type:after {
+      content: '';
+      position: absolute;
+      right: 6px;
+      top: -15px;
+      height: 0;
+      width: 0;
+      z-index: 1;
+      border: 8px solid transparent;
+      border-bottom-color: white;
+      pointer-events: none;
+  }
+  .cont {
+      margin: 0;
+  }
+  .container{
+      width: 100%;
+      padding: 0;
+  }
+  
+  
+</style>
+<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4" style="background-color:#fcf4f0;">
+  <nav class="navbar navbar-expand-sm d-flex mx-auto">
+    <button class="navbar-toggler" type="button" data-target="#navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" style="float:left;">
+      <ul class="navbar-nav"> 
+        <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/">Home</a></li>
+        <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/about">About</a></li>
+        <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/services">Services</a></li>
+        <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/team">Team   </a></li>
+        <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav><a class="text-dark text-decoration-none " href="/" style="margin:auto"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"/></a>
+  <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a></div>
+</div>

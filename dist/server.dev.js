@@ -303,7 +303,10 @@ app.post("/edit/:data?", urlencodedParser, function (req, res) {
   var doctor = req.body.doctor;
   var cost = req.body.cost;
   var nextapp = req.body.nextapp;
-  var query = "UPDATE patient SET firstName='".concat(firstName, "',lastName='").concat(lastName, "',age='").concat(age, "',phone='").concat(phone, "',sex='").concat(sex, "',address='").concat(address, "',walkin='").concat(walkin, "',email='").concat(email, "',nextapp='").concat(nextapp, "',email='").concat(email, "',phone='").concat(phone, "',doctor='").concat(doctor, "',cost='").concat(cost, "' where id='").concat(id, "' ");
+  var cost_1 = req.body.cost_1;
+  var cost_2 = req.body.cost_2;
+  var cost_3 = req.body.cost_3;
+  var query = "UPDATE patient SET cost_1='".concat(cost_1, "',cost_2='").concat(cost_2, "',cost_3='").concat(cost_3, "',firstName='").concat(firstName, "',lastName='").concat(lastName, "',age='").concat(age, "',phone='").concat(phone, "',sex='").concat(sex, "',address='").concat(address, "',walkin='").concat(walkin, "',email='").concat(email, "',nextapp='").concat(nextapp, "',email='").concat(email, "',phone='").concat(phone, "',doctor='").concat(doctor, "',cost='").concat(cost, "' where id='").concat(id, "' ");
   db.query(query, function (err, data) {
     if (err) {
       console.log("not able to update", err.message);

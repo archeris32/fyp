@@ -1,6 +1,6 @@
 style.
-    .cont {
-        position: absolute;
+    label{
+        margin: 20px;
     }
     .cont ul {
         opacity: 0;
@@ -65,45 +65,44 @@ style.
         pointer-events: none;
     }
     .cont {
-        margin: auto;
+        margin: 0;
     }
     .container{
-        margin-right:0px
-        margin-left:0px
+        width: 100%;
+        padding: 0;
     }
- 
-div(class="container" bis_skin_checked="1")
-    header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 border-bottom")
-        a(href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none")
-            img(src="https://www.alphahousedentalpractice.co.uk/uploads/Icons/emergency-dentistry-birchington-kent-1.png" class="rounded-circle" width=50)
-            p(style = "font-family:'Brush Script MT', cursive; font-size: 30px; ") Zentist
-        nav(class="navbar navbar-expand-sm d-flex")
-            button(class="navbar-toggler" type="button" data-target="#navigation")
-                span(class="navbar-toggler-icon")
-            div(class="collapse navbar-collapse")
-                ul(class="navbar-nav")
-                    li(class="nav-item active custom-nav-item")
-                        a(href="/" class="nav-link text-dark custom-nav-link") Home
-                    li(class="nav-item active custom-nav-item")
-                        a(href="/about" class="nav-link text-dark custom-nav-link") About
-                    li(class="nav-item active custom-nav-item")
-                        a(href="/services" class="nav-link text-dark custom-nav-link") Services
-                    li(class="nav-item active custom-nav-item")
-                        a(href="/team" class="nav-link text-dark custom-nav-link") Team   
-                    li(class="nav-item active custom-nav-item")
-                        a(href="/contact" class="nav-link text-dark custom-nav-link") Contact Us 
-            div(class="col-md-3 text-end" bis_skin_checked="1")
-                a(type="button" href=username ? "/logout" : "/login" class="btn btn-outline-primary me-2" style= username&& 'display:none') Login
-                if(username)
-                    <div class="cont">
-                        <label >#{username}</label>
-                            <ul>
-                                li 
-                                    a(href="/profile") Profile
-                                    #{username}
-                                li 
-                                    a(href="/logout") Logout
-                            </ul>
-                        </div>
-                
-                a(type="button" href="/register" class="btn btn-primary" style=username&& 'display:none') Sign up
+  
+
+div(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4" style="background-color:#fcf4f0;")
+    nav(class="navbar navbar-expand-sm d-flex mx-auto")
+        button(class="navbar-toggler" type="button" data-target="#navigation")
+            span(class="navbar-toggler-icon")
+        div(class="collapse navbar-collapse" style="float:left;")
+            ul(class="navbar-nav") 
+                li(class="nav-item active custom-nav-item")
+                    a(href="/" class="nav-link text-dark custom-nav-link") Home
+                li(class="nav-item active custom-nav-item")
+                    a(href="/about" class="nav-link text-dark custom-nav-link") About
+                li(class="nav-item active custom-nav-item")
+                    a(href="/services" class="nav-link text-dark custom-nav-link") Services
+                li(class="nav-item active custom-nav-item")
+                    a(href="/team" class="nav-link text-dark custom-nav-link") Team   
+                li(class="nav-item active custom-nav-item")
+                    a(href="/contact" class="nav-link text-dark custom-nav-link") Contact
+    a(href="/" class="text-dark text-decoration-none " style="margin:auto")
+        img(src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width=100)
+    div(class="col-md-3 text-end justify-content-end" bis_skin_checked="1")
+        a(type="button" href=username ? "/logout" : "/login" class="btn btn-outline-primary me-2" style= username&& 'display:none') Login
+        a(type="button" href="/register" class="btn btn-primary" style=username&& 'display:none') Sign up
+    if(username)
+        a(type="button" href="/results" class="btn btn-outline-primary me-2") Dashboard
+        if(username)
+            div(class="cont justify-content-end")
+                label(class="name") #{username}
+                    ul
+                        li 
+                            a(href="/profile") Profile
+                            #{username}
+                        li 
+                            a(href="/logout") Logout
+        

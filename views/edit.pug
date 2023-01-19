@@ -5,29 +5,57 @@ block content
         h1(class="p-2") Update Database 
             
 
-        form(class="mb-5" method="post", action=`/edit/${JSON.stringify(data)}`)
+        form(class="mb-5" style="row-gap: 10px;" method="post", action=`/edit/${JSON.stringify(data)}`)
+        
+            h6 Id
+            div(class="d-flex justify-content-center" )                
+                input(type='text' name='id'  class="form-control m-2" value=data.id placeholder="Id")
+            h6 First Name
             div(class="d-flex justify-content-center")
-                input(type='text' name='id'  class="form-control m-2" value=data.id)
+                input(type='text' name='name'  class="form-control m-2" value=data.firstName placeholder="First Name")
+            h6 Last Name
             div(class="d-flex justify-content-center")
-                input(type='text' name='name'  class="form-control m-2" value=data.firstName)
-            
+                input(type='text' name='lastName'  class="form-control m-2" value=data.lastName placeholder="Last Name" )
+            h6 Age
             div(class="d-flex justify-content-center")
-                input(type='text' name='lastName'  class="form-control m-2" value=data.lastName )
-
+                input(type='text' name='age'  class="form-control m-2" value=data.age placeholder="Age")
+            h6 Phone
             div(class="d-flex justify-content-center")
-                input(type='text' name='age'  class="form-control m-2" value=data.age)
+                input(type='text' name='phone' class="form-control m-2" value=data.phone placeholder="Phone")
+            h6 Email
             div(class="d-flex justify-content-center")
-                input(type='text' name='phone' class="form-control m-2" value=data.phone )
+                input(type='text' name='email' id='email' class="form-control m-2" value=data.email placeholder="Email")
+            h6 Address
             div(class="d-flex justify-content-center")
-                input(type='text' name='email' id='email' class="form-control m-2" value=data.email )
-            div(class="d-flex justify-content-center")
-                input(type='text' name='address' id='address' class="form-control m-2" value=data.address )
+                input(type='text' name='address' id='address' class="form-control m-2" value=data.address placeholder="Address")
+            h6 Walk in Date
             div(class="d-flex justify-content-center")
                 input(type='data' name='walkin' id='walkin' class="form-control m-2" value=data.walkin)
+            h6 Next Appointment Date
             div(class="d-flex justify-content-center")
-                input(type='text' name='nextapp' id='nextapp' class="form-control m-2" value=data.nextapp )
+                input(type='text' name='nextapp' id='nextapp' class="form-control m-2" value=data.nextapp)
+            h6 Treatment 1
             div(class="d-flex justify-content-center")
-                input(type='text' name='cost'  class="form-control m-2" value=data.cost )
+                input(type='text' name='Treatment 1'  class="form-control m-2" value=data.treatement_2 placeholder="Treatment 2")
+                h6 Cost
+                div(class="d-flex justify-content-center")
+                    input(type='text' name='cost_1'  class="form-control m-2" value=data.cost_1 placeholder="Cost")
+            h6 Treatment 2
+            div(class="d-flex justify-content-center")
+                input(type='text' name='Treatment 2'  class="form-control m-2" value=data.treatement_2 placeholder="Treatment 2")
+                h6 Cost
+                div(class="d-flex justify-content-center")
+                    input(type='text' name='cost_2'  class="form-control m-2" value=data.cost_2 placeholder="Cost")
+            h6 Treatment 3
+            div(class="d-flex justify-content-center")
+                input(type='text' name='Treatment 3'  class="form-control m-2" value=data.treatement_3 placeholder="Treatment 3")
+                h6 Cost
+                div(class="d-flex justify-content-center")
+                    input(type='text' name='cost_3'  class="form-control m-2" value=data.cost_3 placeholder="Cost")
+            h6 Cost
+            div(class="d-flex justify-content-center")
+                input(type='text' name='cost'  class="form-control m-2" value=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3) placeholder="Cost")
+            h6 Doctor
             div(class="d-flex justify-content-center")
                 select(id="doctor" name="doctor" class="form-select" )
                     option(value="Dr. Kimia Aksir") Kimia Aksir 
@@ -37,4 +65,4 @@ block content
                 button(class ='btn btn-primary' type='submit', value='Update' data-toggle="modal" data-target="#myModal") Update
                 a.btn(href='/show_customers' type="button" class="btn btn-primary ") back
 
-    
+        

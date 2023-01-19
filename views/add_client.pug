@@ -2,38 +2,16 @@ extends default
 
 block content
     style.
-        .wrapp{
-            background: url('https://static-communitytable.parade.com/wp-content/uploads/2014/03/rethink-target-heart-rate-number-ftr.jpg') fixed;
-            background-size: cover;
-        }
-        *[role="form"] {
-            max-width: 530px;
-            padding: 15px;
-            margin: 0 auto;
-            border-radius: 0.3em;
-            background-color: #f2f2f2;
-        }
 
-        *[role="form"] h2 { 
-            font-family: 'Open Sans' , sans-serif;
-            font-size: 40px;
-            font-weight: 600;
-            color: #000000;
-            margin-top: 5%;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
-            
-    <div class="container">
-        <div class="wrapp">
-            <form class="form-horizontal" role="form" action="/add_client" method="POST" class="form-horizontal" role="form">
-                <h2>Registration</h2>
-                <div class="form-group">
-                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="firstName" placeholder="First Name" name="firstName" class="form-control" autofocus>
-                    </div>
+
+    div(class="container")
+        div(class="wrapp")
+            form(class="form-horizontal" role="form" action="/add_client" method="POST" class="form-horizontal")
+                h2 Registration
+                div(class="form-group")
+                    label(for="firstName" class="col-sm-3 control-label") First Name
+                    div(class="col-sm-9")
+                        input(type="text" id="firstName" placeholder="First Name" name="firstName" class="form-control" autofocus)
                 div(class="form-group")        
                     label(for="Last Name" class="col-sm-3 control-label") Last name
                     div(class="col-sm-9")
@@ -88,7 +66,3 @@ block content
                     p Agree to terms and conditions
                 button(type="submit" class="btn btn-primary" ) Submit
                 button(class="btn btn-primary" onclick="location.href='results'") Go Back 
-            </div>
-            </form>
-        </div>
-    </div>

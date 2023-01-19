@@ -276,7 +276,10 @@ app.post("/edit/:data?",urlencodedParser, (req, res) => {
       const doctor = req.body.doctor;
       const cost = req.body.cost;
       const nextapp= req.body.nextapp
-      let query = `UPDATE patient SET firstName='${firstName}',lastName='${lastName}',age='${age}',phone='${phone}',sex='${sex}',address='${address}',walkin='${walkin}',email='${email}',nextapp='${nextapp}',email='${email}',phone='${phone}',doctor='${doctor}',cost='${cost}' where id='${id}' `;
+      const cost_1=req.body.cost_1
+      const cost_2=req.body.cost_2
+      const cost_3=req.body.cost_3      
+      let query = `UPDATE patient SET cost_1='${cost_1}',cost_2='${cost_2}',cost_3='${cost_3}',firstName='${firstName}',lastName='${lastName}',age='${age}',phone='${phone}',sex='${sex}',address='${address}',walkin='${walkin}',email='${email}',nextapp='${nextapp}',email='${email}',phone='${phone}',doctor='${doctor}',cost='${cost}' where id='${id}' `;
       db.query(query, (err, data) => {
         if (err) {
           console.log("not able to update", err.message);
