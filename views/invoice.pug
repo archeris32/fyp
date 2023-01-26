@@ -1,57 +1,56 @@
 extends default
 
 block content
-    form(class="mb-5" method="post", action=`/edit/${JSON.stringify(data)}`)
-        <button type="button" onclick="generatePDF()" class="btn-sm btn-danger">Export to PDF</button>
-        div(class="card" id="invoice")
-            div(class="card-header bg-black")
-            div(class="card-body")
-                div(class="container")
-                    div(class="row")
-                        div(class="col-xl-12")
-                            img(src="https://www.alphahousedentalpractice.co.uk/uploads/Icons/emergency-dentistry-birchington-kent-1.png" class="rounded-circle" width=80)
-                    div(class="row")
-                        div(class="col-xl-12")
-                            ul(class="list-unstyled")
-                                li(style="font-family:'Brush Script MT', cursive; font-size: 30px;") Zentist
-                                li 158 DeHaviland Road
-                                li +44 07437728133
-                                li contact.zentist@gmail.com
-                    <div class="row text-center">
-                        h3(class=" text-center mt-3" style="font-size: 40px;") Invoice No.
-                        p=data.id
-                    div(class="row mx-3")
-                        table(class="table")
-                            thead
-                                tr
-                                    th(scope="col") Description
-                                    th(scope="col float-end" class="float-none") Amount
-                                tr
-                                    td(class="float-start")=data.firstName + " " + data.lastName
-                                    td
-                                        p Treatement 1---->
-                                            i(class="fas fa-dollar-sign float-none")=data.cost_1
-                                        p Treatement 2---->
-                                            i(class="fas fa-dollar-sign float-none")=data.cost_2
-                                        p Treatement 3---->
-                                            i(class="fas fa-dollar-sign float-none")=data.cost_3 
-                    
-                    
-                    div(class="row")
-                        div(class="col-xl-8")
-                            ul(class="list-unstyled float-end me-0")
-                                li.span(class="me-3 float-start") Total Amount:
-                                    i(class="fas fa-dollar-sign")=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3)
-                        hr
-                        div(class="row")
-                            div(class="col-xl-8" style="margin-left:60px")
-                                p(class="float-end" style="font-size: 30px; color: red; font-weight: 400;font-family: Arial, Helvetica, sans-serif;") Total:
-                                    span.i(class="fas fa-dollar-sign")=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3)
-                        div(class="row mt-2 mb-5")
-                            p(class="fw-bold") Date: 
-                                span(class="text-muted") 23 June 2023
-                            p(class="fw-bold mt-3") Signature:
-                    div(class="card-footer bg-black")
+    div(class="container")
+        form(class="mb-5" method="post", action=`/edit/${JSON.stringify(data)}`)
+                <button type="button" onclick="generatePDF()" class="btn-sm btn-danger">Export to PDF</button>
+                div(class="card " id="invoice")
+                    div(class="card-header")
+                        div(class="card-body")
+                            div(class="row")
+                                div(class="col-xl-12")
+                                    img(src="https://www.alphahousedentalpractice.co.uk/uploads/Icons/emergency-dentistry-birchington-kent-1.png" class="rounded-circle" width=80)
+                            div(class="row")
+                                div(class="col-xl-12")
+                                    ul(class="list-unstyled")
+                                        li(style="font-family:'Brush Script MT', cursive; font-size: 30px;") Zentist
+                                        li 158 DeHaviland Road
+                                        li +44 07437728133
+                                        li contact.zentist@gmail.com
+                            <div class="row text-center">
+                                h3(class=" text-center mt-3" style="font-size: 40px;") Invoice No.
+                                p=data.id
+                            div(class="row mx-3")
+                                table(class="table")
+                                    thead
+                                        tr
+                                            th(scope="col") Patient name
+                                            th(scope="col") Doctor
+                                            th(scope="col float-end" class="float-none") Amount
+                                        tr
+                                            td=data.firstName + " " + data.lastName
+                                            td=data.doctor 
+                                            td
+                                                p Treatement 1---->
+                                                    i(class="fas fa-dollar-sign float-none")=data.cost_1
+                                                p Treatement 2---->
+                                                    i(class="fas fa-dollar-sign float-none")=data.cost_2 
+                                                p Treatement 3---->
+                                                    i(class="fas fa-dollar-sign float-none")=data.cost_3
+                            div(class="row")
+                                div(class="col-xl-8")
+                                    ul(class="list-unstyled float-end me-0")
+                                        li.span(class="me-3 float-start") Total Amount:
+                                            i(class="fas fa-dollar-sign")=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3)
+                                hr
+                                div(class="row")
+                                    div(class="col-xl-8" style="margin-left:60px")
+                                        p(class="float-end" style="font-size: 30px; color: red; font-weight: 400;font-family: Arial, Helvetica, sans-serif;") Total:
+                                            span.i(class="fas fa-dollar-sign")=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3)
+                                div(class="row mt-2 mb-5")
+                                    p(class="fw-bold") Date: 
+                                        span(class="text-muted") 23 June 2023
+                                    p(class="fw-bold mt-3") Signature:
 
     script(type="text/javascript").
         function generatePDF() {
@@ -61,11 +60,11 @@ block content
                 element.style.width = '900';
                 element.style.height = '700';
                 var opt = {
-                     margin: [0, 0, 0, 0],
+                        margin: [0, 0, 0, 0],
                     filename:     'myfile.pdf',
                     image:        { type: 'jpeg', quality: 1 },
                     html2canvas:  { scale: 2 ,useCORS: true},
-                    jsPDF:        { unit: 'in', format: "A4",orientation: 'landscape',precision: '0',compress: true }
+                    jsPDF:        { unit: 'in', format: "A4",orientation: 'portrait',precision: '0',compress: true }
                 };
                 
                 // choose the element and pass it to html2pdf() function and call the save() on it to save as pdf.

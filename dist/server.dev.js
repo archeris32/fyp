@@ -139,20 +139,6 @@ app.get('/delete_client', function (req, res) {
 });
 app.post("/delete_client", urlencodedParser, function (req, res) {
   var name = req.body.searchName;
-  var sql = "select * FROM patient WHERE firstName='".concat(name, "';");
-  db.query(sql, function (err, rows) {
-    if (err) {
-      console.log(err);
-    } else {
-      return res.render('delete_client', {
-        data: rows,
-        username: req.session.username
-      });
-    }
-  });
-});
-app.post("/delete_client", urlencodedParser, function (req, res) {
-  var name = req.body.searchName;
   var sql = "delete FROM patient WHERE firstName='".concat(name, "';");
   db.query(sql, function (err, result) {
     if (err) {
@@ -203,12 +189,20 @@ app.post("/register", urlencodedParser, function (req, res) {
   var password = req.body.password;
   var email = req.body.email;
   var sql = "INSERT INTO users (name, password, email) VALUES (\"".concat(username, "\", \"").concat(password, "\", \"").concat(email, "\")");
-  db.query(sql, function (err, result) {
-    if (err) {
-      console.log(err);
-    } else {
+  db.query("select name from users where name = ?", [username], function (err, result) {
+    if (result.length) {
       return res.render('register', {
-        message: "username Added"
+        message: "Username taken! Try another one!"
+      });
+    } else {
+      db.query(sql, function (err, result2) {
+        if (err) {
+          console.log(err);
+        } else {
+          return res.render('register', {
+            message: "username Added"
+          });
+        }
       });
     }
   });
