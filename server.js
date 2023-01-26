@@ -109,18 +109,7 @@ app.get('/delete_client', (req, res) => {
           });
       });
 
-app.post("/delete_client",urlencodedParser,(req,res)=>{
-    const name = req.body.searchName
-    var sql = `select * FROM patient WHERE firstName='${name}';`
-    db.query(sql, (err,rows)=>{
-        if(err){
-            console.log(err)
-        }
-        else{
-            return res.render('delete_client', { data: rows,username: req.session.username  })
-    }
-      }) 
-    })
+
 app.post("/delete_client",urlencodedParser,(req,res)=>{
     const name = req.body.searchName
     var sql = `delete FROM patient WHERE firstName='${name}';`
@@ -171,7 +160,15 @@ app.post("/register", urlencodedParser, (req, res) => {
         const password=req.body.password
         const email=req.body.email
         var sql = `INSERT INTO users (name, password, email) VALUES ("${username}", "${password}", "${email}")`;
-            db.query(sql, (err, result) => {
+        db.query(`select name from users where name = ?`,[username],(err,result)=>{
+            if(result.length){
+                return res.render('register', {
+                    message: "Username taken! Try another one!",
+                   
+                })
+            }
+            else{
+            db.query(sql, (err, result2) => {
                 if(err) {
                     console.log(err)
                 } else {
@@ -180,8 +177,10 @@ app.post("/register", urlencodedParser, (req, res) => {
                        
                     })
                 }
-            })        
-        })     
+            }) 
+        }
+        })
+    })
 app.get("/logout", (req, res) => {
   req.session.destroy();
 

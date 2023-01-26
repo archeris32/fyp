@@ -22,21 +22,21 @@ block content
             }       
         }
         }   
-
-    h5 Search by Name
-    input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by names.." title="Type in a name" style="border-radius:10px;")
-    table(class="table table-hover table-bordered " id="myTable")
-        thead
-            tr
-                th First Name                 
-                th Last Name 
-                th Phone 
-        tbody
-            for cp,index in data1
+    div(class="container")
+        h5 Search by Name
+        input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by names.." title="Type in a name" style="border-radius:10px;")
+        table(class="table table-hover table-bordered " id="myTable")
+            thead
                 tr
-                    td= cp.firstName
-                    td= cp.lastName 
-                    td=cp.phone 
-                    td 
-                       a(href=`/edit/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`edit-button`) Edit Client
-                       a(href=`/invoice/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`invoice-button`) Invoice   
+                    th First Name                 
+                    th Last Name 
+                    th Phone 
+            tbody
+                for cp,index in data1
+                    tr
+                        td= cp.firstName
+                        td= cp.lastName 
+                        td=cp.phone 
+                        td 
+                            a(href=`/edit/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`edit-button`) Edit Client
+                            a(href=`/invoice/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`invoice-button`) Invoice   

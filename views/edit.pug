@@ -36,25 +36,25 @@ block content
                 input(type='date' name='nextapp' id='nextapp' class="form-control m-2" value=data.nextapp)
             h6 Treatment 1
             div(class="d-flex justify-content-center")
-                input(type='text' name='Treatment 1'  class="form-control m-2" value=data.treatement_2 placeholder="Treatment 2")
+                input(type='text' name='Treatment 1'  class="form-control m-2" value=data.treatement_1 placeholder="Treatment 1")
                 h6 Cost
                 div(class="d-flex justify-content-center")
-                    input(type='text' name='cost_1'  class="form-control m-2" value=data.cost_1 placeholder="Cost")
+                    input(type='text' name='cost_1' onblur="findTotal()" id="cost" class="amount form-control m-2" value=data.cost_1 placeholder="Cost")
             h6 Treatment 2
             div(class="d-flex justify-content-center")
                 input(type='text' name='Treatment 2'  class="form-control m-2" value=data.treatement_2 placeholder="Treatment 2")
                 h6 Cost
                 div(class="d-flex justify-content-center")
-                    input(type='text' name='cost_2'  class="form-control m-2" value=data.cost_2 placeholder="Cost")
+                    input(type='text' name='cost_2' onblur="findTotal()" id="cost" class="amount form-control m-2" value=data.cost_2 placeholder="Cost")
             h6 Treatment 3
             div(class="d-flex justify-content-center")
                 input(type='text' name='Treatment 3'  class="form-control m-2" value=data.treatement_3 placeholder="Treatment 3")
                 h6 Cost
                 div(class="d-flex justify-content-center")
-                    input(type='text' name='cost_3'  class="form-control m-2" value=data.cost_3 placeholder="Cost")
+                    input(type='text' name='cost_3' onblur="findTotal()" id="cost" class="amount cost form-control m-2" value=data.cost_3 placeholder="Cost")
             h6 Cost
             div(class="d-flex justify-content-center")
-                input(type='text' name='cost'  class="form-control m-2" value=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3) placeholder="Cost")
+                input(type='text' name='cost' id="totalordercost" class="total form-control m-2" value=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3) placeholder="Cost")
             h6 Doctor
             div(class="d-flex justify-content-center")
                 select(id="doctor" name="doctor" class="form-select" )
@@ -65,4 +65,13 @@ block content
                 button(class ='btn btn-primary' type='submit', value='Update' data-toggle="modal" data-target="#myModal") Update
                 a.btn(href='/show_customers' type="button" class="btn btn-primary ") back
 
-        
+    script.
+        function findTotal(){
+            var arr = document.getElementsByClassName('amount');
+            var tot=0;
+            for(var i=0;i<arr.length;i++){
+                if(parseFloat(arr[i].value))
+                    tot += parseFloat(arr[i].value);
+            }
+            document.getElementById('totalordercost').value = tot;
+        }
