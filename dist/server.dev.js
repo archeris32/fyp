@@ -42,6 +42,9 @@ app.get('/', function (req, res) {
     });
   });
 });
+app.get('/booking', function (req, res) {
+  res.render('booking');
+});
 app.get('/contact', function (req, res) {
   res.render('contact', {
     title: 'Homepage',
@@ -58,7 +61,7 @@ app.get('/agenda', function (req, res) {
   });
 });
 app.get("/results", function (req, res) {
-  db.query("select * from patient order by nextapp limit 1;", function (err, data1) {
+  db.query("SELECT * FROM patient WHERE nextapp > NOW() ORDER BY nextapp LIMIT 1;", function (err, data1) {
     if (err) {
       console.log(err);
     } else {
@@ -105,10 +108,11 @@ app.get('/analytics', function (req, res) {
         if (err) {
           console.log(err);
         } else {
-          db.query("SELECT SUM(cost) AS Count_Of_Sales,doctor FROM patient GROUP BY doctor", function (err, data3) {
+          db.query("SELECT cost_1,cost_2,cost_3,doctor_t1,doctor_t2,doctor_t3 FROM patient", function (err, data3) {
             if (err) {
               console.log(err);
             } else {
+              console.log(data3);
               res.render('analytics', {
                 results1: data1,
                 results2: data2,
@@ -300,7 +304,19 @@ app.post("/edit/:data?", urlencodedParser, function (req, res) {
   var cost_1 = req.body.cost_1;
   var cost_2 = req.body.cost_2;
   var cost_3 = req.body.cost_3;
-  var query = "UPDATE patient SET cost_1='".concat(cost_1, "',cost_2='").concat(cost_2, "',cost_3='").concat(cost_3, "',firstName='").concat(firstName, "',lastName='").concat(lastName, "',age='").concat(age, "',phone='").concat(phone, "',sex='").concat(sex, "',address='").concat(address, "',walkin='").concat(walkin, "',email='").concat(email, "',nextapp='").concat(nextapp, "',email='").concat(email, "',phone='").concat(phone, "',doctor='").concat(doctor, "',cost='").concat(cost, "' where id='").concat(id, "' ");
+  var treatement_1 = req.body.Treatment1;
+  var treatement_2 = req.body.Treatment2;
+  var treatement_3 = req.body.Treatment3;
+  var notes_1 = req.body.notes_1;
+  var notes_2 = req.body.notes_2;
+  var notes_3 = req.body.notes_3;
+  var doctor_t1 = req.body.doctor_t1;
+  var doctor_t2 = req.body.doctor_t2;
+  var doctor_t3 = req.body.doctor_t3;
+  var t1_desc = req.body.t1_desc;
+  var t2_desc = req.body.t2_desc;
+  var t3_desc = req.body.t3_desc;
+  var query = "UPDATE patient SET cost_1='".concat(cost_1, "',cost_2='").concat(cost_2, "',t1_desc='").concat(t1_desc, "',t2_desc='").concat(t2_desc, "',t3_desc='").concat(t3_desc, "',cost_3='").concat(cost_3, "',firstName='").concat(firstName, "',lastName='").concat(lastName, "',age='").concat(age, "',phone='").concat(phone, "',sex='").concat(sex, "',address='").concat(address, "',walkin='").concat(walkin, "',email='").concat(email, "',nextapp='").concat(nextapp, "',doctor_t1='").concat(doctor_t1, "',doctor_t2='").concat(doctor_t2, "',doctor_t3='").concat(doctor_t3, "',cost='").concat(cost, "',treatement_1='").concat(treatement_1, "',treatement_2='").concat(treatement_2, "',treatement_3='").concat(treatement_3, "',notes_1='").concat(notes_1, "',notes_2='").concat(notes_2, "',notes_3='").concat(notes_3, "' where id='").concat(id, "' ");
   db.query(query, function (err, data) {
     if (err) {
       console.log("not able to update", err.message);

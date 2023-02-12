@@ -30,6 +30,9 @@ app.get('/', (req, res) => {
       res.render('', { data: rows,title: 'Homepage',username: req.session.username  })
     })
 });
+app.get('/booking',(req,res)=>{
+    res.render('booking')
+})
 app.get('/contact', (req, res) => {
     res.render('contact', {
         title: 'Homepage',
@@ -42,7 +45,7 @@ app.get('/agenda', (req, res) => {
     })
 });
 app.get("/results",(req,res)=>{
-    db.query(`select * from patient order by nextapp limit 1;`,function(err,data1){
+    db.query(`SELECT * FROM patient WHERE nextapp > NOW() ORDER BY nextapp LIMIT 1;`,function(err,data1){
         if(err){
             console.log(err)
         }else{
@@ -81,11 +84,12 @@ app.get('/analytics', (req, res) => {
                 if(err){
                     console.log(err)
                 }else{
-                   db.query(`SELECT SUM(cost) AS Count_Of_Sales,doctor FROM patient GROUP BY doctor`,function(err,data3){
+                   db.query(`SELECT cost_1,cost_2,cost_3,doctor_t1,doctor_t2,doctor_t3 FROM patient`,function(err,data3){
                     if(err){
                         console.log(err)
                     }
                     else{
+                        console.log(data3)
                         res.render('analytics', {results1:data1,results2:data2,result3:data3,title: 'Admin Dashboard',username: req.session.username});
                     }
                    })
@@ -277,8 +281,20 @@ app.post("/edit/:data?",urlencodedParser, (req, res) => {
       const nextapp= req.body.nextapp
       const cost_1=req.body.cost_1
       const cost_2=req.body.cost_2
-      const cost_3=req.body.cost_3      
-      let query = `UPDATE patient SET cost_1='${cost_1}',cost_2='${cost_2}',cost_3='${cost_3}',firstName='${firstName}',lastName='${lastName}',age='${age}',phone='${phone}',sex='${sex}',address='${address}',walkin='${walkin}',email='${email}',nextapp='${nextapp}',email='${email}',phone='${phone}',doctor='${doctor}',cost='${cost}' where id='${id}' `;
+      const cost_3=req.body.cost_3
+      const treatement_1=req.body.Treatment1   
+      const treatement_2=req.body.Treatment2
+      const treatement_3=req.body.Treatment3   
+      const notes_1=req.body.notes_1 
+      const notes_2=req.body.notes_2
+      const notes_3=req.body.notes_3
+      const doctor_t1=req.body.doctor_t1
+      const doctor_t2=req.body.doctor_t2
+      const doctor_t3=req.body.doctor_t3
+      const t1_desc=req.body.t1_desc
+      const t2_desc=req.body.t2_desc
+      const t3_desc=req.body.t3_desc
+      let query = `UPDATE patient SET cost_1='${cost_1}',cost_2='${cost_2}',t1_desc='${t1_desc}',t2_desc='${t2_desc}',t3_desc='${t3_desc}',cost_3='${cost_3}',firstName='${firstName}',lastName='${lastName}',age='${age}',phone='${phone}',sex='${sex}',address='${address}',walkin='${walkin}',email='${email}',nextapp='${nextapp}',doctor_t1='${doctor_t1}',doctor_t2='${doctor_t2}',doctor_t3='${doctor_t3}',cost='${cost}',treatement_1='${treatement_1}',treatement_2='${treatement_2}',treatement_3='${treatement_3}',notes_1='${notes_1}',notes_2='${notes_2}',notes_3='${notes_3}' where id='${id}' `;
       db.query(query, (err, data) => {
         if (err) {
           console.log("not able to update", err.message);

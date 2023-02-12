@@ -34,35 +34,143 @@ block content
             h6 Next Appointment Date
             div(class="d-flex justify-content-center")
                 input(type='date' name='nextapp' id='nextapp' class="form-control m-2" value=data.nextapp)
-            h6 Treatment 1
-            div(class="d-flex justify-content-center")
-                input(type='text' name='Treatment 1'  class="form-control m-2" value=data.treatement_1 placeholder="Treatment 1")
-                h6 Cost
-                div(class="d-flex justify-content-center")
-                    input(type='text' name='cost_1' onblur="findTotal()" id="cost" class="amount form-control m-2" value=data.cost_1 placeholder="Cost")
-            h6 Treatment 2
-            div(class="d-flex justify-content-center")
-                input(type='text' name='Treatment 2'  class="form-control m-2" value=data.treatement_2 placeholder="Treatment 2")
-                h6 Cost
-                div(class="d-flex justify-content-center")
-                    input(type='text' name='cost_2' onblur="findTotal()" id="cost" class="amount form-control m-2" value=data.cost_2 placeholder="Cost")
-            h6 Treatment 3
-            div(class="d-flex justify-content-center")
-                input(type='text' name='Treatment 3'  class="form-control m-2" value=data.treatement_3 placeholder="Treatment 3")
-                h6 Cost
-                div(class="d-flex justify-content-center")
-                    input(type='text' name='cost_3' onblur="findTotal()" id="cost" class="amount cost form-control m-2" value=data.cost_3 placeholder="Cost")
+            h2 Treatment 1
+            div(class="btn-group")
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#MyModal1") Treatment 1
+                div(id="MyModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true")
+                    div(class="modal-dialog modal-lg")
+                        div(class="modal-content")
+                            div(class="modal-header")
+                                button(type="button" class="close" data-dismiss="modal" aria-label="Close") x
+                                    span(aria-hidden="true")
+                                h4(class="modal-title" id="gridSystemModalLabel") Treatment 1 Info
+                            div(class="modal-body")
+                                div(class="body-message")
+                                    h6 Doctor performing the treatment
+                                    div(class="d-flex justify-content-center col-4")
+                                        select(id="doctor" name="doctor_t1" class="form-select form-control " )
+                                                option(value=data.doctor_t1)=data.doctor_t1
+                                                option(value="Dr. Pelumi Apantuku") Dr. Pelumi Apantuku
+                                                option(value="Dr. Kimia Aksir") Dr. Kimia Aksir
+                                    h6 Pre treatment notes
+                                    textarea(name="notes_1" class="form-control col-2")=data.notes_1
+                                    h6 Treatment name
+                                    div(class="d-flex justify-content-center col-4")
+                                        select(id="Treatment1" name="Treatment1" class="mdb-select md-form m-2  form-control")
+                                            option(value=data.treatement_1)=data.treatement_1
+                                            option(value="Bridge") Bridge 
+                                            option(value="Crowns") Crowns
+                                            option(value="Filling") Fillings
+                                            option(value="Root canal treatment") Root canal treatment
+                                            option(value="Scale and polish") Scale and polish
+                                            option(value="Braces") Braces
+                                            option(value="Wisdom tooth removal") Wisdom tooth removal
+                                            option(value="Dental implants") Dental implants
+                                            option(value="Dentures or false teeth") Dentures or false teeth
+                                            option(value="Broken or knocked out toot") Broken or knocked out tooth
+                                            option(value="Teeth whitening") Teeth whitening
+                                            option(value="Dental veneers") Dental veneers
+                                    h6 Post treatment notes
+                                    textarea(name="t1_desc" class="form-control col-2")=data.t1_desc
+                                    h6 Cost
+                                        div(class="d-flex justify-content-center col-2")
+                                            input(type='text' name='cost_1' onblur="findTotal()" id="cost" class="amount form-control m-2 " value=data.cost_1 placeholder="Cost")
+                                    h6 Paid  
+                                        input(class="form-check-input" type="checkbox" value="" id="flexCheckDefault")                                
+                                button(class="btn btn-primary " data-dismiss="modal" aria-hidden="true") Close
+            h2 Treatment 2
+            div(class="btn-group")
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#MyModal2") Treatment 2
+                div(id="MyModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true")
+                    div(class="modal-dialog modal-lg")
+                        div(class="modal-content")
+                            div(class="modal-header")
+                                button(type="button" class="close" data-dismiss="modal" aria-label="Close") x
+                                    span(aria-hidden="true")
+                                h4(class="modal-title" id="gridSystemModalLabel") Treatment 2 Info
+                            div(class="modal-body")
+                                div(class="body-message")
+                                    h6 Doctor performing the treatment
+                                    div(class="d-flex justify-content-center col-4")
+                                        select(id="doctor" name="doctor_t2" class="form-select form-control " )
+                                                option(value=data.doctor_t2)=data.doctor_t2
+                                                option(value="Dr. Pelumi Apantuku") Dr. Pelumi Apantuku
+                                                option(value="Dr. Kimia Aksir") Dr. Kimia Aksir
+                                    h6 Pre treatment notes
+                                    textarea(name="notes_2" class="form-control")=data.notes_2
+                                    h6 Treatment name
+                                    div(class="d-flex justify-content-center col-4")
+                                        select(id="Treatment2" name="Treatment2" class="mdb-select md-form m-2  form-control")
+                                            option(value=data.treatement_2)=data.treatement_2
+                                            option(value="Bridge") Bridge 
+                                            option(value="Crowns") Crowns
+                                            option(value="Filling") Fillings
+                                            option(value="Root canal treatment") Root canal treatment
+                                            option(value="Scale and polish") Scale and polish
+                                            option(value="Braces") Braces
+                                            option(value="Wisdom tooth removal") Wisdom tooth removal
+                                            option(value="Dental implants") Dental implants
+                                            option(value="Dentures or false teeth") Dentures or false teeth
+                                            option(value="Broken or knocked out toot") Broken or knocked out tooth
+                                            option(value="Teeth whitening") Teeth whitening
+                                            option(value="Dental veneers") Dental veneers
+                                    h6 Post treatment notes
+                                    textarea(name="t2_desc" id="t2_desc" class="form-control col-2" )=data.t2_desc
+                                    h6 Cost
+                                        div(class="d-flex justify-content-center col-2")
+                                            input(type='text' name='cost_2' onblur="findTotal()" id="cost" class="amount form-control m-2 " value=data.cost_2 placeholder="Cost")       
+                                    h6 Paid  
+                                        input(class="form-check-input" type="checkbox" value="" id="flexCheckDefault")                         
+                            button(class="btn btn-primary " data-dismiss="modal" aria-hidden="true") Close
+            h2 Treatment 3
+            div(class="btn-group")
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#MyModal3") Treatment 3
+                div(id="MyModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true")
+                    div(class="modal-dialog modal-lg")
+                        div(class="modal-content")
+                            div(class="modal-header")
+                                button(type="button" class="close" data-dismiss="modal" aria-label="Close") x
+                                    span(aria-hidden="true")
+                                h4(class="modal-title" id="gridSystemModalLabel") Treatment 3 Info
+                            div(class="modal-body")
+                                div(class="body-message")
+                                    h6 Doctor performing the treatment
+                                    div(class="d-flex justify-content-center col-4")
+                                        select(id="doctor" name="doctor_t3" class="form-select form-control " )
+                                                option(value=data.doctor_t3)=data.doctor_t3
+                                                option(value="Dr. Pelumi Apantuku") Dr. Pelumi Apantuku
+                                                option(value="Dr. Kimia Aksir") Dr. Kimia Aksir
+                                    h6 Pre treatment notes
+                                    textarea(name="notes_3" class="form-control")=data.notes_3
+                                    h6 Treatment name
+                                    div(class="d-flex justify-content-center col-4")
+                                        select(id="Treatment3" name="Treatment3" class="mdb-select md-form m-2  form-control")
+                                            option(value=data.treatement_3)=data.treatement_3
+                                            option(value="Bridge") Bridge 
+                                            option(value="Crowns") Crowns
+                                            option(value="Filling") Fillings
+                                            option(value="Root canal treatment") Root canal treatment
+                                            option(value="Scale and polish") Scale and polish
+                                            option(value="Braces") Braces
+                                            option(value="Wisdom tooth removal") Wisdom tooth removal
+                                            option(value="Dental implants") Dental implants
+                                            option(value="Dentures or false teeth") Dentures or false teeth
+                                            option(value="Broken or knocked out toot") Broken or knocked out tooth
+                                            option(value="Teeth whitening") Teeth whitening
+                                            option(value="Dental veneers") Dental veneers
+                                    h6 Post treatment notes
+                                    textarea(name="t3_desc" class="form-control col-2")=data.t3_desc
+                                    h6 Cost
+                                        div(class="d-flex justify-content-center col-2")
+                                            input(type='text' name='cost_3' onblur="findTotal()" id="cost" class="amount form-control m-2 " value=data.cost_3 placeholder="Cost")      
+                                    h6 Paid  
+                                        input(class="form-check-input" type="checkbox" value="" id="flexCheckDefault")  
+                        button(class="btn btn-primary " data-dismiss="modal" aria-hidden="true") Close                 
             h6 Cost
             div(class="d-flex justify-content-center")
                 input(type='text' name='cost' id="totalordercost" class="total form-control m-2" value=Number(data.cost_1)+Number(data.cost_2)+Number(data.cost_3) placeholder="Cost")
-            h6 Doctor
             div(class="d-flex justify-content-center")
-                select(id="doctor" name="doctor" class="form-select" )
-                    option(value="Dr. Kimia Aksir") Kimia Aksir 
-                    option(value="Dr. Pelumi Apantuku") Pelumi Apantuku
-        
-            div(class="d-flex justify-content-center")
-                button(class ='btn btn-primary' type='submit', value='Update' data-toggle="modal" data-target="#myModal") Update
+                button(class ='btn btn-primary' type='submit', value='Update') Update
                 a.btn(href='/show_customers' type="button" class="btn btn-primary ") back
 
     script.
@@ -74,4 +182,27 @@ block content
                     tot += parseFloat(arr[i].value);
             }
             document.getElementById('totalordercost').value = tot;
+        }
+        function toggle_div_fun(id) {
+            var divelement = document.getElementById(id);
+            if(divelement.style.display == 'none')
+                divelement.style.display = 'block';
+            else
+                divelement.style.display = 'none';
+            }
+    style.
+        .form-control{
+        border-radius: 20px !important;
+        box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF !Important;
+        border: none;
+        background: transparent !important;
+            
+        }
+        .wrap .container{
+            box-shadow:3px 3px 5px #BABECC,  -5px -5px 10px #FFF;
+
+        }
+
+        .form-control:hover{
+            box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF !important;
         }

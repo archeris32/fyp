@@ -3,10 +3,8 @@
   <head>
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/ab70949209.js" crossorigin="anonymous"></script>
@@ -18,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
   </head>
-  <body>
+  <body style="  position: relative;min-height: 100vh;padding-bottom: 2.5rem;">
     <main>
       <header class="header"></header>
       <style>
@@ -98,7 +96,7 @@
         
       </style>
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4" style="background-color:#fcf4f0;">
-        <nav class="navbar navbar-expand-sm d-flex">
+        <nav class="navbar navbar-expand-sm d-flex mx-auto">
           <button class="navbar-toggler" type="button" data-target="#navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" style="float:left;">
             <ul class="navbar-nav"> 
@@ -107,100 +105,119 @@
               <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/services">Services</a></li>
               <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/team">Team   </a></li>
               <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/contact">Contact</a></li>
+              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/booking">Book Appointment</a></li>
             </ul>
           </div>
-        </nav><a class="text-dark text-decoration-none justify-content-center" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"></a>
-        <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a>
-        </div>
-      </div><div class="wrap" style="display:flex; justify-content: center; ">
-<div id="pie-chart" style="float: left; width: 25%; height: 400px;"></div>
-<div id="pie-chart2" style="float: left; width: 25%; height: 400px;"></div>
-      <script>var values=
-        let value=[]
-        for(i in values){
-         value.push(values[i]["Month"])
-        }
-        console.log(value)
-         let cost=[]
-         for(j in values){
-             cost.push(String(values[j]["Count_Of_Sales"]))
-         }
-        
-         var pieDiv = document.getElementById("pie-chart");
-        
-         var traceA = {
-         type: "pie",
-         values: cost,
-         labels: value
-         };
-        
-         var data = [traceA];
-        
-         var layout = {
-         title: "Total sales per months"
-         };
-        
-         Plotly.plot(pieDiv, data, layout);
-        
-        
-        var values2=
-        let value2=[]
-        for(i in values2){
-         value2.push(values2[i]["doctor"])
-        }
-        console.log(value2)
-         let cost2=[]
-         for(j in values2){
-             cost2.push(String(values2[j]["Count_Of_Sales"]))
-         }
-        
-         var pieDiv2 = document.getElementById("pie-chart2");
-        
-         var traceb = {
-         type: "pie",
-         values: cost2,
-         labels: value2
-         };
-        
-         var data2 = [traceb];
-        
-         var layout2 = {
-         title: "Sales of each Doctor"
-         };
-        
-         Plotly.plot(pieDiv2, data2, layout2);
-      </script><!-- Footer -->
-      <footer class="text-center text-lg-start bg-white text-muted mt-auto ">
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" style="background-color:#fcf4f0;position: absolute;bottom: 0;width: 100%;height: 2.5rem; ">
-          <div class="me-5 d-none d-lg-block"><span>Get connected with us on social networks:</span></div>
-          <div><a class="me-4 link-secondary" href=""><i class="fab fa-facebook-f"></i></a><a class="me-4 link-secondary" href=""><i class="fab fa-twitter"></i></a><a class="me-4 link-secondary" href=""><i class="fab fa-google"></i></a><a class="me-4 link-secondary" href=""><i class="fab fa-instagram"></i></a><a class="me-4 link-secondary" href=""><i class="fab fa-linkedin"></i></a><a class="me-4 link-secondary" href=""><i class="fab fa-github"></i></a></div>
-        </section>
+        </nav><a class="text-dark text-decoration-none " href="/" style="margin:auto"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"></a>
+        <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a></div>
+      </div>
+      <div class="d-flex justify-content-center" style="float: left; width: 100%; height: 600px;">
+        <div id="pie-chart" style="float: left; width: 25%; height: 400px;"></div>
+        <div id="pie-chart2" style="float: left; width: 25%; height: 400px;"></div>
+        <div id="pie-chart3" style="float: left; width: 25%; height: 400px;"></div>
+      </div>
+      <div class="d-flex justify-content-center" style="float: left; width: 100%; height: 600px;">
+        <p class="d-flex justify-content-center col-4">Bonuses to pay </p>
+        <p class="d-flex justify-content-center col-4" id="bonus"></p>
+        <script>var values=
+          let value=[]
+          for(i in values){
+              value.push(values[i]["Month"])
+          }
+              let cost=[]
+              for(j in values){
+                  cost.push(String(values[j]["Count_Of_Sales"]))
+              }
+              let bonus= 0.1 * cost
+              console.log(values)
+              var pieDiv = document.getElementById("pie-chart");
+          
+              var traceA = {
+              type: "pie",
+              values: cost,
+              labels: value
+              };
+          
+              var data = [traceA];
+          
+              var layout = {
+              title: "Total sales per months"
+              };
+          
+              Plotly.plot(pieDiv, data, layout);
+          
+          
+          var values2=
+          let value2=[]
+          for(i in values2){
+              value2.push(values2[i]["doctor_t1"])
+              value2.push(values2[i]["doctor_t2"])
+              value2.push(values2[i]["doctor_t3"])
+          }
+              let cost2=[]
+              let bonus3=[]
+              for(j in values2){
+                  cost2.push(String(values2[j]["cost_1"]))
+                  cost2.push(String(values2[j]["cost_2"]))
+                  cost2.push(String(values2[j]["cost_3"]))
+                  bonus3.push(String(values2[j]["cost_1"])*0.1)
+                  bonus3.push(String(values2[j]["cost_2"])*0.1)
+                  bonus3.push(String(values2[j]["cost_3"])*0.1)
+              }
+          
+              var pieDiv2 = document.getElementById("pie-chart2");
+          
+              var traceb = {
+              type: "pie",
+              values: cost2,
+              labels: value2
+              };
+          
+              var data2 = [traceb];
+          
+              var layout2 = {
+              title: "Sales of each Doctor"
+              };
+          
+              Plotly.plot(pieDiv2, data2, layout2);
+              
+              var pieDiv3 = document.getElementById("pie-chart3");
+          var tracec = {
+              type: "pie",
+              values: bonus3,
+              labels: value2
+              };
+              var data3= [tracec]
+              var layout3={
+                  title: "Bonuses"
+              }
+              Plotly.plot(pieDiv3, data3, layout3);
+          
+              var div = document.getElementById('bonus');
+          
+              div.innerHTML += bonus ;
+        </script>
+      </div><!-- Footer -->
+      <footer class="text-center text-lg-start bg-white text-muted mt-auto" style=" position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
         <section style="background-color:#fcf4f0;">
-          <div class="container text-center text-md-start mt-5">
+          <div class="text-center text-md-start mt-5">
             <div class="row mt-3">
               <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 class="text-uppercase fw-bold mb-4"><a class="text-dark text-decoration-none justify-content-center" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="200"></a></h6>
+                <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"></a>
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+                <h6 class=" fw-bold mb-4">Products</h6>
                 <p><a class="text-reset" href="#!">Angular</a></p>
-                <p><a class="text-reset" href="#!">React</a></p>
-                <p><a class="text-reset" href="#!">Vue</a></p>
-                <p><a class="text-reset" href="#!">Laravel</a></p>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                <h6 class="fw-bold mb-4">Useful links</h6>
                 <p><a class="text-reset" href="#!">Pricing</a></p>
-                <p><a class="text-reset" href="#!">Settings</a></p>
-                <p><a class="text-reset" href="#!">Orders</a></p>
-                <p><a class="text-reset" href="#!">Help</a></p>
               </div>
               <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                <p><i class="fas fa-home me-3 text-secondary">New York, NY 10012, US</i></p>
-                <p><i class="fas fa-envelope me-3 text-secondary">info@example.com</i></p>
-                <p><i class="fas fa-phone me-3 text-secondary">+ 01 234 567 88</i></p>
-                <p><i class="fas fa-print me-3 text-secondary">+ 01 234 567 89      </i></p>
+                <h6 class="fw-bold">Contact</h6>
+                <p><i class="fas fa-home">158 DeHaviland Road,HA8 5QB</i></p>
+                <p><i class="fas fa-envelope ">contact.zentist@gmail.com</i></p>
+                <p><i class="fas fa-phone">+44 07437728133    </i></p>
               </div>
             </div>
           </div>
