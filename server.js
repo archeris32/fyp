@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    password: "Bogdan12",
     database: "login-db",
     multipleStatements: true
     
@@ -246,6 +246,7 @@ app.get("/edit/:data?",(req, res,) => {
 })
 app.get("/invoice/:data?",(req, res,) => {
     const formData =JSON.parse(req.params.data);
+    console.log(formData)
     return res.render("invoice", {
       data: formData,
       username: req.session.username,

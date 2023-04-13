@@ -25,7 +25,7 @@ app.use(express["static"](__dirname + '/public'));
 var db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "Bogdan12",
   database: "login-db",
   multipleStatements: true
 });
@@ -270,6 +270,7 @@ app.get("/edit/:data?", function (req, res) {
 });
 app.get("/invoice/:data?", function (req, res) {
   var formData = JSON.parse(req.params.data);
+  console.log(formData);
   return res.render("invoice", {
     data: formData,
     username: req.session.username,
