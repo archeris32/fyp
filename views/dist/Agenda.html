@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/ab70949209.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <body style="  position: relative;min-height: 100vh;padding-bottom: 2.5rem;"></body>
+    <main>
+      <header class="header"></header>
+      <style>
+        label{
+            margin: 20px;
+        }
+        .cont ul {
+            opacity: 0;
+            visibility: hidden;
+            text-align: left;
+            transition: all 200ms;
+        }
+        .cont:hover ul {
+            opacity: 1;
+            visibility: visible;
+        }
+        .cont ul {
+            position: absolute;
+            padding: 4px 0;
+            top: 28px;
+            right: 0;
+            width: 80px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 3px rgba(0, 0, 0, 0.05);
+            list-style-type: none;
+        }
+        .cont:hover ul:before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            height: 12px;
+            width: 100%;
+            background-color: transparent;
+        }
+        .cont:hover ul:after {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: -16px;
+            height: 0;
+            width: 0;
+            border: 8px solid transparent;
+            border-bottom-color: #ccc;
+        }
+        .cont:hover ul li {
+            padding: 5px 10px;
+            color: #999;
+            cursor: pointer;
+            transition: all 100ms;
+        }
+        .cont:hover ul li:hover {
+            background-color: #e6e6e6;
+            color: black;
+        }
+        .cont:hover ul li:first-of-type:after {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: -15px;
+            height: 0;
+            width: 0;
+            z-index: 1;
+            border: 8px solid transparent;
+            border-bottom-color: white;
+            pointer-events: none;
+        }
+        .cont {
+            margin: 0;
+        }
+        .container{
+            width: 100%;
+            padding: 0;
+        }
+        
+        
+      </style>
+      <nav class="navbar navbar-expand-sm d-flex mx-auto d-flex flex-wrap align-items-center justify-content-center  mb-5">
+        <div class="collapse navbar-collapse" style="float:left;">
+          <ul class="navbar-nav"> 
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/">Home</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/about">About</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/services">Services</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/team">Team   </a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/booking">Book Appointment</a></li>
+          </ul>
+        </div><a href="/" style="height: 50px;width: 100px;margin:auto;display: block;position: absolute;left: calc((100% - 100px) / 2);z-index: 100000;"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
+        <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a></div>
+      </nav><!-- Footer -->
+      <footer class="text-center text-lg-start text-muted mt-auto" style="position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
+        <section style="background-color:#fcf4f0;">
+          <div class="text-center text-md-start mt-5">
+            <div class="row mt-3">
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
+              </div>
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class=" fw-bold mb-4">Products</h6>
+                <p><a class="text-reset" href="#!">Angular</a></p>
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="fw-bold mb-4">Useful links</h6>
+                <p><a class="text-reset" href="#!">Pricing</a></p>
+              </div>
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <h6 class="fw-bold">Contact</h6>
+                <p><i class="fas fa-home">158 DeHaviland Road,HA8 5QB</i></p>
+                <p><i class="fas fa-envelope ">contact.zentist@gmail.com</i></p>
+                <p><i class="fas fa-phone">+44 07437728133    </i></p>
+              </div>
+            </div>
+          </div>
+          <div class="text-center p-4" style="background-color: white;">© 2023 Copyright:<a class="text-reset fw-bold" href="http://localhost:7000/">Zentist Dental Practice</a></div>
+        </section>
+      </footer>
+    </main>
+  </head>
+</html>
+<h1 style="text-align: center; margin-top: 50px;">Contact List</h1>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li>   <a data-toggle="tab" href="#menu1">Add Contact&nbsp |</a></li>
+    <li><a data-toggle="tab" href="#menu2">&nbsp Delete Contact&nbsp </a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade" id="menu1">
+      <div class="container">
+        <div class="wrapp">
+          <form class="form-horizontal form-horizontal" action="agenda" method="POST" role="form">
+            <h2>Add Contact </h2>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" for="firstName">First Name</label>
+              <div class="col-sm-9">
+                <input class="form-control" type="text" id="firstName" placeholder="First Name" name="firstName" autofocus>
+              </div>
+            </div>
+            <div class="form-group">       </div>
+            <label class="col-sm-3 control-label" for="Last Name">Last name</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="validationDefault02" placeholder="Last name" name="lastName" required>
+            </div>
+            <div class="form-group">       </div>
+            <label class="col-sm-3 control-label" for="email">Email</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="validationDefault02" placeholder="email" name="email" required>
+            </div>
+            <div class="form-group">       </div>
+            <label class="col-sm-3 control-label" for="Phone">Phone</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="validationDefault03" placeholder="Phone" name="phone" required>
+            </div>
+            <div class="form-group">       </div>
+            <label class="col-sm-3 control-label" for="Position">Position</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="validationDefault03" placeholder="Position" name="position" required>
+            </div>
+            <div class="form-group"></div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+              <label class="form-check-label" for="invalidCheck2"></label>
+              <p>Agree to terms and conditions</p>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="menu2">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+</div>
+<script>
+  function redirectToUrl() {
+      let condition = true;
+      if (condition) {
+          window.location.href = "agenda";
+      } else {
+          window.location.href = "agenda";
+      }
+      }
+</script>

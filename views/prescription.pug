@@ -1,0 +1,103 @@
+extends default
+
+block content
+    div(class="container")
+        form
+            div(class="row")
+            h3
+                span(class="glyphicon glyphicon-education") Doctor 
+            div(class="col-md-6") Doctor's Name:
+                select(id="doctor" name="doctor" class="form-select form-control " )
+                        option(value="Dr. Pelumi Apantuku") Dr. Pelumi Apantuku
+                        option(value="Dr. Kimia Aksir") Dr. Kimia Aksir
+            div(class="col-md-6") Location:
+                select(id="location" name="location" class="form-select form-control " )
+                       option(value=" Edgware") Edgware 
+                       option(value=" Barnet") Barnet
+                       option(value=" Baxleyheath") Baxleyheath 
+                       option(value=" Criclewood") Cricklewood
+            div(class="col-md-6") Date of visit:
+                input(type='date' name='dateVisit' id='dateVisit' class="form-control m-2" )
+        div(class="container")
+            div(class="row")
+                div(class="col-md-6")
+                    h3 
+                        span(class="glyphicon glyphicon-user") Pacient
+                    hr
+                    div(class="col-md-6") Name
+                        p=data.firstName
+                    div(class="col-md-6") Surname
+                       p=data.lastName
+                    div(class="col-md-6") Sex
+                        p=data.sex
+                    div(class="col-md-6") Phone
+                        p=data.phone
+                    div(class="col-md-12") Next Visit
+                        p=data.nextapp
+                    div(class="col-md-6")
+                    h3
+                        span(class="glyphicon glyphicon-leaf") Treatment
+                    hr
+                    // div(class="col-md-12") Patología
+                        <select class="form-control" > 
+                            <option value="">- Seleccione -  
+                        <select class="form-control especialidad">
+                            <option value="">- Seleccione - 
+                <button id="display" onclick="displayValue()">Display Value</button>   
+
+        <br>                
+            <div class="col-md-12"> Observations
+                <textarea ng-model="observaciones" class="form-control" rows="2"></textarea>
+                <br>
+                <input type="button" class="btn btn-success" onclick="generatePDF()" value='Print' /></form> 
+                div(class="card " id="invoice")
+                    <div class="row text-center">
+                        h3 
+                            span(class="glyphicon glyphicon-list-alt" style="align:center;") Prescription
+                            p=data.id
+                    div(class="row text-start")
+                        h5(id="doctorName") Name: 
+                        p(id="locationPrescript") Location:
+                    <hr>
+                    <h2><b>Pacient info</b></h2>
+                    div(class="row text-start")
+                        <h5><b>Name and Surname:</b> #{data.firstName} #{data.lastName}<br></h5>
+                        <h5><b>Age:</b> #{data.age} years old<br></h5>
+                        <h5><b id="datePrescription">Date of Visit:</b> <br></h5>
+                        <hr>
+                        <h2><b>Diagnostic</b></h2> 
+                        <h5><b>Symptoms:</b><br><textarea id="textespecialidad"></textarea></h5>
+                        <h5><b>Treatment for:</b><br>#{data.treatement_1}<h7><br></h7></h5> 
+                        <h5 style="margin-top:0;padding-top:0;"><b>Other observations:</b><br>#{data.notes_1}</h5><br>
+                                    p(class="fw-bold mt-3") Signature:
+    script.
+
+        function generatePDF() {
+                
+                // Choose the element id which you want to export.
+                var element = document.getElementById('invoice');
+                element.style.width = '900';
+                element.style.height = '700';
+                var opt = {
+                        margin: [0, 0, 0, 0],
+                    filename:     'prescription.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 ,useCORS: true},
+                    jsPDF:        { unit: 'in', format: "A4",orientation: 'landscape',precision: '0',compress: true }
+                };
+                
+                // choose the element and pass it to html2pdf() function and call the save() on it to save as pdf.
+                html2pdf().set(opt).from(element).save();
+            }
+        function displayValue() {
+            const inputElement = document.getElementById("doctor");
+            const outputElement = document.getElementById("doctorName");
+            outputElement.innerHTML += inputElement.value;
+            const locationElement = document.getElementById("location");
+            const locationPrescription = document.getElementById("locationPrescript");
+            locationPrescription.innerHTML += locationElement.value;
+            const DateVisit = document.getElementById("dateVisit");
+            const datePrescription = document.getElementById("datePrescription");
+            datePrescription.innerHTML += DateVisit.value;
+            document.getElementById("display").disabled = true;
+            }

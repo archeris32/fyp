@@ -1,0 +1,27 @@
+include default
+block content
+    h2(class="text-center")
+        strong(style="font-family: 'Dosis'; font-weight:400; font-size:50px;" ) TREATMENT & SERVICES
+        span
+            i(class="fa fa-star" aria-hidden="true")
+
+    style.
+        h2 {
+        font-size: 20px;
+        display: inline-flex;
+        flex-direction: column;
+        margin: 10px 35px;
+        }
+        h1 > span {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        span:after, span:before {
+        content: '';
+        background: black;
+        height: 1px;
+        flex: 0 0 60%;
+        margin: 0 10px;
+        }
