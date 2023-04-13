@@ -4,22 +4,54 @@ block content
 
     div(class="container")
         form(class="mb-5" method="post", action=`/edit_user/${JSON.stringify(data)}`)
-                    h5(style="font-weight: bold;") ID
-                    div(class="d-flex justify-content-center")
-                        input(type='text' name='id'  class="form-control m-2" value=data.id)
-                    h5(style="font-weight: bold;") Username
-                    div(class="d-flex justify-content-center")
-                        input(type='text' name='name'  class="form-control m-2" value=data.name)
-                    h5(style="font-weight: bold;") Email
-                    div(class="d-flex justify-content-center")
-                        input(type='text' name='email'  class="form-control m-2" value=data.email )
-                    h5(style="font-weight: bold;") Password
-                    div(class="d-flex justify-content-center")
-                        input(type='text' name='password'  class="form-control m-2" value=data.password)
-                    h5(style="font-weight: bold;") Role
-                    div(class="d-flex justify-content-center")
-                        input(type='text' name='role' class="form-control m-2" value=data.role )
+            h5(style="font-weight: bold;") ID
+            div(class="d-flex justify-content-center")
+                input(type='text' name='id'  class="form-control m-2" value=data.id)
+            h5(style="font-weight: bold;") Username
+            div(class="d-flex justify-content-center")
+                input(type='text' name='name'  class="form-control m-2" value=data.name)
+            h5(style="font-weight: bold;") Email
+            div(class="d-flex justify-content-center")
+                input(type='text' name='email'  class="form-control m-2" value=data.email )
+            h5(style="font-weight: bold;") Password
+            div(class="d-flex justify-content-center")
+                input(type='text' name='password'  class="form-control m-2" value=data.password)
+            h5(style="font-weight: bold;") Role
+            div(class="d-flex justify-content-center col-4")
+                select(id="role" name="role" class=" list mdb-select md-form m-2  form-control")
+                    option(value=data.role)=data.role
+                    option(value="admin") admin
+                    option(value="staff") staff
 
-                    div(class="d-flex justify-content-center")
-                        button(class ='btn btn-primary' type='submit', value='Update' data-toggle="modal" data-target="#myModal") Update
-                        a.btn(href='/Admin_dashboard' type="button" class="btn btn-primary ") back
+            div(class="d-flex justify-content-center")
+                button(class ='btn btn-primary' type='submit', value='Update' data-toggle="modal" data-target="#myModal") Update
+                a.btn(href='/Admin_dashboard' type="button" class="btn btn-primary ") back
+    script.
+        // select all select elements on the page
+        const selectElements = document.querySelectorAll('select');
+
+        // loop through each select element
+        selectElements.forEach(select => {
+        // create an empty array for unique options
+        const uniqueOptions = [];
+
+        // loop through each option element
+        select.querySelectorAll('option').forEach(option => {
+            // check if the value is already in the unique options array
+            if (!uniqueOptions.includes(option.value)) {
+            // if not, add it to the array
+            uniqueOptions.push(option.value);
+            }
+        });
+
+        // remove all existing option elements from the select element
+        select.innerHTML = '';
+
+        // loop through the unique options array and create new option elements
+        uniqueOptions.forEach(value => {
+            const option = document.createElement('option');
+            option.value = value;
+            option.textContent = value;
+            select.appendChild(option);
+        });
+        });

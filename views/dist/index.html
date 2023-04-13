@@ -12,11 +12,11 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-  </head>
-  <body style="  position: relative;min-height: 100vh;padding-bottom: 2.5rem;">
+    <body style="  position: relative;min-height: 100vh;padding-bottom: 2.5rem;"></body>
     <main>
       <header class="header"></header>
       <style>
@@ -95,21 +95,19 @@
         
         
       </style>
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4" style="background-color:#fcf4f0;">
-        <nav class="navbar navbar-expand-sm d-flex mx-auto">
-          <button class="navbar-toggler" type="button" data-target="#navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" style="float:left;">
-            <ul class="navbar-nav"> 
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/">Home</a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/about">About</a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/services">Services</a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/team">Team   </a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/contact">Contact</a></li>
-            </ul>
-          </div>
-        </nav><a class="text-dark text-decoration-none " href="/" style="margin:auto"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"></a>
+      <nav class="navbar navbar-expand-sm d-flex mx-auto d-flex flex-wrap align-items-center justify-content-center  mb-5">
+        <div class="collapse navbar-collapse" style="float:left;">
+          <ul class="navbar-nav"> 
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/">Home</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/about">About</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/services">Services</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/team">Team   </a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/booking">Book Appointment</a></li>
+          </ul>
+        </div><a href="/" style="height: 50px;width: 100px;margin:auto;display: block;position: absolute;left: calc((100% - 100px) / 2);z-index: 100000;"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
         <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a></div>
-      </div>
+      </nav>
       <div class="container content d-flex justify-content-around">
         <p>This clinic is the best</p>
       </div>
@@ -118,15 +116,15 @@
                   <div class="card">
                     <div class="content">
                       <h2 class="title">About Us</h2>
-                      <p class="copy">Meet the outstanding team that made Zental what it is today! </p><a href="contact">
-                        <button class="href">contact</button></a>
+                      <p class="copy">Meet the outstanding team that made Zental what it is today! </p><a href="about">
+                        <button class="href">about</button></a>
                     </div>
                   </div>
                   <div class="card">
                     <div class="content">
-                      <h2 class="title">Testimonials</h2>
-                      <p class="copy">Hear from patients that already had the Zentist experience</p><a href="Testimonials">
-                        <button class="href">Testimonials</button></a>
+                      <h2 class="title">Services</h2>
+                      <p class="copy">Check our long list of services</p><a href="Services">
+                        <button class="href">Services</button></a>
                     </div>
                   </div>
                   <div class="card">
@@ -216,15 +214,18 @@
           transition: transform calc(var(--d) * 2) var(--e);
         }
         .card:nth-child(1):before {
-          background-image: url(https://i.ibb.co/pP43dGW/pexels-evg-kowalievska-1170979.jpg);
+          background-image: url(practice.jpg);
           background-size: cover;
-             background-repeat: no-repeat;
-          background-position: center center;
           height:350px;
           width:300px;
         }
         .card:nth-child(2):before {
-          background-image: url(https://images.unsplash.com/photo-1533903345306-15d1c30952de?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+          background-image: url(https://i.ibb.co/pP43dGW/pexels-evg-kowalievska-1170979.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          height:350px;
+          width:400px;
         }
         .card:nth-child(3):before {
           background-image: url(https://images.unsplash.com/photo-1545243424-0ce743321e11?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
@@ -298,12 +299,12 @@
         top: 100vh;
         }
       </style><!-- Footer -->
-      <footer class="text-center text-lg-start bg-white text-muted mt-auto" style=" position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
+      <footer class="text-center text-lg-start text-muted mt-auto" style="position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
         <section style="background-color:#fcf4f0;">
-          <div class="container text-center text-md-start mt-5">
+          <div class="text-center text-md-start mt-5">
             <div class="row mt-3">
               <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"></a>
+                <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 class=" fw-bold mb-4">Products</h6>
@@ -321,9 +322,9 @@
               </div>
             </div>
           </div>
+          <div class="text-center p-4" style="background-color: white;">© 2023 Copyright:<a class="text-reset fw-bold" href="http://localhost:7000/">Zentist Dental Practice</a></div>
         </section>
-        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">© 2023 Copyright:<a class="text-reset fw-bold" href="http://localhost:7000/">Zentist Dental Practice</a></div>
       </footer>
     </main>
-  </body>
+  </head>
 </html>

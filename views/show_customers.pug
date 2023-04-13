@@ -30,7 +30,8 @@ block content
                 tr
                     th First Name                 
                     th Last Name 
-                    th Phone 
+                    th Phone
+                    th Action 
             tbody
                 for cp,index in data1
                     tr
@@ -38,5 +39,7 @@ block content
                         td= cp.lastName 
                         td=cp.phone 
                         td 
-                            a(href=`/edit/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`edit-button`) Edit Client
+                            a(href=`/edit/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`edit-button`) Details 
                             a(href=`/invoice/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`invoice-button`) Invoice   
+                            a(href=`/prescription/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`prescription-button`) Prescription
+                            a(href=`/edit/${JSON.stringify(data1[index])}` class=`btn btn-primary` id=`edit-button`) Consent 

@@ -2,9 +2,40 @@ extends default
 
 block content
     form(action="/delete_client" method="POST")
-        div(class="md-form mt-0 w-25 p-3")
-            p Name
-            input(class ="form-control" type="text" placeholder="search" aria-label="search" name="searchName" required)
+        div(class="container")
+            h5 Search by Name
+            input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Insert comple first name to delete" title="Type in a name to delete" name="searchName" required style="border-radius:10px;")
+            table(class="table table-hover table-bordered " id="myTable")
+                thead
+                    tr
+                        th First Name                 
+                        th Last Name 
+                tbody
+                    for d in data
+                        tr
+                            td= d.firstName
+                            td= d.lastName 
 
-        button(type="submit" class="btn btn-primary" ) Submit
-        button(class="btn btn-primary" onclick="location.href='results'") Go Back
+            button(type="submit" class="btn btn-primary" ) Submit
+            button(class="btn btn-primary" onclick="location.href='results'") Go Back
+
+    script(type='text/javascript').
+        
+        function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+        }   

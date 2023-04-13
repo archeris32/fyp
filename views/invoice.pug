@@ -24,27 +24,47 @@ block content
                                 table(class="table")
                                     thead
                                         tr
+                                            th(scope="col") Treatment number
                                             th(scope="col") Patient name
                                             th(scope="col") Doctor
+                                            th(scope="col") Treatment
+                                            th(scope="col") Payment status
                                             th(scope="col float-end" class="float-none") Amount
-                                        tr
+                                        tr  
+                                            td 1
                                             td=data.firstName + " " + data.lastName
                                             td=data.doctor_t1
+                                            td=data.treatement_1
+                                            if(data.pay_t1=='paid')
+                                                td=data.pay_t1
+                                            else
+                                                td='unpaid'
                                             td
-                                                p Treatement 1---->
-                                                    i(class="fas fa-dollar-sign float-none")=data.cost_1
+                                                i(class="fas fa-dollar-sign float-none")=data.cost_1
                                         tr
+                                            td 2
                                             td(style="visibility: hidden;")=data.firstName + " " + data.lastName
                                             td=data.doctor_t2
                                             td
-                                                p Treatement 2---->
-                                                    i(class="fas fa-dollar-sign float-none")=data.cost_2
+                                                p=data.treatement_2 
+                                            if(data.pay_t2=='paid')
+                                                td=data.pay_t2
+                                            else
+                                                td='unpaid'
+                                            td
+                                                i(class="fas fa-dollar-sign float-none")=data.cost_2
                                         tr 
+                                            td 3
                                             td(style="visibility: hidden;")=data.firstName + " " + data.lastName
                                             td=data.doctor_t3
                                             td
-                                                p Treatement 3---->
-                                                    i(class="fas fa-dollar-sign float-none")=data.cost_3
+                                                p=data.treatement_3
+                                            if(data.pay_t3=='paid')
+                                                td=data.pay_t3
+                                            else
+                                                td='unpaid'
+                                            td 
+                                                i(class="fas fa-dollar-sign float-none")=data.cost_3
                             div(class="row")
                                 div(class="col-xl-8")
                                     ul(class="list-unstyled float-end me-0")

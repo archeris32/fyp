@@ -73,26 +73,23 @@ style.
     }
   
 
-div(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4" style="background-color:#fcf4f0;")
-    nav(class="navbar navbar-expand-sm d-flex mx-auto")
-        button(class="navbar-toggler" type="button" data-target="#navigation")
-            span(class="navbar-toggler-icon")
-        div(class="collapse navbar-collapse" style="float:left;")
-            ul(class="navbar-nav") 
-                li(class="nav-item active custom-nav-item")
-                    a(href="/" class="nav-link text-dark custom-nav-link") Home
-                li(class="nav-item active custom-nav-item")
-                    a(href="/about" class="nav-link text-dark custom-nav-link") About
-                li(class="nav-item active custom-nav-item")
-                    a(href="/services" class="nav-link text-dark custom-nav-link") Services
-                li(class="nav-item active custom-nav-item")
-                    a(href="/team" class="nav-link text-dark custom-nav-link") Team   
-                li(class="nav-item active custom-nav-item")
-                    a(href="/contact" class="nav-link text-dark custom-nav-link") Contact
-                li(class="nav-item active custom-nav-item")
-                    a(href="/booking" class="nav-link text-dark custom-nav-link") Book Appointment
-    a(href="/" class="text-dark text-decoration-none " style="margin:auto")
-        img(src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width=100)
+nav(class="navbar navbar-expand-sm d-flex mx-auto d-flex flex-wrap align-items-center justify-content-center  mb-5")
+    div(class="collapse navbar-collapse" style="float:left;")
+        ul(class="navbar-nav") 
+            li(class="nav-item active custom-nav-item")
+                a(href="/" class="nav-link text-dark custom-nav-link") Home
+            li(class="nav-item active custom-nav-item")
+                a(href="/about" class="nav-link text-dark custom-nav-link") About
+            li(class="nav-item active custom-nav-item")
+                a(href="/services" class="nav-link text-dark custom-nav-link") Services
+            li(class="nav-item active custom-nav-item")
+                a(href="/team" class="nav-link text-dark custom-nav-link") Team   
+            li(class="nav-item active custom-nav-item")
+                a(href="/contact" class="nav-link text-dark custom-nav-link") Contact
+            li(class="nav-item active custom-nav-item")
+                a(href="/booking" class="nav-link text-dark custom-nav-link") Book Appointment
+    a(href="/" style="height: 50px;width: 100px;margin:auto;display: block;position: absolute;left: calc((100% - 100px) / 2);z-index: 100000;")
+        img(src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png"  alt="logo" width=100)
     div(class="col-md-3 text-end justify-content-end" bis_skin_checked="1")
         a(type="button" href=username ? "/logout" : "/login" class="btn btn-outline-primary me-2" style= username&& 'display:none') Login
         a(type="button" href="/register" class="btn btn-primary" style=username&& 'display:none') Sign up
@@ -107,4 +104,4 @@ div(class="d-flex flex-wrap align-items-center justify-content-center justify-co
                             #{username}
                         li 
                             a(href="/logout") Logout
-        
+    

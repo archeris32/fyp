@@ -12,11 +12,11 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-  </head>
-  <body style="  position: relative;min-height: 100vh;padding-bottom: 2.5rem;">
+    <body style="  position: relative;min-height: 100vh;padding-bottom: 2.5rem;"></body>
     <main>
       <header class="header"></header>
       <style>
@@ -95,103 +95,114 @@
         
         
       </style>
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4" style="background-color:#fcf4f0;">
-        <nav class="navbar navbar-expand-sm d-flex mx-auto">
-          <button class="navbar-toggler" type="button" data-target="#navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" style="float:left;">
-            <ul class="navbar-nav"> 
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/">Home</a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/about">About</a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/services">Services</a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/team">Team   </a></li>
-              <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/contact">Contact</a></li>
-            </ul>
-          </div>
-        </nav><a class="text-dark text-decoration-none " href="/" style="margin:auto"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"></a>
+      <nav class="navbar navbar-expand-sm d-flex mx-auto d-flex flex-wrap align-items-center justify-content-center  mb-5">
+        <div class="collapse navbar-collapse" style="float:left;">
+          <ul class="navbar-nav"> 
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/">Home</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/about">About</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/services">Services</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/team">Team   </a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item active custom-nav-item"><a class="nav-link text-dark custom-nav-link" href="/booking">Book Appointment</a></li>
+          </ul>
+        </div><a href="/" style="height: 50px;width: 100px;margin:auto;display: block;position: absolute;left: calc((100% - 100px) / 2);z-index: 100000;"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
         <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a></div>
-      </div>
-      <style></style>
+      </nav>
       <div class="container">
-        <div class="wrapp">
-          <form class="form-horizontal form-horizontal" role="form" action="/add_client" method="POST">
-            <h2>Registration</h2>
-            <div class="form-group">
-              <label class="col-sm-3 control-label" for="firstName">First Name</label>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" id="firstName" placeholder="First Name" name="firstName" autofocus>
+        <h2 class="text-center" style="font-family:Franklin Gothic Medium;font-size:50px;">Customer registration</h2>
+        <div class="row">
+          <form class="form-horizontal" role="form" action="/add_client" method="POST">
+            <div class="col">
+              <div class="form-group"> 
+                <label class="col-sm-3" for="FirstName">First Name
+                  <input class="form-control" type="text" id="firstName" placeholder="Write first name" name="firstName" autofocus><small class="form-text">First name should contain only letters</small>
+                </label>
+              </div>
+              <div class="form-group">    
+                <label class="col-sm-3 control-label" for="LastName">Last Name
+                  <input class="form-control" type="text" id="lastName" placeholder="Last name" name="lastName" required><small class="form-text">Last name should contain only letters</small>
+                </label>
+              </div>
+              <div class="form-group">       
+                <label class="col-sm-3 control-label" for="email">Email
+                  <input class="form-control" type="text" id="email" placeholder="email" name="email" required><small class="form-text">Enter valid email address ex. johndoe@gmail.com</small>
+                </label>
+              </div>
+              <div class="form-group">       
+                <label class="col-sm-3 control-label" for="Age">Age
+                  <input class="form-control" type="text" id="age" placeholder="Age" name="age" required><small class="form-text">Age should contain only numbers</small>
+                </label>
               </div>
             </div>
-            <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Last Name">Last name</label>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" id="validationDefault02" placeholder="Last name" name="lastName" required>
+            <div class="col">
+              <div class="form-group">       
+                <label for="Gender">Gender
+                  <select class="form-select" name="sex" style="background:transparent;"> 
+                    <option value="Masculin">M</option>
+                    <option value="Feminin">F</option>
+                  </select>
+                </label>
               </div>
-            </div>
-            <div class="form-group">       
-              <label class="col-sm-3 control-label" for="email">Email</label>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" id="validationDefault02" placeholder="email" name="email" required>
+              <div class="form-group">       
+                <label class="col-sm-3 control-label" for="Phone">Phone
+                  <input class="form-control" type="text" id="phone" placeholder="Phone" name="phone" required><small class="form-text">Should have 11 numbers,no letters</small>
+                </label>
               </div>
-            </div>
-            <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Age">Age</label>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" id="validationDefault02" placeholder="Age" name="age" required>
+              <div class="form-group">       
+                <label class="col-sm-3 control-label" for="Address">Address
+                  <input class="form-control" type="text" id="validationDefault03" placeholder="Address" name="address" required>
+                </label>
               </div>
-            </div>
-            <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Gender">Gender</label>
-              <div class="col-sm-9">
-                <select class="form-select" name="sex"> 
-                  <option value="Masculin">M</option>
-                  <option value="Feminin">F</option>
-                </select>
+              <div class="form-group">       
+                <label class="col-sm-3 control-label" for="Walk-in">Walk-in Date
+                  <input class="form-control" type="date" id="txtDate" placeholder="Walk-in Date" name="walkin" required>
+                </label>
               </div>
-            </div>
-            <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Phone">Phone</label>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" id="validationDefault03" placeholder="Phone" name="phone" required>
-              </div>
-            </div>
-            <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Address">Address</label>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" id="validationDefault03" placeholder="Address" name="address" required>
-              </div>
-            </div>
-            <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Walk-in">Walk-in Date</label>
-              <div class="col-sm-9">
-                <input class="form-control" type="date" id="validationDefault03" placeholder="Walk-in Date" name="walkin" required>
-              </div>
-            </div>
-            <div class="form-group">    
-              <label class="col-sm-3 control-label" for="Choose Doctor">Choose Doctor</label>
-              <div class="col-sm-9">
-                <select class="form-select" name="doctor"> 
-                  <option value="Dr. Kimia Aksir">Kimia Aksir </option>
-                  <option value="Dr. Pelumi Apantuku">Pelumi Apantuku </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group"></div>
-            <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-              <label class="form-check-label" for="invalidCheck2"></label>
               <p>Agree to terms and conditions</p>
+              <button class="btn btn-primary" type="submit" id="btn-submit">Submit</button>
+              <button class="btn btn-primary" onclick="location.href='results'">Go Back </button>
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
-            <button class="btn btn-primary" onclick="location.href='results'">Go Back </button>
           </form>
         </div>
-      </div><!-- Footer -->
-      <footer class="text-center text-lg-start bg-white text-muted mt-auto" style=" position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
+      </div>
+      <style>
+        .col {
+            float: inherit;
+            width: 100%
+        }
+        .form-control + small {
+        color: red;
+        opacity: 0;
+        height: 0;
+        transition: opacity .4s ease-out;
+        }
+        
+        .form-control.invalid + small {
+        opacity: 1;
+        height: auto;
+        margin-bottom:0;
+        transition: opacity .4s ease-out;
+        }
+         body{
+            background-image: linear-gradient(to top,rgba(255,255,255,0.25), rgba(255,255,255,0.95)), url("background.jpg") ;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        input[type="text"],input[type="date"],select
+        {
+            background: transparent;
+            border: dotted 1.5px
+        }
+      </style><!-- Footer -->
+      <footer class="text-center text-lg-start text-muted mt-auto" style="position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
         <section style="background-color:#fcf4f0;">
           <div class="text-center text-md-start mt-5">
             <div class="row mt-3">
               <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" width="100"></a>
+                <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 class=" fw-bold mb-4">Products</h6>
@@ -209,9 +220,9 @@
               </div>
             </div>
           </div>
+          <div class="text-center p-4" style="background-color: white;">© 2023 Copyright:<a class="text-reset fw-bold" href="http://localhost:7000/">Zentist Dental Practice</a></div>
         </section>
-        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">© 2023 Copyright:<a class="text-reset fw-bold" href="http://localhost:7000/">Zentist Dental Practice</a></div>
       </footer>
     </main>
-  </body>
+  </head>
 </html>
