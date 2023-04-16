@@ -40,21 +40,25 @@ block content
                             div(class="row")
                                 div(class="col-md-9")
                                 div(class="md-form md-outline mb-0")
+                                    h5(class="mb-5") We aim to reply to all mesages within one working day.
                                     input(type="text" id="form-name" class="form-control" name ="Name" placeholder="Name")
                                 div(class="md-form md-outline mt-3")
                                     input(type="email" id="form-email" class="form-control" name="email" placeholder="Email Address")
-                                    div(class="col-md-9")
-                                    div(class="md-form md-outline mt-3")
-                                        select(class="mdb-select md-form  form-control" id="comp" name="Branch")
-                                            option(value="" disabled selected) Choose branch where you had your treatment
-                                            option(value="Edgware") Edgware 
-                                            option(value="Barnet") Barnet
-                                            option(value="Baxleyheath") Baxleyheath 
-                                            option(value="Criclewood") Cricklewood
-                                    input(type="hidden" name="_next" value="http://localhost:7000/")
-                                    input(type="hidden" name="_autoresponse" value="Thank you for your feedback. One of our collegues will be in touch with you.")
-                                    input(type="hidden" name="_template" value="box")
-                                    div(class="md-form md-outline mt-2")
-                                        textarea(id="form-message" class="md-textarea form-control" rows="10" name="Message" placeholder="Write Your Message Here...")
+                                div(class="md-form md-outline mt-3")
+                                    input(type="phone" id="form-phone" class="form-control" name="phone" placeholder="Phone number")
+                                
+                                div(class="md-form md-outline mt-3")
+                                    select(class="mdb-select md-form  form-control" id="comp" name="Branch")
+                                        option(value="" disabled selected) Choose branch where you had your treatment
+                                        option(value="Edgware") Edgware 
+                                        option(value="Barnet") Barnet
+                                        option(value="Baxleyheath") Baxleyheath 
+                                        option(value="Criclewood") Cricklewood
+                                input(type="hidden" name="_next" value="http://localhost:7000/")
+                                input(type="hidden" name="_autoresponse" value="Thank you for your feedback. One of our collegues will be in touch with you.")
+                                input(type="hidden" name="_template" value="box")
+                                div(class="md-form md-outline mt-2")
+                                    textarea(id="form-message" class="md-textarea form-control" rows="10" name="Message" placeholder="Write Your Message Here...")
                                     button(type="submit" class="btn btn-info btn-sm ml-0") Submit
                                         i(class="far fa-paper-plane ml-2")
+    include book 

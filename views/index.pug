@@ -20,6 +20,7 @@ block content
   main.page-content
     each card in cards
       +card(card.title, card.copy, card.href,card.button)
+  include book
   style.
       @import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
     :root {

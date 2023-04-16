@@ -1,27 +1,50 @@
 include default
 block content
     h2(class="text-center")
-        strong(style="font-family: 'Dosis'; font-weight:400; font-size:50px;" ) TREATMENT & SERVICES
-        span
-            i(class="fa fa-star" aria-hidden="true")
-
+        p(style="font-family: 'Dosis'; font-weight:400; font-size:50px;" ) TREATMENT & SERVICES
+        hr( style="width:55%;margin-left: auto;margin-right: auto;")
+        p We are pleased to provide both 
+            strong(style="color:#31c5c7") Private & NHS dental care
+    hr( style="display:none")
+    div(class="container"  style="display: flex;")
+        div(class="column"  style=" float:left; width: 33.33%;padding: 40px;")
+            i(class="material-icons") thumb_up_alt
+            h2 CHECK-UPS
+            p Let our highly experienced, friendly dentists give your teeth and gums a comprehensive check-up at a fixed price.
+            i(class="material-icons") medical_services
+            h2 EMERGENCIES
+            p We know the stress that a dental emergency can cause. If you have an urgent problem, we are here to help put it right.
+            i(class="material-icons") star_rate
+            h2 CLEANING
+            p Our hygienists are specially trained to give a complete clean that is essential for maintaining good dental health.
+        div(class="column" style=" float:left; width: 33.33%;padding: 40px")
+            i(class="material-icons") format_color_fill
+            h2 FILLINGS & CROWNS
+            p From a light filling to a full crown, we have a host of restorative treatments to return your smile to prime condition.
+            i(class="material-icons") upgrade
+            h2 IMPLANTS
+            p Missing teeth can really impact upon your confidence. We can advise on suitable implants to help restore your smile.
+            i(class="material-icons") healing
+            h2 ROOT CANAL
+            p Unfortunately, infection can sometimes occur in our teeth. If a procedure is necessary, our team is here to guide you.
+        div(class="column" style=" float:left; width: 33.33%;padding: 40px")
+            i(class="material-icons") wb_incandescent
+            h2 WHITENING
+            p You don’t need to live with discolouration and staining. We can quickly and safely give you a white, bright smile.
+            i(class="material-icons") straighten
+            h2 STRAIGHTENING
+            p We are always happy to discuss our range of straightening solutions. Call today to chat through the options we offer.
+            i(class="material-icons") auto_fix_normal
+            h2 COSMETIC WORK
+            p No matter how small or extensive your needs, our experienced dentists can help to return your teeth to peak condition.
+include book
     style.
-        h2 {
-        font-size: 20px;
-        display: inline-flex;
-        flex-direction: column;
-        margin: 10px 35px;
+        .column > i.material-icons {
+        display: inline-block;
+        border-radius: 80px;
+        box-shadow: 0 0 2px #888;
+        padding: 0.5em 0.6em;
+        background: #31c5c7;
+
         }
-        h1 > span {
-        font-size: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        }
-        span:after, span:before {
-        content: '';
-        background: black;
-        height: 1px;
-        flex: 0 0 60%;
-        margin: 0 10px;
-        }
+      
