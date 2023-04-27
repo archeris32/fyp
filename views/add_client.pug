@@ -4,22 +4,21 @@ block content
     h2(class="text-center" style="font-family:Franklin Gothic Medium;font-size:50px;") Customer registration
     form(class="form-horizontal" role="form" action="/add_client" method="POST")
         div(class="container"  style="display: flex;")
-            div(class="column"  style=" float:left; width: 33.33%;padding: 40px;")
+            div(class="column"  style=" float:left; width: 50%;padding: 40px;")
                 div(class="form-group") 
-                    label(for="FirstName" class="col-sm-3") First Name
+                    label(for="FirstName" class="col-sm-8") First Name
                         input(type="text" id="firstName" placeholder="Write first name" name="firstName" class="form-control" autofocus)
                         small(class="form-text") First name should contain only letters
                 div(class="form-group")     
-                    label(for="LastName" class="col-sm-3 control-label") Last Name
+                    label(for="LastName" class="col-sm-8 control-label") Last Name
                         input(type="text" class="form-control" id="lastName" placeholder="Last name" name="lastName" required)
-                        small(class="form-text") Last name should contain only letters
-            div(class="column"  style=" float:left; width: 33.33%;padding: 40px;")    
+                        small(class="form-text") Last name should contain only letters    
                 div(class="form-group")        
-                    label(for="email" class="col-sm-3 control-label") Email
+                    label(for="email" class="col-sm-8 control-label") Email
                         input(type="text" class="form-control" id="email" placeholder="email" name="email" required)
                         small(class="form-text") Enter valid email address ex. johndoe@gmail.com
                 div(class="form-group")        
-                    label(for="Age" class="col-sm-3 control-label") Age
+                    label(for="Age" class="col-sm-8 control-label") Age
                         input(type="text" class="form-control" id="age" placeholder="Age" name="age" required)
                         small(class="form-text") Age should contain only number
                 div(class="form-group")        
@@ -27,18 +26,19 @@ block content
                         select(name="sex" class="form-select" style="background:transparent;" ) 
                             option(value="Masculin") M
                             option(value="Feminin") F
+            div(class="column"  style=" float:left; width: 50%;padding: 40px;")                  
                 div(class="form-group")        
-                    label(for="Phone" class="col-sm-3 control-label") Phone
+                    label(for="Phone" class="col-sm-8 control-label") Phone
                         input(type="text" class="form-control" id="phone" placeholder="Phone" name="phone" required)
-                        small(class="form-text") Should have 11 numbers,no letters
+                        small(class="form-text") Should have 11 numbers,no letters  
                 div(class="form-group")        
-                    label(for="Address" class="col-sm-3 control-label") Address
+                    label(for="Address" class="col-sm-8  control-label") Address
                         input(type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" required)
                 div(class="form-group")        
-                    label(for="Walk-in" class="col-sm-3 control-label") Walk-in Date
+                    label(for="Walk-in" class="col-sm-8 control-label") Walk-in Date
                         input(type="date" class="form-control" id="txtDate" placeholder="Walk-in Date" name="walkin" required)
                     
-                    
+        div(class="container text-center")            
             input(class="form-check-input" type="checkbox" value="" id="invalidCheck2"  required)
             p Agree to terms and conditions
             button(type="submit" id="btn-submit" class="btn btn-primary" ) Submit

@@ -6,16 +6,17 @@ var cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const { json } = require('express');
-
+const fs = require('fs');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
+app.use(bodyParser.json());
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Bogdan12",
+    password: "",
     database: "login-db",
     multipleStatements: true
     
@@ -32,6 +33,9 @@ app.get('/', (req, res) => {
 });
 app.get('/services',(req,res)=>{
     res.render('services',{username:req.session.username})
+})
+app.get('/team',(req,res)=>{
+    res.render('team',{username:req.session.username})
 })
 app.get('/booking',(req,res)=>{
     res.render('booking',{username: req.session.username})
@@ -135,8 +139,8 @@ app.get('/analytics',checkLogin, (req, res) => {
   });
 })
 app.get('/profile', checkLogin,(req, res) =>  {
-    db.query(`SELECT * from users where name='${req.session.username}';`, function (err, rows) {
-          res.render('profile', { data: rows ,username: req.session.username })
+    db.query(`SELECT * from users where name='${req.session.username}';`, function (err, result) {
+        res.render('profile', { data: result ,username: req.session.username })
         
       }) 
     })
@@ -262,14 +266,14 @@ app.post("/add_client",checkLogin,urlencodedParser, (req, res) => {
             if(err) {
                 console.log(err)
             } else {
-                return res.render('add_client', {
-                    message: "client Added",
-                    username: req.session.username 
-                   
-                })
-            }
-        })        
+                fs.mkdir(`./clients/${f_name} ${lastName}`, (err) => {
+                    return res.render('add_client', {
+                        message: "client Added",
+                        username: req.session.username })
+                  })
+            }    
     })
+})
 app.get('/show_customers',checkLogin, (req, res) => {
     db.query('Select * from patient', function(err,rows){
       res.render('show_customers', { data1: rows,username: req.session.username  })
@@ -299,6 +303,14 @@ app.get("/prescription/:data?",checkLogin,(req, res,) => {
       data: formData,
       username: req.session.username,
       title: 'prescription'
+    });
+})
+app.get("/consent/:data?",checkLogin,(req, res,) => {
+    const formData =JSON.parse(req.params.data);
+    return res.render("consent", {
+      data: formData,
+      username: req.session.username,
+      title: 'consent'
     });
 })
 
@@ -381,6 +393,7 @@ function checkLogin(req,res,next){
         next();
     }
 }
+
 const server = app.listen(7000, () => {
     console.log(`Express running → http://localhost:7000/`);
   });

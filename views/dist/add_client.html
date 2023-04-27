@@ -112,26 +112,24 @@
       <h2 class="text-center" style="font-family:Franklin Gothic Medium;font-size:50px;">Customer registration</h2>
       <form class="form-horizontal" role="form" action="/add_client" method="POST">
         <div class="container" style="display: flex;">
-          <div class="column" style=" float:left; width: 33.33%;padding: 40px;">
+          <div class="column" style=" float:left; width: 50%;padding: 40px;">
             <div class="form-group"> 
-              <label class="col-sm-3" for="FirstName">First Name
+              <label class="col-sm-8" for="FirstName">First Name
                 <input class="form-control" type="text" id="firstName" placeholder="Write first name" name="firstName" autofocus><small class="form-text">First name should contain only letters</small>
               </label>
             </div>
             <div class="form-group">    
-              <label class="col-sm-3 control-label" for="LastName">Last Name
-                <input class="form-control" type="text" id="lastName" placeholder="Last name" name="lastName" required><small class="form-text">Last name should contain only letters</small>
+              <label class="col-sm-8 control-label" for="LastName">Last Name
+                <input class="form-control" type="text" id="lastName" placeholder="Last name" name="lastName" required><small class="form-text">Last name should contain only letters    </small>
               </label>
             </div>
-          </div>
-          <div class="column" style=" float:left; width: 33.33%;padding: 40px;">   
             <div class="form-group">       
-              <label class="col-sm-3 control-label" for="email">Email
+              <label class="col-sm-8 control-label" for="email">Email
                 <input class="form-control" type="text" id="email" placeholder="email" name="email" required><small class="form-text">Enter valid email address ex. johndoe@gmail.com</small>
               </label>
             </div>
             <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Age">Age
+              <label class="col-sm-8 control-label" for="Age">Age
                 <input class="form-control" type="text" id="age" placeholder="Age" name="age" required><small class="form-text">Age should contain only number</small>
               </label>
             </div>
@@ -143,22 +141,26 @@
                 </select>
               </label>
             </div>
+          </div>
+          <div class="column" style=" float:left; width: 50%;padding: 40px;">                 
             <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Phone">Phone
-                <input class="form-control" type="text" id="phone" placeholder="Phone" name="phone" required><small class="form-text">Should have 11 numbers,no letters</small>
+              <label class="col-sm-8 control-label" for="Phone">Phone
+                <input class="form-control" type="text" id="phone" placeholder="Phone" name="phone" required><small class="form-text">Should have 11 numbers,no letters  </small>
               </label>
             </div>
             <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Address">Address
+              <label class="col-sm-8  control-label" for="Address">Address
                 <input class="form-control" type="text" id="validationDefault03" placeholder="Address" name="address" required>
               </label>
             </div>
             <div class="form-group">       
-              <label class="col-sm-3 control-label" for="Walk-in">Walk-in Date
+              <label class="col-sm-8 control-label" for="Walk-in">Walk-in Date
                 <input class="form-control" type="date" id="txtDate" placeholder="Walk-in Date" name="walkin" required>
               </label>
             </div>
           </div>
+        </div>
+        <div class="container text-center">           
           <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
           <p>Agree to terms and conditions</p>
           <button class="btn btn-primary" type="submit" id="btn-submit">Submit</button>

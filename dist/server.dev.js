@@ -17,15 +17,18 @@ var bcrypt = require("bcryptjs");
 var _require = require('express'),
     json = _require.json;
 
+var fs = require('fs');
+
 var urlencodedParser = bodyParser.urlencoded({
   extended: true
 });
+app.use(bodyParser.json());
 app.set('view engine', 'pug');
 app.use(express["static"]('public'));
 var db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Bogdan12",
+  password: "",
   database: "login-db",
   multipleStatements: true
 });
@@ -44,6 +47,11 @@ app.get('/', function (req, res) {
 });
 app.get('/services', function (req, res) {
   res.render('services', {
+    username: req.session.username
+  });
+});
+app.get('/team', function (req, res) {
+  res.render('team', {
     username: req.session.username
   });
 });
@@ -172,9 +180,9 @@ app.get('/analytics', checkLogin, function (req, res) {
   });
 });
 app.get('/profile', checkLogin, function (req, res) {
-  db.query("SELECT * from users where name='".concat(req.session.username, "';"), function (err, rows) {
+  db.query("SELECT * from users where name='".concat(req.session.username, "';"), function (err, result) {
     res.render('profile', {
-      data: rows,
+      data: result,
       username: req.session.username
     });
   });
@@ -295,9 +303,11 @@ app.post("/add_client", checkLogin, urlencodedParser, function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      return res.render('add_client', {
-        message: "client Added",
-        username: req.session.username
+      fs.mkdir("./clients/".concat(f_name, " ").concat(lastName), function (err) {
+        return res.render('add_client', {
+          message: "client Added",
+          username: req.session.username
+        });
       });
     }
   });
@@ -332,6 +342,14 @@ app.get("/prescription/:data?", checkLogin, function (req, res) {
     data: formData,
     username: req.session.username,
     title: 'prescription'
+  });
+});
+app.get("/consent/:data?", checkLogin, function (req, res) {
+  var formData = JSON.parse(req.params.data);
+  return res.render("consent", {
+    data: formData,
+    username: req.session.username,
+    title: 'consent'
   });
 });
 app.get("/edit_user/:data?", checkLogin, function (req, res) {
