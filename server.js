@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
+// login - db
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -22,39 +23,47 @@ const db = mysql.createConnection({
     
 })
 
+// Parse a SHA - 256 cookie.
 app.use(cookieParser());
 app.use(session({secret: "Shh, its a secret!"}));
 
 
+// Get a list of users.
 app.get('/', (req, res) => {
     db.query(`SELECT * from users where name='${req.session.username}';`, function(err,rows){
       res.render('', { data: rows,title: 'Homepage',username: req.session.username  })
     })
 });
+// Renders the services page.
 app.get('/services',(req,res)=>{
     res.render('services',{username:req.session.username})
 })
+// Renders the team page.
 app.get('/team',(req,res)=>{
     res.render('team',{username:req.session.username})
 })
+// Renders the booking page.
 app.get('/booking',(req,res)=>{
     res.render('booking',{username: req.session.username})
 })
-
+// Renders the about page.
 app.get('/about',(req,res)=>{
     res.render('about',{username: req.session.username})
 })
+// Renders the contact page.
 app.get('/contact', (req, res) => {
     res.render('contact', {
         title: 'Homepage',
         username: req.session.username 
       });
   });
+// Renders the agenda page.
 app.get('/agenda',checkLogin, (req, res) => {
     db.query('Select * from staff', function(err,rows){
       res.render('agenda', { data: rows,title: 'Contacts',username: req.session.username  })
     })
 });
+// renders show contacts while selecting everything from staff table.
 app.get('/show_contacts',checkLogin, (req, res) => {
     db.query('Select * from staff', function(err,rows){
       res.render('show_contacts', { data: rows,title: 'Contacts',username: req.session.username  })
@@ -105,10 +114,31 @@ app.get('/Admin_dashboard', checkLogin,(req, res) => {
                 if(err){
                     console.log(err)
                 }else{
-                    res.render('Admin_dashboard', {results1:rows,results2:data2,title: 'Admin Dashboard',username: req.session.username});
-                }
+                    db.query(`select count(*) as count from patient;select sum(cost)as sum from patient where pay_t1='paid' or pay_t2='paid' or pay_t3='paid' `,function(err,data3){
+                        if(err){
+                            console.log(err)
+                        }else{ 
+                            db.query(`select walkin  from patient where  EXTRACT(MONTH FROM walkin) = 3 or EXTRACT(MONTH FROM walkin) = 4 ;`,function(err,data4){
+                            if(err){
+                                console.log(err)
+                            }else{
+                                const marchCustomers = data4.filter((customer) => {
+                                    return new Date(customer.walkin).getMonth() === 2; // March is zero-indexed
+                                  });
+                                  const aprilCustomers = data4.filter((customer) => {
+                                    return new Date(customer.walkin).getMonth() === 3; // April is zero-indexed
+                                  });
+                                  console.log(data3)
+                        
+                             
+                            res.render('Admin_dashboard', {results1:rows,results2:data2,results3:data3,results4:data4,marchCustomers,aprilCustomers,title: 'Admin Dashboard',username: req.session.username});
+                        }
+                })
+            }
             })
         }
+    })
+}
   });
 })
 app.get('/analytics',checkLogin, (req, res) => {
@@ -261,19 +291,39 @@ app.post("/add_client",checkLogin,urlencodedParser, (req, res) => {
     const phone = req.body.phone
     const doctor=req.body.doctor
     const cost= req.body.cost
-    var sql = `INSERT INTO patient (firstName, lastName,age,sex,address,walkin, email, phone, doctor,cost) VALUES ("${f_name}", "${lastName}","${age}","${sex}","${address}","${walkin}", "${email}", "${phone}","${doctor}","${cost}")`;
-        db.query(sql, (err, result) => {
-            if(err) {
-                console.log(err)
-            } else {
-                fs.mkdir(`./clients/${f_name} ${lastName}`, (err) => {
-                    return res.render('add_client', {
-                        message: "client Added",
-                        username: req.session.username })
-                  })
-            }    
+    const query = `SELECT COUNT(*) AS count FROM patient WHERE firstName = ? AND lastName = ? `;
+    db.query(query, [f_name, lastName], (err, results) => {
+        if (err) throw err;
+      
+        const count = results[0].count;
+      
+        if (count > 0) {
+          return res.render("add_client",{message:"Client already exists!",username: req.session.username })
+        } else {
+            var sql = `INSERT INTO patient (firstName, lastName,age,sex,address,walkin, email, phone, doctor,cost) VALUES ("${f_name}", "${lastName}","${age}","${sex}","${address}","${walkin}", "${email}", "${phone}","${doctor}","${cost}")`;
+            db.query(sql, (err, result) => {
+                if(err) {
+                    console.log(err)
+                } else {
+                        fs.mkdir(`./clients/${f_name} ${lastName}`, (err) => {
+                        return res.render('add_client', {
+                            message: "client Added",
+                            username: req.session.username })
+                      })
+                }    
+            })
+        }
     })
 })
+
+           
+      
+      
+    
+    
+    
+    
+
 app.get('/show_customers',checkLogin, (req, res) => {
     db.query('Select * from patient', function(err,rows){
       res.render('show_customers', { data1: rows,username: req.session.username  })

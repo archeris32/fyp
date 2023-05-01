@@ -52,8 +52,9 @@ block content
                                     div(class="d-flex justify-content-center col-4")
                                         select(id="doctor" name="doctor_t1" class="form-select form-control " )
                                                 option(value=data.doctor_t1)=data.doctor_t1
-                                                option(value="Dr. Pelumi Apantuku") Dr. Pelumi Apantuku
-                                                option(value="Dr. Kimia Aksir") Dr. Kimia Aksir
+                                                option(value="Dr. John Smith II") Dr. John Smith II
+                                                option(value="Dr. Kamely Asin") Dr. Kamely Asin
+                                                option(value="Dr. Trevor Hightower") Dr. Trevor Hightower
                                     h6 Pre treatment notes
                                     textarea(name="notes_1" class="form-control col-2")=data.notes_1
                                     h6 Treatment name
@@ -226,6 +227,7 @@ block content
                 a.btn(href='/show_customers' type="button" class="btn btn-primary ") back
 
     script.
+    
         function findTotal(){
             var arr = document.getElementsByClassName('amount');
             var tot=0;

@@ -4,9 +4,9 @@ block content
     form(action="/delete_client" method="POST")
         div(class="container")
             h5 Search by Name
-            input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Insert comple first name to delete" title="Type in a name to delete" name="searchName" required style="border-radius:10px;")
-            table(class="table table-hover table-bordered " id="myTable")
-                thead
+            input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Insert first name" title="Type in a name to delete" name="searchName" required style="border-radius:10px;")
+            table(class="table table-hover table-bordered mt-5 " id="myTable")
+                thead(class="table-secondary")
                     tr
                         th First Name                 
                         th Last Name 

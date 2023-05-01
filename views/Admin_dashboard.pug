@@ -24,11 +24,31 @@ block content
   if(username)
     for d in results1
         if (d.role == 'admin')
-            div(class="container")
+            h1(class="text-center") Admin Dashboard
+            div(class="container my-5")
+                h4 Hello,#{username} !
+            div(class="container justify-content-center")
+                div(class="card " style="border-radius:30px")
+                    div(class="card-header bg-info text-center" style="border-radius:30px 30px 0 0") Information
+                    div(class="card-body d-flex justify-content-between mx-2")
+                        h5(class="card-title text-center") Number of Patients :
+                            for d in results3
+                                p(class="card-text") #{d[0].count} 
+                        h5(class="card-title text-center") Sum this year (£) :
+                            for d in results3
+                                p(class="card-text") #{d[0].sum}
+                        h5 Patients in March
+                            p(class="card-text text-center") #{marchCustomers.length}
+                        h5 Patients in April
+                            p(class="card-text text-center") #{aprilCustomers.length}
+                    div(class="container d-flex justify-content-center ")
+                        a(href="/analytics" class="btn btn-primary mt-3") Go to Analysis  
+
+            div(class="container mt-5")
                 h5 Search by Name
                 input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by names.." title="Type in a name" style="border-radius:10px;")
                 table(class="table table-hover table-bordered mt-5 " id="myTable")
-                    thead
+                    thead(class="table-secondary")
                         tr
                             th ID                
                             th Name 
@@ -45,4 +65,4 @@ block content
                                 td=cp.role  
                                     a(href=`/edit_user/${JSON.stringify(results2[index])}` class=`btn btn-primary` id=`edit-button` style="float: right") Edit Client
         else 
-            h5 You're not a admin
+            h5(class="text-center") You're not a admin.Contact the Admin if you want to update the privileges.

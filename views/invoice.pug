@@ -22,7 +22,7 @@ block content
                                 p=data.id
                             div(class="row mx-3")
                                 table(class="table")
-                                    thead
+                                    thead(class="table-secondary")
                                         tr
                                             th(scope="col") Treatment number
                                             th(scope="col") Patient name
@@ -88,8 +88,8 @@ block content
                 element.style.width = '900';
                 element.style.height = '700';
                 var opt = {
-                        margin: [0, 0, 0, 0],
-                    filename:     'myfile.pdf',
+                    margin: [0, 0, 0, 0],
+                    filename:     '#{data.firstName} #{data.lastName} - invoice.pdf',
                     image:        { type: 'jpeg', quality: 1 },
                     html2canvas:  { scale: 2 ,useCORS: true},
                     jsPDF:        { unit: 'in', format: "A4",orientation: 'portrait',precision: '0',compress: true }

@@ -1,8 +1,9 @@
 extends default
 
 block content
+    h2(class="text-center") User Details
 
-    div(class="container")
+    div(class="container mt-5")
         form(class="mb-5" method="post", action=`/edit_user/${JSON.stringify(data)}`)
             h5(style="font-weight: bold;") ID
             div(class="d-flex justify-content-center")
