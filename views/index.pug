@@ -1,9 +1,14 @@
 extends default
 block content
+  include loader
   div.container(class="content d-flex justify-content-around")
-   p This clinic is the best
-  div.container(class="d-flex justify-content-around")
-   a(type="button" href= username ? "/results" : "/login" class="btn btn-outline-primary me-2") #{username ? "Results" : "Login"}
+    p This clinic is the best
+  if message
+    div(class="alert")
+      span(class="closebtn" onclick="this.parentElement.style.display='none';") &times; 
+      strong  #{message && message}
+  div.container(id="content" class="d-flex justify-content-around")
+    a(type="button" href= username ? "/results" : "/login" class="btn btn-outline-primary me-2") #{username ? "Results" : "Login"}
     - var cards = [{ title: 'About Us', copy: 'Meet the outstanding team that made Zental what it is today! ', button: 'about',href:'/about' }, { title: 'Services', copy: 'Check our long list of services', button: 'Services',href:'/services' }, { title: 'Dentist\'s advice', copy: 'Read the advices our experienced doctors give on how to take care of your oral hygiene. ', button: 'Advice' ,href:'/advice`'}, { title: 'Explore The Galaxy', copy: 'Seriously, straight up, just blast off into outer space today', button: 'Book Now',href:'/about' }]
 
 
@@ -17,7 +22,7 @@ block content
             button.href= href
           
 
-  main.page-content
+  main.page-content(class="main" style="display:none")
     each card in cards
       +card(card.title, card.copy, card.href,card.button)
   include book
@@ -177,4 +182,18 @@ block content
     position: sticky;
     top: 100vh;
     }
-    
+  script.
+          setTimeout(function() {
+    // Hide preloader and show content
+    document.getElementById('scene').style.display = 'none';
+    document.querySelector('.main').style.display=''
+    }, 10000);
+    var clicks = 0;
+    document.addEventListener("click", function() {
+    clicks++;
+    if (clicks == 2) {
+        // Display the content by removing the "hidden" class from the content container
+      document.getElementById('scene').style.display = 'none';
+      document.querySelector('.main').style.display=''
+    }
+    });

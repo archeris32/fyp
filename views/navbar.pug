@@ -88,6 +88,10 @@ nav(class="navbar navbar-expand-sm d-flex mx-auto d-flex flex-wrap align-items-c
                 a(href="/contact" class="nav-link text-dark custom-nav-link") Contact
             li(class="nav-item active custom-nav-item")
                 a(href="/booking" class="nav-link text-dark custom-nav-link") Book Appointment
+            if (username)
+                li(class="nav-item active custom-nav-item")
+                    a(href="/contact_admin" class="nav-link text-dark custom-nav-link") Contact Administrator
+
     a(href="/" style="height: 50px;width: 100px;margin:auto;display: block;position: absolute;left: calc((100% - 100px) / 2);z-index: 100000;")
         img(src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png"  alt="logo" width=100)
     div(class="col-md-3 text-end justify-content-end" bis_skin_checked="1")

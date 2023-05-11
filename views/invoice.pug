@@ -1,6 +1,8 @@
 extends default
 
 block content
+    
+
     div(class="container")
         form(class="mb-5" method="post", action=`/edit/${JSON.stringify(data)}`)
                 <button type="button" onclick="generatePDF()" class="btn-sm btn-danger">Export to PDF</button>

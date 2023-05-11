@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.3.5/signature_pad.min.js" integrity="sha512-kw/nRM/BMR2XGArXnOoxKOO5VBHLdITAW00aG8qK4zBzcLVZ4nzg7/oYCaoiwc8U9zrnsO9UHqpyljJ8+iqYiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -109,55 +110,232 @@
         </div><a href="/" style="height: 50px;width: 100px;margin:auto;display: block;position: absolute;left: calc((100% - 100px) / 2);z-index: 100000;"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
         <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a></div>
       </nav>
+      <style>
+        canvas{
+        background: white;
+        width: 100vw;
+        height: 100vh;
+        opacity: 1;
+        transition: opacity 1s;
+        }
+        canvas>input{
+        width: 250px;
+        height: 40px;
+        line-height: 40px;
+        position: absolute;
+        bottom: 35px;
+        left: calc(50% - 125px);
+        background: none;
+        color: white;
+        font-size: 30px;
+        font-family: arial;
+        text-align: center;
+        border: 1px solid white;
+        background: rgba(255,255,255,0.2);
+        }
+        #scene {
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+        }
+        
+        .fade-out {
+        opacity: 0;
+        }
+        
+      </style>
+      <canvas id="scene">
+        <input id="copy" type="text" value="Zentist">
+      </canvas>
+      <script>
+            var canvas = document.querySelector("#scene"),
+        ctx = canvas.getContext("2d"),
+        particles = [],
+        amount = 0,
+        mouse = {x:0,y:0},
+        radius = 1;
+        
+        var colors = ["#468966","#FFF0A5", "#FFB03B","#B64926", "#8E2800","EF0AB4"];
+        
+        var copy = document.querySelector("#copy");
+        
+        var ww = canvas.width = window.innerWidth;
+        var wh = canvas.height = window.innerHeight;
+        
+        function Particle(x,y){
+        this.x =  Math.random()*ww;
+        this.y =  Math.random()*wh;
+        this.dest = {
+            x : x,
+            y: y
+        };
+        this.r =  Math.random()*5 + 2;
+        this.vx = (Math.random()-0.5)*20;
+        this.vy = (Math.random()-0.5)*20;
+        this.accX = 0;
+        this.accY = 0;
+        this.friction = Math.random()*0.05 + 0.94;
+        
+        this.color = colors[Math.floor(Math.random()*6)];
+        }
+        
+        Particle.prototype.render = function() {
+        
+        
+        this.accX = (this.dest.x - this.x)/1000;
+        this.accY = (this.dest.y - this.y)/1000;
+        this.vx += this.accX;
+        this.vy += this.accY;
+        this.vx *= this.friction;
+        this.vy *= this.friction;
+        
+        this.x += this.vx;
+        this.y +=  this.vy;
+        
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+        ctx.fill();
+        
+        var a = this.x - mouse.x;
+        var b = this.y - mouse.y;
+        
+        var distance = Math.sqrt( a*a + b*b );
+        if(distance<(radius*70)){
+            this.accX = (this.x - mouse.x)/100;
+            this.accY = (this.y - mouse.y)/100;
+            this.vx += this.accX;
+            this.vy += this.accY;
+        }
+        
+        }
+        
+        function onMouseMove(e){
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        }
+        
+        function onTouchMove(e){
+        if(e.touches.length > 0 ){
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        }
+        }
+        
+        function onTouchEnd(e){
+        mouse.x = -9999;
+        mouse.y = -9999;
+        }
+        
+        function initScene(){
+        ww = canvas.width = window.innerWidth;
+        wh = canvas.height = window.innerHeight;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.font = "bold "+(ww/10)+"px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(copy.value, ww/2, wh/2);
+        
+        var data  = ctx.getImageData(0, 0, ww, wh).data;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.globalCompositeOperation = "screen";
+        
+        particles = [];
+        for(var i=0;i<ww;i+=Math.round(ww/300)){
+            for(var j=0;j<wh;j+=Math.round(ww/300)){
+            if(data[ ((i + j*ww)*4) + 3] > 150){
+                particles.push(new Particle(i,j));
+            }
+            }
+        }
+        amount = particles.length;
+        
+        }
+        
+        function onMouseClick(){
+        radius++;
+        if(radius ===2){
+            radius = 0;
+        }
+        }
+        
+        function render(a) {
+        requestAnimationFrame(render);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < amount; i++) {
+            particles[i].render();
+        }
+        };
+        
+        copy.addEventListener("keyup", initScene);
+        window.addEventListener("resize", initScene);
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("touchmove", onTouchMove);
+        window.addEventListener("click", onMouseClick);
+        window.addEventListener("touchend", onTouchEnd);
+        initScene();
+        requestAnimationFrame(render);
+      </script>
       <div class="container content d-flex justify-content-around">
         <p>This clinic is the best</p>
       </div>
-      <div class="container d-flex justify-content-around"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a></div>
-      <main class="page-content">
-                  <div class="card">
-                    <div class="content">
-                      <h2 class="title">About Us</h2>
-                      <p class="copy">Meet the outstanding team that made Zental what it is today! </p><a href="about">
-                        <button class="href">about</button></a>
-                    </div>
+      <div class="container d-flex justify-content-around" id="content"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a>
+      </div>
+      <main class="page-content main" style="display:none">
+                <div class="card">
+                  <div class="content">
+                    <h2 class="title">About Us</h2>
+                    <p class="copy">Meet the outstanding team that made Zental what it is today! </p><a href="about">
+                      <button class="href">about</button></a>
                   </div>
-                  <div class="card">
-                    <div class="content">
-                      <h2 class="title">Services</h2>
-                      <p class="copy">Check our long list of services</p><a href="Services">
-                        <button class="href">Services</button></a>
-                    </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <h2 class="title">Services</h2>
+                    <p class="copy">Check our long list of services</p><a href="Services">
+                      <button class="href">Services</button></a>
                   </div>
-                  <div class="card">
-                    <div class="content">
-                      <h2 class="title">Dentist's advice</h2>
-                      <p class="copy">Read the advices our experienced doctors give on how to take care of your oral hygiene. </p><a href="Advice">
-                        <button class="href">Advice</button></a>
-                    </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <h2 class="title">Dentist's advice</h2>
+                    <p class="copy">Read the advices our experienced doctors give on how to take care of your oral hygiene. </p><a href="Advice">
+                      <button class="href">Advice</button></a>
                   </div>
-                  <div class="card">
-                    <div class="content">
-                      <h2 class="title">Explore The Galaxy</h2>
-                      <p class="copy">Seriously, straight up, just blast off into outer space today</p><a href="Book Now">
-                        <button class="href">Book Now</button></a>
-                    </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <h2 class="title">Explore The Galaxy</h2>
+                    <p class="copy">Seriously, straight up, just blast off into outer space today</p><a href="Book Now">
+                      <button class="href">Book Now</button></a>
                   </div>
+                </div>
       </main>
       <section style="background-color:white;"></section>
       <div class="text-center text-md-start mt-5" style="margin-bottom:10px">
-        <p class="text-center" style="font-family: 'Dosis'; font-weight:400; font-size:50px;">FOR FURTHER INFOMRATION OR APPOINTMENTS </p>
-        <button class="btn center" type="button" style="background:#31c5c7"> <strong>Book Appointment</strong></button>
+        <p class="text-center" style="font-family: 'Dosis'; font-weight:400; font-size:50px;">FOR FURTHER INFORMATION OR APPOINTMENTS</p><i class="material-icons" style="margin: 0;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">get_app</i>
+        <div class="booking-container">
+          <button class="btn center" type="button" onclick="location.href='booking'" style="background:#31c5c7"> <strong>Book Appointment</strong></button>
+        </div>
       </div>
       <style>
         .center {
-        margin: 0;
-        position: relative;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+            margin: 0;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            margin-bottom: 10px;
         }
-            
+         .column >i.material-icons {
+            display: inline-block;
+            border-radius: 80px;
+            box-shadow: 0 0 2px #888;
+            padding: 0.5em 0.6em;
+            background: #31c5c7;
+        
+            }
       </style>
       <style>
           @import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
@@ -315,8 +493,24 @@
         position: sticky;
         top: 100vh;
         }
-      </style><!-- Footer -->
-      <footer class="text-center text-lg-start text-muted mt-auto" style="position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
+      </style>
+      <script>
+              setTimeout(function() {
+        // Hide preloader and show content
+        document.getElementById('scene').style.display = 'none';
+        document.querySelector('.main').style.display=''
+        }, 10000);
+        var clicks = 0;
+        document.addEventListener("click", function() {
+        clicks++;
+        if (clicks == 2) {
+            // Display the content by removing the "hidden" class from the content container
+          document.getElementById('scene').style.display = 'none';
+          document.querySelector('.main').style.display=''
+        }
+        });
+      </script><!-- Footer -->
+      <footer class="text-center text-lg-start text-muted mt-5" style="position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
         <section style="background-color:#fcf4f0;">
           <div class="text-center text-md-start mt-5">
             <div class="row mt-3">
@@ -324,12 +518,14 @@
                 <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class=" fw-bold mb-4">Products</h6>
-                <p><a class="text-reset" href="#!">Angular</a></p>
+                <h6 class="fw-bold mb-4">Useful links</h6>
+                <p><a class="text-reset" href="/about">About</a></p>
+                <p> <a class="text-reset" href="/services">Services</a></p>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class="fw-bold mb-4">Useful links</h6>
-                <p><a class="text-reset" href="#!">Pricing</a></p>
+                <h6 class="fw-bold mb-4">Contact links</h6>
+                <p><a class="text-reset" href="/booking">Booking</a></p>
+                <p><a class="text-reset" href="/contact">Contact</a></p>
               </div>
               <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 <h6 class="fw-bold">Contact</h6>

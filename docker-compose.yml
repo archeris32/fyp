@@ -28,7 +28,7 @@ services:
         ports:
             - 7000:7000
         volumes:
-            - ./views:/usr/src/app
+            - .:/code
         networks:
             - app-tier
         depends_on:

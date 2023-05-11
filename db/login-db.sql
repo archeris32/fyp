@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2023 at 08:19 PM
+-- Generation Time: May 11, 2023 at 12:55 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -37,7 +37,7 @@ CREATE TABLE `patient` (
   `email` varchar(200) NOT NULL,
   `address` varchar(300) NOT NULL,
   `walkin` varchar(200) NOT NULL,
-  `cost` int(100) NOT NULL,
+  `cost` int(100) DEFAULT NULL,
   `treatement_1` varchar(200) DEFAULT NULL,
   `treatement_2` varchar(200) DEFAULT NULL,
   `treatement_3` varchar(200) DEFAULT NULL,
@@ -54,29 +54,29 @@ CREATE TABLE `patient` (
   `t1_desc` varchar(255) DEFAULT NULL,
   `t2_desc` varchar(255) DEFAULT NULL,
   `t3_desc` varchar(255) DEFAULT NULL,
-  `pay_t1` varchar(255) DEFAULT NULL,
-  `pay_t2` varchar(255) DEFAULT NULL,
-  `pay_t3` varchar(255) DEFAULT NULL,
+  `pay_t1` varchar(255) DEFAULT 'unpaid',
+  `pay_t2` varchar(255) DEFAULT 'unpaid',
+  `pay_t3` varchar(255) DEFAULT 'unpaid',
   `nextapp1` varchar(200) DEFAULT NULL,
   `nextapp2` varchar(200) DEFAULT NULL,
   `nextapp3` varchar(200) DEFAULT NULL,
   `startime1` varchar(200) DEFAULT NULL,
   `startime2` varchar(200) DEFAULT NULL,
-  `startime3` varchar(200) DEFAULT NULL
+  `startime3` varchar(200) DEFAULT NULL,
+  `user` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`id`, `firstName`, `lastName`, `age`, `sex`, `phone`, `email`, `address`, `walkin`, `cost`, `treatement_1`, `treatement_2`, `treatement_3`, `cost_1`, `cost_2`, `cost_3`, `notes_1`, `notes_2`, `notes_3`, `doctor_t1`, `doctor_t2`, `doctor_t3`, `doctor`, `t1_desc`, `t2_desc`, `t3_desc`, `pay_t1`, `pay_t2`, `pay_t3`, `nextapp1`, `nextapp2`, `nextapp3`, `startime1`, `startime2`, `startime3`) VALUES
-(93, 'carla-noemi', 'Adascalului', 23, 'Feminin', '07437782616', 'adascalului.bogdan@gmail.com', '38 MILFORD GARDENS', '2023-02-10', 800, 'Scale and polish', 'Broken or knocked out toot', '', '100', '200', '500', 'test', '', '', 'Dr. Pelumi Apantuku', 'Dr. Kimia Aksir', '', 'undefined', 'test', '', '', 'paid', 'paid', 'paid', '2023-02-13', '2023-02-23', '2023-03-18', '9:00-11:00', '1:00-3:00', '14:10'),
-(94, 'Zak', 'Taylor', 14, 'Masculin', '4214553632', 'beniamin.androne@yahoo.com', '38 MILFORD GARDENS', '2023-03-19', 323, '', '', '', '323', '', '', '', '', '', '', '', '', 'undefined', '', '', '', 'paid', '', '', '2023-04-06', '2023-03-25', '2023-03-21', '14:50', '15:50', '14:49'),
-(95, 'carla-noemi', 'Adascalului', 22, 'Feminin', '07437782616', 'adascalului.bogdan@gmail.com', '38 MILFORD GARDENS', '2023-03-11', 0, '', '', '', '', '', '', '', '', '', '', '', '', 'undefined', '', '', '', '', '', '', '', '2023-03-12', '2023-03-18', 'undefined', '13:53', '18:52'),
-(96, 'test', 'test', 22, 'Masculin', '0123123123', 'test@test.com', 'asdasdas', '2023-03-13', 0, '', '', '', '', '', '', '', '', '', '', '', '', 'undefined', '', '', '', '', '', '', '', '2023-03-15', '2023-03-18', 'undefined', '15:53', '14:54'),
-(97, 'test2', 'test2', 33, 'Masculin', '0123123123', 'test@test.com', 'asdasdas', '2023-03-13', 0, '', '', '', '', '', '', '', '', '', '', '', '', 'undefined', '', '', '', '', '', '', '', '2023-03-15', '2023-03-17', 'undefined', '17:00', 'undefined'),
-(98, 'test3', 'test3', 22, 'Masculin', '0123123123', 'test@test.com', 'asdasdas', '2023-03-13', 122, '', 'Crowns', '', '', '', '', '', '', '', '', '', '', 'undefined', '', '', '', '', '', '', '2023-03-14', '2023-03-10', '2023-02-28', '15:48', '18:00', '16:48'),
-(99, 'test4', 'test4', 32, 'Feminin', '07437782616', 'test4@test4.com', '38 MILFORD GARDENS', '2023-02-13', 2333, 'Filling', '', '', '', '', '', 'rw', '', '', 'Dr. Pelumi Apantuku', '', '', 'undefined', 're', '', '', '', '', '', '2023-02-13', '2023-02-08', '2023-03-27', '16:48', '', '');
+INSERT INTO `patient` (`id`, `firstName`, `lastName`, `age`, `sex`, `phone`, `email`, `address`, `walkin`, `cost`, `treatement_1`, `treatement_2`, `treatement_3`, `cost_1`, `cost_2`, `cost_3`, `notes_1`, `notes_2`, `notes_3`, `doctor_t1`, `doctor_t2`, `doctor_t3`, `doctor`, `t1_desc`, `t2_desc`, `t3_desc`, `pay_t1`, `pay_t2`, `pay_t3`, `nextapp1`, `nextapp2`, `nextapp3`, `startime1`, `startime2`, `startime3`, `user`) VALUES
+(136, 'Johny', 'Smith', 33, 'Masculin', '07823441223', 'J.smith@yahoo.com', '38 MILFORD GARD', '2023-05-03', 3787, 'Filling', 'Filling', '', '232', '3232', '323', 'asdasd', 'asdasd', '', 'Dr. John Smith II', 'Dr. John Smith II', 'Dr. John Smith II', 'undefined', 'asdasd', 'asdasd', '', 'paid', 'paid', 'paid', '2023-04-12', '2023-05-02', '2023-05-12', '9:00-11:00', '15:00-17:00', '9:00-11:00', NULL),
+(138, 'Zak', 'Taylor', 7, 'Masculin', '07437782616', 'adascalului.bogdan@gmail.com', '152 de Havilland Road', '2023-05-02', 1323, 'Crowns', 'Teeth whitening', '', '323', '1000', '', 'asdas', 'dasda', '', 'Dr. Kamely Asin', 'Dr. Trevor Hightower', '', 'undefined', 'asdasd', 'asda', '', 'paid', 'paid', 'unpaid', '2023-05-11', '2023-05-12', '', '9:00-11:00', '11:00-13:00', '', NULL),
+(139, 'Achim', 'Taylor', 33, 'Masculin', '07437782616', 'adascalului.bogdan@gmail.com', '152 de Havilland Road', '2023-05-01', 0, '', '', '', '', '', '', '', '', '', '', '', '', 'undefined', '', '', '', 'paid', 'unpaid', 'unpaid', '2023-05-11', '', '2023-05-05', '9:00-11:00', '', '', NULL),
+(141, 'Samoil-Bogdan doc', 'Adascalului', 21, 'Masculin', '07437782616', 'adascalului.bogdan@gmail.com', '152 de Havilland Road', '2023-04-01', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'undefined', NULL, NULL, NULL, 'unpaid', 'unpaid', 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(142, 'Samoil-Bogdan cel mai test', 'Adascalului', 22, 'Masculin', '07437782616', 'adascalului.bogdan@gmail.com', '38 MILFORD GARDENS', '2023-05-11', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'undefined', NULL, NULL, NULL, 'unpaid', 'unpaid', 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(143, 'steven ', 'smith', 22, 'Feminin', '07437882331', 's.smith@yahoo.com', '38 princess gate', '2023-05-04', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'undefined', NULL, NULL, NULL, 'unpaid', 'unpaid', 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -98,8 +98,16 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `FirstName`, `LastName`, `Position`, `email`, `phone`) VALUES
-(1, 'cel', 'test', 'CEO', 'adascalului.bogdan@gmail.com', '07437782616'),
-(3, 'Zak', 'Taylor', 'CEO', 'adascalului.bogdan@gmail.com', '07437782616');
+(47, 'benitest', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(48, 'benitest', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(49, 'benitest', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(50, 'oana', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(51, 'test2323', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(52, 'oana', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(53, 'test2323', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(54, 'oana', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(55, 'oana', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313'),
+(56, 'test2323', 'testttt', 'CEO', 'bogdan@yahoo.com', '07332322313');
 
 -- --------------------------------------------------------
 
@@ -110,9 +118,9 @@ INSERT INTO `staff` (`id`, `FirstName`, `LastName`, `Position`, `email`, `phone`
 CREATE TABLE `users` (
   `id` int(10) NOT NULL,
   `name` varchar(10) NOT NULL,
-  `email` varchar(10) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(10) NOT NULL,
-  `role` varchar(10) NOT NULL
+  `role` varchar(10) NOT NULL DEFAULT 'new'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -120,8 +128,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'oana', 'beniamin.a', 'Bogdan12', 'admin'),
-(2, 'Bogdan', 'asdas@yaho', 'tata', 'staff');
+(3, 'oana', 'beniamin.a', 'Bogdan12', 'admin'),
+(5, 'Bogdan', 'asdas@yaho', 'tata', 'staff'),
+(21, 'tata', 'tata', 'tata', 'staff'),
+(22, 'new', 'new@gmail.com', 'new', 'new');
 
 --
 -- Indexes for dumped tables
@@ -131,7 +141,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
 -- Indexes for table `patient`
 --
 ALTER TABLE `patient`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`);
 
 --
 -- Indexes for table `staff`
@@ -153,22 +164,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
-ALTER TABLE `users` MODIFY COLUMN role VARCHAR(255) DEFAULT 'staff';
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `patient`
+--
+ALTER TABLE `patient`
+  ADD CONSTRAINT `patient_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `patient_ibfk_2` FOREIGN KEY (`user`) REFERENCES `staff` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

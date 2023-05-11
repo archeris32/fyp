@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[22]:
-
-
 import os
 import shutil
 
@@ -25,26 +19,6 @@ for file_name in os.listdir(downloads_path):
         shutil.move(os.path.join(downloads_path, file_name), os.path.join(upload_path, name, file_name))
         
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 

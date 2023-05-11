@@ -1,23 +1,87 @@
 extends default
 
 block content
-    form(action="/delete_client" method="POST")
-        div(class="container")
-            h5 Search by Name
-            input(type="text" id="myInput" onkeyup="myFunction()" placeholder="Insert first name" title="Type in a name to delete" name="searchName" required style="border-radius:10px;")
-            table(class="table table-hover table-bordered mt-5 " id="myTable")
-                thead(class="table-secondary")
-                    tr
-                        th First Name                 
-                        th Last Name 
-                tbody
-                    for d in data
-                        tr
-                            td= d.firstName
-                            td= d.lastName 
+    style.
+      
+        .search-box {
+        -webkit-transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
+        transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        background: #ebebeb;
+        }
+        .search-box + label .search-icon {
+        color: black;
+        }
+        .search-box:hover {
+        color: white;
+        background: #c8c8c8;
+        box-shadow: 0 0 0 5px #3d4752;
+        }
+        .search-box:hover + label .search-icon {
+        color: white;
+        }
+        .search-box:focus {
+        -webkit-transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s, background 0.6s;
+        transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s, background 0.6s;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        padding-left: 15px;
+        cursor: text;
+        width: 300px;
+        border-radius: auto;
+        background: #ebebeb;
+        color: black;
+        }
+        .search-box:focus + label .search-icon {
+        color: black;
+        }
+        .search-box:not(:focus) {
+        text-indent: -5000px;
+        }
 
-            button(type="submit" class="btn btn-primary" ) Submit
-            button(class="btn btn-primary" onclick="location.href='results'") Go Back
+        #search-submit {
+        position: relative;
+        left: -5000px;
+        }
+
+        .search-icon {
+        position: relative;
+        left: -50px;
+        bottom:-8px;
+        color: white;
+        cursor: pointer;
+        }
+
+    if(username)
+        if(role == 'new')
+            h2(class="text-center") Contact Administrator to asign role 
+            include new_contact_admin
+        if(role == 'admin' || role == 'staff')
+
+            form(action="/delete_client" method="POST")
+                div(class="container")
+                    h5 Search by Name
+                    input(type="text" class="search-box" id="myInput" onkeyup="myFunction()" placeholder="Insert first name" title="Type in a name to delete" name="searchName" required)
+                    label(for="search-box")
+                        span(class="material-icons search-icon" ) search
+                    table(class="table table-hover table-bordered mt-5 " id="myTable")
+                        thead(class="table-secondary")
+                            tr
+                                th First Name                 
+                                th Last Name 
+                        tbody
+                            for d in data
+                                tr
+                                    td= d.firstName
+                                    td= d.lastName 
+
+                    button(type="submit" class="btn btn-primary" ) Submit
+                    button(class="btn btn-primary" onclick="location.href='results'") Go Back
 
     script(type='text/javascript').
         
@@ -39,3 +103,5 @@ block content
             }       
         }
         }   
+
+        document.addEventListener("touchstart", function(){}, true);

@@ -1,21 +1,26 @@
-# Use an official Node.js runtime as a parent image
+# This will be the first instruction that will initialize a new build stage for the base image
 FROM node:16
 
-# Set the working directory to /app
-WORKDIR /fyp-2
+# This instruction sets the working directory for the project
+WORKDIR /views
 
-# Copy the current directory contents into the container at /app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
+
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+
+# FROM base as dev
+# ENV NODE_ENV=development
+
+# Bundle app source
 COPY . .
 
-# Install any needed dependencies
-RUN npm install
-
-# Expose port 7000
+# The instruction informs Docker that the container listens on the specified network port
 EXPOSE 7000
 
-# Define environment variable
-#ENV NODE_ENV=production
-
-# Start the app
-CMD ["npm", "start"]
+# provide defaults for an executing container
+CMD [ "npm", "start" ]

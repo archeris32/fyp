@@ -1,0 +1,33 @@
+form(action="https://formsubmit.co/adm.zentist@gmail.com" method="POST")
+    div(class="wrapp")
+        div(class="container my-5 py-5 ")
+            section(class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text")
+                div(class="row")
+                    div(class="col-lg-5 col-md-12 mb-0 mb-md-0")
+                        h3(class="font-weight-bold") You want to get in touch with the platform administrator
+                        p
+                            span(class="font-weight-bold mr-2") Email:
+                                a(href="") adm.zentist@gmail.com
+                            H1 or use the form
+                    div(class="col-lg-7 col-md-12 mb-4 mb-md-0")
+                        div(class="row")
+                            div(class="col-md-9")
+                            div(class="md-form md-outline mb-0")
+                                input(type="text" id="form-name" class="form-control" name ="Name" placeholder="Name")
+                            div(class="md-form md-outline mt-3")
+                                input(type="email" id="form-email" class="form-control" name="email" placeholder="Email Address")
+                                div(class="col-md-9")
+                                div(class="md-form md-outline mt-3")
+                                    select(class="mdb-select md-form  form-control" id="comp" name="Branch")
+                                        option(value="" disabled selected) Choose branch where you are working in 
+                                        option(value="Edgware") Edgware 
+                                        option(value="Barnet") Barnet
+                                        option(value="Baxleyheath") Baxleyheath 
+                                        option(value="Criclewood") Cricklewood
+                                input(type="hidden" name="_next" value="http://localhost:7000/")
+                                input(type="hidden" name="_autoresponse" value="Thank you for your feedback. One of our collegues will be in touch with you.")
+                                input(type="hidden" name="_template" value="box")
+                                div(class="md-form md-outline mt-2")
+                                    textarea(id="form-message" class="md-textarea form-control" rows="10" name="Message" placeholder="Write Your Message Here...")
+                                button(type="submit" class="btn btn-info btn-sm ml-0") Submit
+                                    i(class="far fa-paper-plane ml-2")

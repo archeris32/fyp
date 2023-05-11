@@ -1,75 +1,112 @@
 extends default
 
 block content
-    div(class="container")
-        form
-            div(class="row")
-            h3
-                span(class="glyphicon glyphicon-education") Doctor 
-            div(class="col-md-6") Doctor's Name:
-                select(id="doctor" name="doctor" class="form-select form-control " )
-                        option(value="Dr. Pelumi Apantuku") Dr. Pelumi Apantuku
-                        option(value="Dr. Kimia Aksir") Dr. Kimia Aksir
-            div(class="col-md-6") Location:
-                select(id="location" name="location" class="form-select form-control " )
-                       option(value=" Edgware") Edgware 
-                       option(value=" Barnet") Barnet
-                       option(value=" Baxleyheath") Baxleyheath 
-                       option(value=" Criclewood") Cricklewood
-            div(class="col-md-6") Date of visit:
-                input(type='date' name='dateVisit' id='dateVisit' class="form-control m-2" )
-        div(class="container")
-            div(class="row")
-                div(class="col-md-6")
-                    h3 
-                        span(class="glyphicon glyphicon-user") Pacient
-                    hr
-                    div(class="col-md-6") Name
-                        p=data.firstName
-                    div(class="col-md-6") Surname
-                       p=data.lastName
-                    div(class="col-md-6") Sex
-                        p=data.sex
-                    div(class="col-md-6") Phone
-                        p=data.phone
-                    div(class="col-md-12") Next Visit
-                        p=data.nextapp
-                    div(class="col-md-6")
-                    h3
-                        span(class="glyphicon glyphicon-leaf") Treatment
-                    hr
-                    // div(class="col-md-12") Patología
-                        <select class="form-control" > 
-                            <option value="">- Seleccione -  
-                        <select class="form-control especialidad">
-                            <option value="">- Seleccione - 
-                <button id="display" onclick="displayValue()">Display Value</button>   
 
-        <br>                
-            <div class="col-md-12"> Observations
-                <textarea ng-model="observaciones" class="form-control" rows="2"></textarea>
-                <br>
-                <input type="button" class="btn btn-success" onclick="generatePDF()" value='Print' /></form> 
-                div(class="card " id="invoice")
-                    <div class="row text-center">
-                        h3 
-                            span(class="glyphicon glyphicon-list-alt" style="align:center;") Prescription
-                            p=data.id
-                    div(class="row text-start")
-                        h5(id="doctorName") Name: 
-                        p(id="locationPrescript") Location:
-                    <hr>
-                    <h2><b>Pacient info</b></h2>
-                    div(class="row text-start")
-                        <h5><b>Name and Surname:</b> #{data.firstName} #{data.lastName}<br></h5>
-                        <h5><b>Age:</b> #{data.age} years old<br></h5>
-                        <h5><b id="datePrescription">Date of Visit:</b> <br></h5>
-                        <hr>
-                        <h2><b>Diagnostic</b></h2> 
-                        <h5><b>Symptoms:</b><br><textarea id="textespecialidad"></textarea></h5>
-                        <h5><b>Treatment for:</b><br>#{data.treatement_1}<h7><br></h7></h5> 
-                        <h5 style="margin-top:0;padding-top:0;"><b>Other observations:</b><br>#{data.notes_1}</h5><br>
-                                    p(class="fw-bold mt-3") Signature:
+    if(username)
+        if(role == 'new')
+            h2(class="text-center") Contact Administrator to asign role 
+            include new_contact_admin
+        if(role == 'admin' || role == 'staff')
+
+            form(class="form-horizontal") 
+                div(class="container"  style="display: flex;")
+                    div(class="column"  style=" float:left; width: 50%;padding: 40px;")
+                        h3
+                            i(class="material-icons") local_hospital 
+                            | Doctor
+                            
+                        hr
+                        div(class="form-group")  Doctor's Name:
+                            select(id="doctor" name="doctor" class="form-select form-control " )
+                                    option(value="Dr. John Smith II") Dr. John Smith II
+                                    option(value="Dr. Kamely Asin") Dr. Kamely Asin
+                                    option(value="Dr. Trevor Hightower") Dr. Trevor Hightower
+                        div(class="form-group") Location:
+                            select(id="location" name="location" class="form-select form-control " )
+                                    option(value=" Edgware") Edgware 
+                                    option(value=" Barnet") Barnet
+                                    option(value=" Baxleyheath") Baxleyheath 
+                                    option(value=" Criclewood") Cricklewood
+                        div(class="form-group") Date of visit:
+                            input(type='date' name='dateVisit' id='dateVisit' class="form-control " )
+                    div(class="column"  style=" float:left; width: 50%;padding: 40px;")
+                            h3 
+                                span(class="material-icons") personal_injury 
+                                | Pacient
+                            hr
+                            div(class="column"  style=" float:left; width: 25%;padding: 40px;")
+                                div
+                                    strong  Name
+                                    p=data.firstName
+                                div 
+                                    strong Surname
+                                    p=data.lastName
+                            div(class="column"  style=" float:left; width: 25%;padding: 40px;")
+                                div 
+                                    strong Sex
+                                    p=data.sex
+                                div 
+                                    strong Phone
+                                    p=data.phone
+                div(class="container" )                    
+                    h3
+                        span(class="material-icons") healing 
+                        |Treatment
+                    hr
+                div(class="container")   
+                    div(class="col-md-5") Observations
+                        textarea(id="observations" class="form-control" rows="7" cols="50")
+                        input(type="button" class="btn btn-success my-5" onclick="generatePDF()" value='Print') 
+                    div(class="card " id="invoice")
+                        button(id="display" onclick="displayValue()" style="float:right;") Copy to prescription
+                        div(class="row text-center")
+                            h3 
+                                span(class="glyphicon glyphicon-list-alt" style="align:center;") Prescription for ID
+                                p=data.id
+                        div(class="row text-start")
+                            h5(id="doctorName") Name: 
+                            p(id="locationPrescript") Location:
+                        hr
+                        h2
+                            b Pacient info
+                        div(class="row")
+                            h5 Name and Surname:
+                                p #{data.firstName} #{data.lastName}
+                            h5 Age:
+                                p  #{data.age} years old
+                            h5
+                                b(id="datePrescription") Date of Visit:
+                            hr
+                            h2
+                                b Diagnostic 
+                            h5
+                                b Symptoms:
+                                    br
+                                    textarea(id="text" rows="4" cols="50")
+                            h5
+                                b Treatment for:
+                                    br
+                                select(id="Treatment3" name="Treatment3" class="form-control")
+                                    option(value="Bridge") Bridge 
+                                    option(value="Crowns") Crowns
+                                    option(value="Filling") Fillings
+                                    option(value="Root canal treatment") Root canal treatment
+                                    option(value="Scale and polish") Scale and polish
+                                    option(value="Braces") Braces
+                                    option(value="Wisdom tooth removal") Wisdom tooth removal
+                                    option(value="Dental implants") Dental implants
+                                    option(value="Dentures or false teeth") Dentures or false teeth
+                                    option(value="Broken or knocked out toot") Broken or knocked out tooth
+                                    option(value="Teeth whitening") Teeth whitening
+                                    option(value="Dental veneers") Dental veneers
+                            h5(style="margin-top:0;padding-top:0;")
+                                p(id="observations_p") Other observations:
+                                        p(class="fw-bold mt-3") Signature:
+                                        div(class="flex-row px-5")
+                                            div(class="wrapper")
+                                                canvas(id="signature-pad" width="400" height="200")
+                                            div(class="clear-btn")
+                                                button(id="clear") Clear
     script.
 
         function generatePDF() {
@@ -80,7 +117,7 @@ block content
                 element.style.height = '700';
                 var opt = {
                         margin: [0, 0, 0, 0],
-                    filename:     'prescription.pdf',
+                    filename:    '#{data.firstName} #{data.lastName} - prescription.pdf',
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { scale: 2 ,useCORS: true},
                     jsPDF:        { unit: 'in', format: "A4",orientation: 'landscape',precision: '0',compress: true }
@@ -96,8 +133,57 @@ block content
             const locationElement = document.getElementById("location");
             const locationPrescription = document.getElementById("locationPrescript");
             locationPrescription.innerHTML += locationElement.value;
-            const DateVisit = document.getElementById("dateVisit");
-            const datePrescription = document.getElementById("datePrescription");
-            datePrescription.innerHTML += DateVisit.value;
+            const observations = document.getElementById("observations");
+            const observations_p = document.getElementById("observations_p");
+            observations_p.innerHTML += observations.value;
             document.getElementById("display").disabled = true;
             }
+
+        
+                var canvas = document.getElementById("signature-pad");
+
+       function resizeCanvas() {
+                var ratio = Math.max(window.devicePixelRatio || 1, 1);
+                canvas.width = canvas.offsetWidth * ratio;
+                canvas.height = canvas.offsetHeight * ratio;
+                canvas.getContext("2d").scale(ratio, ratio);
+            }
+            window.onresize = resizeCanvas;
+            resizeCanvas();
+
+            var signaturePad = new SignaturePad(canvas, {
+                backgroundColor: 'rgb(250,250,250)'
+            });
+
+            document.getElementById("clear").addEventListener('click', function(){
+                signaturePad.clear();
+            })
+
+
+
+    style.
+        canvas#signature-pad {
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+        }
+        button#clear {
+            height: 100%;
+            background: #4b00ff;
+            border: 1px solid transparent;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        button#clear span {
+            transform: rotate(90deg);
+            display: block;
+        }
+        .flex-row {
+            display: flex;
+        }
+        .wrapper {
+            border: 1px solid #4b00ff;
+            border-right: 0;
+        }

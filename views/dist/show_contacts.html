@@ -12,7 +12,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.3.5/signature_pad.min.js" integrity="sha512-kw/nRM/BMR2XGArXnOoxKOO5VBHLdITAW00aG8qK4zBzcLVZ4nzg7/oYCaoiwc8U9zrnsO9UHqpyljJ8+iqYiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
@@ -108,20 +110,22 @@
         </div><a href="/" style="height: 50px;width: 100px;margin:auto;display: block;position: absolute;left: calc((100% - 100px) / 2);z-index: 100000;"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
         <div class="col-md-3 text-end justify-content-end" bis_skin_checked="1"><a class="btn btn-outline-primary me-2" type="button" href="/login">Login</a><a class="btn btn-primary" type="button" href="/register">Sign up</a></div>
       </nav><!-- Footer -->
-      <footer class="text-center text-lg-start text-muted mt-auto" style="position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
+      <footer class="text-center text-lg-start text-muted mt-5" style="position: absolute;bottom: 0;width: 100%;height: 2.5rem;">
         <section style="background-color:#fcf4f0;">
-          <div class="text-center text-md-start mt-5">
+          <div class="text-center text-md-start mt-auto">
             <div class="row mt-3">
               <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <h6 class=" fw-bold mb-4"></h6><a class="text-dark text-decoration-none justify-content-left" href="/"><img src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png" alt="logo" width="100"></a>
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class=" fw-bold mb-4">Products</h6>
-                <p><a class="text-reset" href="#!">Angular</a></p>
+                <h6 class="fw-bold mb-4">Useful links</h6>
+                <p><a class="text-reset" href="/about">About</a></p>
+                <p> <a class="text-reset" href="/services">Services</a></p>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class="fw-bold mb-4">Useful links</h6>
-                <p><a class="text-reset" href="#!">Pricing</a></p>
+                <h6 class="fw-bold mb-4">Contact links</h6>
+                <p><a class="text-reset" href="/booking">Booking</a></p>
+                <p><a class="text-reset" href="/contact">Contact</a></p>
               </div>
               <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 <h6 class="fw-bold">Contact</h6>
@@ -137,8 +141,59 @@
     </main>
   </head>
 </html>
-<div class="container">
-  <h5>Search by Name</h5>
-  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by names.." title="Type in a name" style="border-radius:10px;">
-  <table class="table table-hover table-bordered " id="myTable"></table>
-</div>
+<style>
+  .search-box {
+  -webkit-transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
+  transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #ebebeb;
+  }
+  .search-box + label .search-icon {
+  color: black;
+  }
+  .search-box:hover {
+  color: white;
+  background: #c8c8c8;
+  box-shadow: 0 0 0 5px #3d4752;
+  }
+  .search-box:hover + label .search-icon {
+  color: white;
+  }
+  .search-box:focus {
+  -webkit-transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s, background 0.6s;
+  transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s, background 0.6s;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding-left: 15px;
+  cursor: text;
+  width: 300px;
+  border-radius: auto;
+  background: #ebebeb;
+  color: black;
+  }
+  .search-box:focus + label .search-icon {
+  color: black;
+  }
+  .search-box:not(:focus) {
+  text-indent: -5000px;
+  }
+  
+  #search-submit {
+  position: relative;
+  left: -5000px;
+  }
+  
+  .search-icon {
+  position: relative;
+  left: -50px;
+  bottom:-8px;
+  color: white;
+  cursor: pointer;
+  }
+</style>
+<script>document.addEventListener("touchstart", function(){}, true);</script>

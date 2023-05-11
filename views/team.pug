@@ -10,8 +10,8 @@ block content
                 img(src="doc1.jpg" style="object-fit: cover ;" alt="")
             ul(class="social-media")
                 li
-                    a(href="#")
-                        i(class="fa fa-facebook")
+                    a(href="/j_smith")
+                        i(class="material-icons") read_more
             div(class="user-info")
                 h2 John Smith II
                 span General Dentist
@@ -21,8 +21,8 @@ block content
                 img(src="doc2.jpg" style="object-fit: cover;" alt="")
             ul(class="social-media")
                 li
-                    a(href="#")
-                        i(class="fa fa-facebook")
+                    a(href="/k_asin")
+                        i(class="material-icons") read_more
             div(class="user-info")
                 h2 Kamely Asin
                 span 20-july
@@ -31,14 +31,14 @@ block content
                 img(src="doc3.jpg" style="object-fit: cover;" alt="")
             ul(class="social-media")
                 li
-                    a(href="#")
-                        i(class="fa fa-facebook")
+                    a(href="/t_hightower")
+                        i(class="material-icons") read_more
             div(class="user-info")
                 h2 Trevor Hightower
                 span 20-july
     include book
         
-    style. 
+    style.
         .container {
         position: relative;
         height: 500px;
@@ -115,13 +115,13 @@ block content
         opacity: 1;
         }
 
-        .social-media > li > a > .fa {
+        .social-media > li > a > i {
         font-size: 24px;
         line-height: 50px;
         transition: transform 0.3s ease-out;
         }
 
-        .social-media > li > a:hover > .fa {
+        .social-media > li > a:hover > i {
         transform: rotateY(360deg);
         }
 
