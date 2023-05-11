@@ -41,4 +41,4 @@ Take the IP from the ```
   * After this run the ``` docker-compose up --build ```
 
 
-![](.public/index.png "index page")
+![](/public/index.png "index page")
