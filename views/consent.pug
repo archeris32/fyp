@@ -1,0 +1,161 @@
+extends default
+
+block content
+        
+    if(username)
+        if(role == 'new')
+            h2(class="text-center") Contact Administrator to asign role 
+            include new_contact_admin
+        if(role == 'admin' || role == 'staff')
+
+            div(id="invoice" class="container p-5" style="margin:auto;")
+                div(class="row pb-5")
+                    div(class="col-3 contact-details")
+                        h5 ZENTIST
+                        h6 
+                            em 158 DeHaviland Road,HA8 5QB
+                        p Providing the best dental care services
+                    div(class="col-1 offset-2 logo")
+                        img(width="125px" height="90px" src="https://i.ibb.co/5TL93Kc/zentist-high-resolution-logo-black-on-transparent-background.png")
+                    div(class="invoice-details col-3 offset-3 text-right")
+                
+                        h6
+                        h6 Issued at: #{data.walkin}
+                div(class="container p-5")
+                    h5 Name:
+                        span &emsp; #{data.firstName} #{data.lastName}
+                    h5 Address:
+                        span &emsp; #{data.address} 
+                    h5 Phone:
+                        span &emsp; #{data.phone} 
+                    h5 Gender:
+                        span &emsp; #{data.sex} 
+                    h5 Email:
+                        span &emsp; #{data.email} 
+                    p(class="mt-5") I #{data.firstName} #{data.lastName},
+                    p Knowingly and willingly consent to having dental treatment completed at Zental clinic.
+                    p I understand the Covid – 19 virus has a long incubation period during which carriers of the virus may not show symptoms and still be highly contagious. 
+                    p It is impossible to determine who has it and who does not given the current limits in virus testing.
+                    li Continuous fever (more than 37.8 degrees)
+                    li Shortness of breath
+                    li Dry Cough
+                    li Runny Nose
+                    li Sore throat
+                    li Loss of smell or taste
+                    input(type="checkbox") 
+                    p I confirm I am not presenting with any of the following symptoms of Covid – 19 listed above.
+                    h2(class="text-center my-5") Medical history
+                    p Do you have any allergies? 
+                        select(name="allergies" id="allergies")
+                            option(value="yes") Yes
+                            option(value="no") No
+                    p Do you have any medical conditions? 
+                        select(name="medical" id="medical")
+                            option(value="yes") Yes
+                            option(value="no") No
+                    p Do you take any medications? 
+                        select(name="medications" id="medications")
+                            option(value="yes") Yes
+                            option(value="no") No
+                    p Do you smoke any tobacco products now (did you in the past?)? 
+                        select(name="tobacco" id="tobacco")
+                            option(value="yes") Yes
+                            option(value="no") No
+                    p Do you drink alchool? 
+                        select(name="alchool" id="alchool")
+                            option(value="yes") Yes
+                            option(value="no") No
+                        p If yes, how many per week ?
+                            select(name="number")
+                                option(value="1-3") 1-3
+                                option(value="4-6") 4-6
+                                option(value="over") more
+                h2(class="text-center") Treatment consent form
+                div(class="container p-5")
+                    p Following the consultation with #{data.doctor_t1}, an appointment has been made for me to to follow the treatment provided. I confirm that i fully and willingly consent to the treatment and i understand all the risks involved.
+                    li  I understand that any procedure in addition to those described on this form will only be carried out if it is necessary to save my life or to prevent serious harm to my health.
+                    li I have been told about additional procedures which may become necessary during my treatment. 
+                    li I understand that you cannot give me a guarantee that the treatment will fix the underlying issues and the problem might reapear in the future.
+                h2(class="text-center my-5") Personal data handling
+                div(class="container p-5")
+                    p Do you you aggree for the dentristry to handle your data for other reason than medical resons(ex. marketing,analysis,etc.) 
+                        select(name="medical" id="medical")
+                                option(value="yes") Yes
+                                option(value="no") No
+                    p Following the consultation with #{data.doctor_t1}, I do understand the way the practice will handle my personal data.The practice should take into consideration my choice and proceed acordingly.
+                h5(class="px-5") SIGNATURE
+                div(class="flex-row px-5")
+                    div(class="wrapper")
+                        canvas(id="signature-pad" width="400" height="200")
+                    div(class="clear-btn")
+                        button(id="clear") Clear
+                input(type="button" class="btn btn-success m-5" onclick="generatePDF()" value='Print')
+    script.
+    
+        function generatePDF() {
+                
+                // Choose the element id which you want to export.
+                var element = document.getElementById('invoice');
+                element.style.width = '900';
+                element.style.height = '700';
+                var opt = {
+                        margin: [0, 0, 0, 0],
+                    output: './clients/last test2/',
+                    filename:     '#{data.firstName} #{data.lastName} - consent.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 ,useCORS: true},
+                    jsPDF:        { unit: 'in', format: "A4",orientation: 'portrait',precision: '0',compress: true, output: '/clients/last test2/' },
+                };
+                
+                // choose the element and pass it to html2pdf() function and call the save() on it to save as pdf.
+                html2pdf().set(opt).from(element).save();
+                
+                
+            }
+        var canvas = document.getElementById("signature-pad");
+
+       function resizeCanvas() {
+                var ratio = Math.max(window.devicePixelRatio || 1, 1);
+                canvas.width = canvas.offsetWidth * ratio;
+                canvas.height = canvas.offsetHeight * ratio;
+                canvas.getContext("2d").scale(ratio, ratio);
+            }
+            window.onresize = resizeCanvas;
+            resizeCanvas();
+
+            var signaturePad = new SignaturePad(canvas, {
+                backgroundColor: 'rgb(250,250,250)'
+            });
+
+            document.getElementById("clear").addEventListener('click', function(){
+                signaturePad.clear();
+            })
+
+
+
+    style.
+        canvas#signature-pad {
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+        }
+        button#clear {
+            height: 100%;
+            background: #4b00ff;
+            border: 1px solid transparent;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        button#clear span {
+            transform: rotate(90deg);
+            display: block;
+        }
+        .flex-row {
+            display: flex;
+        }
+        .wrapper {
+            border: 1px solid #4b00ff;
+            border-right: 0;
+        }

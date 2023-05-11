@@ -1,166 +1,210 @@
 extends default
 block content 
-    div(class="container")  
-        div(id="sidebar-wrapper")
-            ul(class="sidebar-nav")
-                li(class="sidebar-brand")
-                    a(href="#")
-                        i(class="bi bi-person-rolodex" role="img" aria-label="GitHub") #{username}
-                li
-                    a(href="/add_client") Add Client
-                li
-                    a(href="delete_client") Delete Client
-                li
-                    a(href="/show_customers") Search Database
-                li  
-                    a(href="/agenda") Agenda
-                li
-                    if(username)
-                    for d in results2
-                        if(d.role=='admin')
-                            a(href="/analytics") Analytics
-                li
-                    if(username)
-                    for d in results2
-                        if(d.role=='admin')
-                            a(href="/admin_dashboard") Admin Dashboard
-                li
-                    a(href="/agenda") Contact
-
-    
-        div(id="page-content-wrapper")
-            div(class="container-fluid")
-                div(class="row")
-                    div(class="col-lg-12")                                
+    if(username)
+        if(role == 'new')
+           h2(class="text-center") Contact Administrator to asign role 
+           include new_contact_admin
+        if(role == 'admin' || role == 'staff')
+                div(class="container")  
+                    div(id="mySidebar" class="sidebar fixed-bottom" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()")
+                        a(href="/add_client")
+                            i(class="material-icons") library_add
+                            span(class="icon-text") Add Patient
+                        a(href="/delete_client")
+                            i(class="material-icons") delete
+                            span(class="icon-text") Delete Patient
+                        a(href="/show_customers")
+                            i(class="material-icons") view_list
+                            span(class="icon-text") Show Patient
+                        a(href="/agenda")
+                            i(class="material-icons") person_add
+                            span(class="icon-text") Add Contacts 
+                        a(href="/show_contacts")
+                            i(class="material-icons") contact_page
+                            span(class="icon-text") Show Contacts 
+                        
+                        a(href="/appointments")
+                            i(class="material-icons") date_range
+                            span(class="icon-text") Appointments
+                            if(role =='admin')
+                                a(href="/analytics")
+                                    i(class="material-icons") trending_up
+                                    span(class="icon-text") Analytics Section
+                            if(role=='admin')
+                                a(href="/Admin_dashboard")
+                                    i(class="material-icons") dashboard_customize
+                                    span(class="icon-text") Admin Dashboard
+                    div(id="main")
                         h1(style="text-align: center; margin-top: 50px;") Welcome #{username} 
                         h2(style="text-align: center; margin-bottom: 30px;")  Dashboard 
-                        for d in results1
-                                    div(class="card" style="text-align: center; margin-top: 50px;" )
-                                        p(style="text-align: center; margin-top: 10px;") Your next appointment is with:
-                                        h3(style="text-align: center; margin-top: 50px;")= d.firstName
-                                        h5(style="text-align: center; margin-top: 50px;")=d.nextapp
+                        div(class="container text-center")
+                            div(class="card-small h-100 d-flex align-items-left justify-content-left" )
+                                for d in results1
+                                    div(class="flip-card ")
+                                        div(class="flip-card-inner")
+                                            div(class="flip-card-front")
+                                                img(src="https://s19526.pcdn.co/wp-content/uploads/2022/07/setting-an-appointment.webp" alt="Avatar" style="width:300px;height:300px;")
+                                            div(class="flip-card-back")
+                                                h2 Name of patient: 
+                                                p=d.firstName+" "+d.lastName
+                                                h2 Contact number:
+                                                p=d.phone  
+                                                h2 Date
+                                                p= d.date
 
+                                                        
+                                else 
+                                    p No appointment
+                        if message
+                            div(class="alert")
+                                span(class="closebtn" onclick="this.parentElement.style.display='none';") &times; 
+                                strong  #{message && message}
+       
+       
+         
 
     style.
-        .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 300px;
-        margin: auto;
-        text-align: center;
-        font-family: arial;
+      
+        body{
+            background-image: linear-gradient(to top,rgba(255,255,255,0.25), rgba(255,255,255,0.95)), url("background.jpg") ;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .sidebar {
+            height: 90%;
+            width: 60px;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            background-color: #111;
+            transition: 1s;
+            overflow-x: hidden;
+            padding-top: 60px;
+            white-space: nowrap;
+            padding-top: 48px;
+
         }
 
-
-        #wrapper.toggled {
-            padding-left: 250px;
+        .sidebar a {
+        padding: 8px 8px 8px 20px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
         }
 
-        #sidebar-wrapper {
-            z-index: 1000;
-            position: absolute;
-            left: 250px;
-            width: 0;
-            height: 85%;
-            margin-left: -250px;
-            overflow-y: auto;
-            background: #e27084;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
+        .sidebar a:hover {
+        color: #f1f1f1;
         }
 
-        #wrapper.toggled #sidebar-wrapper {
-            width: 250px;
+        main .sidebar {
+        position: absolute;
+        top: 30x;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 0;
         }
 
-        #page-content-wrapper {
-            width: 100%;
-            position: absolute;
-            padding: 15px;
+        .material-icons,
+        .icon-text {
+        vertical-align: middle;
         }
 
-        #wrapper.toggled #page-content-wrapper {
-            position: absolute;
-            margin-right: -250px;
+        .material-icons {
+        padding-bottom: 3px;
+        margin-right: 30px;
         }
 
-        .sidebar-nav {
-            position: absolute;
-            top: 0;
-            width: 250px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
+        #main {
+        padding: 16px;
+        margin-left: 85px;
+        transition: margin-left 1s;
         }
 
-        .sidebar-nav li {
-            text-indent: 20px;
-            line-height: 40px;
+        @media screen and (max-height: 450px) {
+        .sidebar {
+            padding-top: 15px;
         }
-
-        .sidebar-nav li a {
-            display: block;
-            text-decoration: none;
-            color: white;
-        }
-
-        .sidebar-nav li a:hover {
-            text-decoration: none;
-            color: black;
-            background: rgba(255,255,255,0.2);
-        }
-
-        .sidebar-nav li a:active,
-        .sidebar-nav li a:focus {
-            text-decoration: none;
-        }
-
-        .sidebar-nav > .sidebar-brand {
-            height: 65px;
+        .sidebar a {
             font-size: 18px;
-            line-height: 60px;
-        }
-
-        .sidebar-nav > .sidebar-brand a {
-            color: white;
-        }
-
-        .sidebar-nav > .sidebar-brand a:hover {
-            color: black;
-            background: none;
-        }
-
-        @media(min-width:768px) {
-            #wrapper {
-                padding-left: 250px;
-            }
-
-            #wrapper.toggled {
-                padding-left: 0;
-            }
-
-            #sidebar-wrapper {
-                width: 250px;
-            }
-
-            #wrapper.toggled #sidebar-wrapper {
-                width: 0;
-            }
-
-            #page-content-wrapper {
-                padding: 0px;
-                position: relative;
-            }
-
-            #wrapper.toggled #page-content-wrapper {
-                position: relative;
-                margin-right: 0;
-            }
-        }
-        @media (min-width: 768px) {
-        .modal-xl {
-            width: 90%;
-        max-width:1200px;
         }
         }
+        .flip-card {
+        background-color: transparent;
+        width: 300px;
+        height: 300px;
+        perspective: 1000px;
+        }
+
+        .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+        .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+        background-color: #bbb;
+        color: black;
+        }
+
+        .flip-card-back {
+        background-color: transparent ;
+        color: black;
+        transform: rotateY(180deg);
+        }
+                /* The alert message box */
+       .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+        }
+
+        .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        }
+
+        .closebtn:hover {
+        color: black;
+        }
+    script.
+        var mini = true;
+
+        function toggleSidebar() {
+        if (mini) {
+            console.log("opening sidebar");
+            document.getElementById("mySidebar").style.width = "280px";
+            document.getElementById("main").style.marginLeft = "280px";
+            this.mini = false;
+        } else {
+            console.log("closing sidebar");
+            document.getElementById("mySidebar").style.width = "60px";
+            document.getElementById("main").style.marginLeft = "60px";
+            this.mini = true;
+        }
+        }
+    

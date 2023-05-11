@@ -1,57 +1,86 @@
 extends default
 
 block content
-    style.
+    
+    if(username)
+        if(role == 'new')
+            h2(class="text-center") Contact Administrator to asign role 
+            include new_contact_admin
+        if(role == 'admin' || role == 'staff')
 
-
-    div(class="container")
-        div(class="wrapp")
-            form(class="form-horizontal" role="form" action="/add_client" method="POST" class="form-horizontal")
-                h2 Registration
-                div(class="form-group")
-                    label(for="firstName" class="col-sm-3 control-label") First Name
-                    div(class="col-sm-9")
-                        input(type="text" id="firstName" placeholder="First Name" name="firstName" class="form-control" autofocus)
-                div(class="form-group")        
-                    label(for="Last Name" class="col-sm-3 control-label") Last name
-                    div(class="col-sm-9")
-                        input(type="text" class="form-control" id="validationDefault02" placeholder="Last name" name="lastName" required)
-                div(class="form-group")        
-                    label(for="email" class="col-sm-3 control-label") Email
-                    div(class="col-sm-9")
-                        input(type="text" class="form-control" id="validationDefault02" placeholder="email" name="email" required)
-                div(class="form-group")        
-                    label(for="Age" class="col-sm-3 control-label") Age
-                    div(class="col-sm-9")
-                        input(type="text" class="form-control" id="validationDefault02" placeholder="Age" name="age" required)
-                div(class="form-group")        
-                    label(for="Gender" class="col-sm-3 control-label") Gender
-                    div(class="col-sm-9")
-                        select(name="sex" class="form-select" ) 
-                            option(value="Masculin") M
-                            option(value="Feminin") F
-                div(class="form-group")        
-                    label(for="Phone" class="col-sm-3 control-label") Phone
-                    div(class="col-sm-9")
-                        input(type="text" class="form-control" id="validationDefault03" placeholder="Phone" name="phone" required)
-                div(class="form-group")        
-                    label(for="Address" class="col-sm-3 control-label") Address
-                    div(class="col-sm-9")
-                        input(type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" required)
-                div(class="form-group")        
-                    label(for="Walk-in" class="col-sm-3 control-label") Walk-in Date
-                    div(class="col-sm-9")
-                        input(type="date" class="form-control" id="validationDefault03" placeholder="Walk-in Date" name="walkin" required)
-                div(class="form-group")     
-                    label(for="Choose Doctor" class="col-sm-3 control-label") Choose Doctor
-                    div(class="col-sm-9")
-                        select(name="doctor" class="form-select" ) 
-                            option(value="Dr. Kimia Aksir") Kimia Aksir 
-                            option(value="Dr. Pelumi Apantuku") Pelumi Apantuku 
-                div( class="form-group")
-                div(class="form-check")
+            h2(class="text-center" style="font-family:Franklin Gothic Medium;font-size:50px;") Customer registration
+            if(message)
+                div(class='alert alert-danger text-center ' role='alert') #{message && message}
+            form(class="form-horizontal" role="form" action="/add_client" method="POST")
+                div(class="container"  style="display: flex;")
+                    div(class="column"  style=" float:left; width: 50%;padding: 40px;")
+                        div(class="form-group") 
+                            label(for="FirstName" class="col-sm-8") First Name
+                                input(type="text" id="firstName" placeholder="Write first name" name="firstName" class="form-control" autofocus)
+                                small(class="form-text") First name should contain only letters
+                        div(class="form-group")     
+                            label(for="LastName" class="col-sm-8 control-label") Last Name
+                                input(type="text" class="form-control" id="lastName" placeholder="Last name" name="lastName" required)
+                                small(class="form-text") Last name should contain only letters    
+                        div(class="form-group")        
+                            label(for="email" class="col-sm-8 control-label") Email
+                                input(type="text" class="form-control" id="email" placeholder="email" name="email" required)
+                                small(class="form-text") Enter valid email address ex. johndoe@gmail.com
+                        div(class="form-group")        
+                            label(for="Age" class="col-sm-8 control-label") Age
+                                input(type="text" class="form-control" id="age" placeholder="Age" name="age" required)
+                                small(class="form-text") Age should contain only number
+                        div(class="form-group")        
+                            label(for="Gender") Gender
+                                select(name="sex" class="form-select" style="background:transparent;" ) 
+                                    option(value="Masculin") M
+                                    option(value="Feminin") F
+                    div(class="column"  style=" float:left; width: 50%;padding: 40px;")                  
+                        div(class="form-group")        
+                            label(for="Phone" class="col-sm-8 control-label") Phone
+                                input(type="text" class="form-control" id="phone" placeholder="Phone" name="phone" required)
+                                small(class="form-text") Should have 11 numbers,no letters  
+                        div(class="form-group")        
+                            label(for="Address" class="col-sm-8  control-label") Address
+                                input(type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" required)
+                        div(class="form-group")        
+                            label(for="Walk-in" class="col-sm-8 control-label") Walk-in Date
+                                input(type="date" class="form-control" id="txtDate" placeholder="Walk-in Date" name="walkin" required)
+                            
+                div(class="container text-center")            
                     input(class="form-check-input" type="checkbox" value="" id="invalidCheck2"  required)
-                    label(class="form-check-label" for="invalidCheck2")
                     p Agree to terms and conditions
-                button(type="submit" class="btn btn-primary" ) Submit
-                button(class="btn btn-primary" onclick="location.href='results'") Go Back 
+                    button(type="submit" id="btn-submit" class="btn btn-primary" ) Submit
+                    button(class="btn btn-primary" onclick="location.href='results'") Go Back 
+
+    style.
+        .col {
+            float: inherit;
+            width: 100%
+        }
+        .form-control + small {
+        color: red;
+        opacity: 0;
+        height: 0;
+        transition: opacity .4s ease-out;
+        }
+
+        .form-control.invalid + small {
+        opacity: 1;
+        height: auto;
+        margin-bottom:0;
+        transition: opacity .4s ease-out;
+        }
+         body{
+            background-image: linear-gradient(to top,rgba(255,255,255,0.25), rgba(255,255,255,0.95)), url("background.jpg") ;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        input[type="text"],input[type="date"],select
+        {
+            background: transparent;
+            border: dotted 1.5px
+        }
+    

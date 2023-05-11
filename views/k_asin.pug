@@ -1,0 +1,157 @@
+extends default
+block content
+    h2(class="text-center")
+        p(style="font-family: 'Dosis'; font-weight:400; font-size:50px;" ) Kamely Asin
+        hr( style="width:55%;margin-left: auto;margin-right: auto;")
+    div(class="d-flex justify-content-around container mt-5 " style="width:1300px;")
+        div(class="container1")
+            div(class="img-container")
+                img(src="doc2.jpg" style="object-fit: cover ;" alt="")
+            ul(class="social-media")
+                li
+                    a(href="/j_smith")
+                        i(class="fa fa-facebook")
+            div(class="user-info")
+                h2 Kamely Asin
+                span ASSOCIATE DENTIST
+        div(class="container border")
+            div(class="text")
+                h1(class="text-center mb-3") ASSOCIATE DENTIST
+                font(face = "Comic sans MS" size = "5" class="mx-5") Dr Asin built her experience in dentistry working part time in a large local hospital whilst also working in a private practice. She then worked in mixed practices before moving to the UK in 2018. Since then, she has worked in a variety of practices across London and developed strong experience and knowledge in removable orthodontics and facial aesthetics. 
+                br
+                font(face = "Comic sans MS" size = "5" class="mx-5") Dr Asin's approach is driven by minimally invasive treatments and not only providing comfortable and safe treatment to her patients, but also to educate and motivate patients in good dental health.
+                br
+                font(face = "Comic sans MS" size = "5" class="mx-5") In addition to obtaining her credentials at one of the best dental schools in Europe(Medical University of Warsaw),she also has a Postgraduate Certificate in Periodontology from UCLAN, Lancs. and a Postgraduate Certificate in Aesthetic Dentistry from Eastman (UCL), London. 
+                
+    div(class="d-flex justify-content-center mt-5")
+        button(class="btn btn-primary" onclick="location.href='team'") Back to Teams
+
+
+    style.
+        .container1 {
+        position: relative;
+        height: 500px;
+        width: 400px;
+        overflow: hidden;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+        transition: box-shadow 0.3s ease-out;
+        }
+
+        .container1:hover {
+        box-shadow: 1px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .img-container {
+        background-color: #000;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.3s ease-out;
+        z-index: 2;
+        }
+
+        .img-container:hover {
+            cursor: pointer;
+        }
+
+        .container1:hover .img-container {
+            transform: translateY(-100px);
+        }
+
+        .img-container > img {
+        height: 100%;
+        width: 100%;
+        transition: opacity 0.3s ease-out;
+        }
+
+        .container1:hover > .img-container > img {
+        opacity: 0.5;
+        }
+
+        .social-media {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        margin: 0;
+        padding: 0;
+        }
+
+        .social-media > li {
+        list-style: none;
+        }
+
+        .social-media > li > a {
+        display: block;
+        height: 50px;
+        width: 50px;
+        background-color: #FFF;
+        text-align: center;
+        color: #262626;
+        margin: 0 5px;
+        border-radius: 50%;
+        opacity: 0;
+        transform: translateY(200px);
+        transition: all 0.3s ease-out;
+        }
+
+        .container:hover > .social-media > li > a {
+        transform: translateY(0);
+        opacity: 1;
+        }
+
+        .social-media > li > a > .fa {
+        font-size: 24px;
+        line-height: 50px;
+        transition: transform 0.3s ease-out;
+        }
+
+        .social-media > li > a:hover > .fa {
+        transform: rotateY(360deg);
+        }
+
+        .container1:hover .social-media li:nth-child(1) a {
+            transition-delay: 0s;
+        }
+
+        .container1:hover .social-media li:nth-child(2) a {
+            transition-delay: 0.1s;
+        }
+
+        .container1:hover .social-media li:nth-child(3) a {
+            transition-delay: 0.2s;
+        }
+
+        .container1:hover .social-media li:nth-child(4) a {
+            transition-delay: 0.3s;
+        }
+
+        .container1:hover .social-media li:nth-child(5) a {
+            transition-delay: 0.4s;
+        }
+
+        .user-info {
+        position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #FFF;
+            height: 100px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+        text-align: center
+        }
+
+        .user-info > h2 {
+        padding: 0;
+        margin: 10px 0;
+        }
+
+        .user-info > span {
+        color: #262626;
+        font-size: 16px;
+        }
