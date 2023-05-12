@@ -53,12 +53,11 @@ block content
                         span(class="material-icons") healing 
                         |Treatment
                     hr
-                div(class="container")   
-                    div(class="col-md-5") Observations
+                div(class="container my-5")   
+                    div(class="d-flex align-items-center justify-content-center") Observations
                         textarea(id="observations" class="form-control" rows="7" cols="50")
-                        input(type="button" class="btn btn-success my-5" onclick="generatePDF()" value='Print') 
-                    div(class="card " id="invoice")
-                        button(id="display" onclick="displayValue()" style="float:right;") Copy to prescription
+                    button(id="display" onclick="displayValue()" style="float:right;") Copy to prescription
+                    div(class="card my-5 " id="invoice")
                         div(class="row text-center")
                             h3 
                                 span(class="glyphicon glyphicon-list-alt" style="align:center;") Prescription for ID
@@ -107,6 +106,7 @@ block content
                                                 canvas(id="signature-pad" width="400" height="200")
                                             div(class="clear-btn")
                                                 button(id="clear") Clear
+                    input(type="button" class="btn btn-success my-5" onclick="generatePDF()" value='Print') 
     script.
 
         function generatePDF() {

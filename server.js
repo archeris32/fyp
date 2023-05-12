@@ -8,15 +8,18 @@ const bcrypt = require("bcryptjs");
 const { json } = require('express');
 const fs = require('fs');
 
+
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json());
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
-// Set environment variables
-process.env.DB_HOST = '172.18.0.2';
+
+
+// Set environment variables '172.18.0.2'   'password'
+process.env.DB_HOST = 'localhost';
 process.env.DB_USER = 'root';
-process.env.DB_PASS = 'password';
+process.env.DB_PASS = '';
 // login - db
 const db = mysql.createPool({
     host: process.env.DB_HOST,
@@ -29,14 +32,14 @@ const db = mysql.createPool({
 app.use(cookieParser());
 app.use(session({secret: "Shh, its a secret!"}));
 
-
+// ROUTES
 // Get a list of users.
 app.get('/', (req, res) => {
     db.query(`SELECT * from users where name='${req.session.username}';`, function(err,rows){
       res.render('', { data: rows,title: 'Homepage',username: req.session.username ,role:req.session.role})
     })
 })
-
+// Renders the contact admin page.
 app.get('/contact_admin',(req,res)=>{
     res.render('contact_admin',{username:req.session.username,role:req.session.role})
 })
@@ -188,7 +191,7 @@ app.get('/analytics',checkLogin, (req, res) => {
                         console.log(err)
                     }
                     else{
-                        res.render('analytics', {results1:data1,results2:data2,result3:data3,title: 'Admin Dashboard',username: req.session.username,role:req.session.role});
+                        res.render('analytics', {results1:data1,results2:data2,result3:data3,title: 'Admin Dashboard',username: req.session.username,role:req.session.role,pageTitle: 'analytics'});
                     }
                    })
                 }
@@ -202,6 +205,9 @@ app.get('/profile', checkLogin,(req, res) =>  {
         
       }) 
     })
+
+
+    
 
 app.get('/delete_client',checkLogin, (req, res) => {
 

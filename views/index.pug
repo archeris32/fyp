@@ -9,7 +9,7 @@ block content
       strong  #{message && message}
   div.container(id="content" class="d-flex justify-content-around")
     a(type="button" href= username ? "/results" : "/login" class="btn btn-outline-primary me-2") #{username ? "Results" : "Login"}
-    - var cards = [{ title: 'About Us', copy: 'Meet the outstanding team that made Zental what it is today! ', button: 'about',href:'/about' }, { title: 'Services', copy: 'Check our long list of services', button: 'Services',href:'/services' }, { title: 'Dentist\'s advice', copy: 'Read the advices our experienced doctors give on how to take care of your oral hygiene. ', button: 'Advice' ,href:'/advice`'}, { title: 'Explore The Galaxy', copy: 'Seriously, straight up, just blast off into outer space today', button: 'Book Now',href:'/about' }]
+    - var cards = [{ title: 'About Us', copy: 'Meet the outstanding team that made Zental what it is today! ', button: 'about',href:'/about' }, { title: 'Services', copy: 'Check our long list of services! We have spaces for NHS patients', button: 'Services',href:'/services' }, { title: 'Practice Team', copy: 'Read  about our experienced doctors!Who is treating you today?. ', button: 'Team' ,href:'/team`'}, { title: 'Call us ', copy: 'Contact us through our online form! One collegue will contact you ', button: 'Contact',href:'/contact' }]
 
 
     mixin card(title, copy, button,href)
@@ -104,18 +104,25 @@ block content
       width:300px;
     }
     .card:nth-child(2):before {
-      background-image: url(https://i.ibb.co/pP43dGW/pexels-evg-kowalievska-1170979.jpg);
-      background-size: cover;
+      background-image: url(services.jpeg);
+      background-size:  350px 400px;
       background-repeat: no-repeat;
+      left:-100px;
       background-position: center center;
       height:350px;
       width:400px;
     }
     .card:nth-child(3):before {
-      background-image: url(https://images.unsplash.com/photo-1545243424-0ce743321e11?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+      background-image: url(https://i.ibb.co/pP43dGW/pexels-evg-kowalievska-1170979.jpg);
     }
     .card:nth-child(4):before {
-      background-image: url(https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+      background-image: url(download.jpeg);
+      background-size:  cover;
+      background-repeat: no-repeat;
+      left:-100px;
+      background-position: center center;
+      height:350px;
+      width:400px;
     }
     .content {
       position: relative;

@@ -24,11 +24,11 @@ var urlencodedParser = bodyParser.urlencoded({
 });
 app.use(bodyParser.json());
 app.set('view engine', 'pug');
-app.use(express["static"]('public')); // Set environment variables
+app.use(express["static"]('public')); // Set environment variables '172.18.0.2'   'password'
 
-process.env.DB_HOST = '172.18.0.2';
+process.env.DB_HOST = 'localhost';
 process.env.DB_USER = 'root';
-process.env.DB_PASS = 'password'; // login - db
+process.env.DB_PASS = ''; // login - db
 
 var db = mysql.createPool({
   host: process.env.DB_HOST,
@@ -41,7 +41,8 @@ var db = mysql.createPool({
 app.use(cookieParser());
 app.use(session({
   secret: "Shh, its a secret!"
-})); // Get a list of users.
+})); // ROUTES
+// Get a list of users.
 
 app.get('/', function (req, res) {
   db.query("SELECT * from users where name='".concat(req.session.username, "';"), function (err, rows) {
@@ -52,7 +53,8 @@ app.get('/', function (req, res) {
       role: req.session.role
     });
   });
-});
+}); // Renders the contact admin page.
+
 app.get('/contact_admin', function (req, res) {
   res.render('contact_admin', {
     username: req.session.username,
@@ -253,7 +255,8 @@ app.get('/analytics', checkLogin, function (req, res) {
                 result3: data3,
                 title: 'Admin Dashboard',
                 username: req.session.username,
-                role: req.session.role
+                role: req.session.role,
+                pageTitle: 'analytics'
               });
             }
           });
