@@ -26,9 +26,9 @@ app.use(bodyParser.json());
 app.set('view engine', 'pug');
 app.use(express["static"]('public')); // Set environment variables '172.18.0.2'   'password'
 
-process.env.DB_HOST = 'localhost';
+process.env.DB_HOST = '172.18.0.2';
 process.env.DB_USER = 'root';
-process.env.DB_PASS = ''; // login - db
+process.env.DB_PASS = 'password'; // login - db
 
 var db = mysql.createPool({
   host: process.env.DB_HOST,
