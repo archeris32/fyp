@@ -42,3 +42,6 @@ Take the IP from the ```
 
 
 ![](/public/index.png "index page")
+## script.py
+
+All the files downloaded from the application,which you can find in the clients folder like prescription ,consent, invoice can be redirected to the patient's folder by double-cliocking the script.py
