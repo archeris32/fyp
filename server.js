@@ -88,7 +88,7 @@ app.get('/show_contacts',checkLogin, (req, res) => {
       res.render('show_contacts', { data: rows,title: 'Contacts',username: req.session.username ,role:req.session.role })
     })
 });
-
+//route for main page of application
 app.get("/results",checkLogin,(req,res)=>{
     const message = req.session.message;
     req.session.message = null; // clear the message from the session
@@ -110,7 +110,7 @@ app.get("/results",checkLogin,(req,res)=>{
 
     })
 })
-
+//route for appointments page
 app.get("/appointments",checkLogin,(req,res)=>{
     db.query(`select * from patient where nextapp1 is not null or nextapp2 is not null or nextapp3 is not null`,function(err,data1){
         if(err){
@@ -136,6 +136,7 @@ app.get("/appointments",checkLogin,(req,res)=>{
 
     })
 })
+//route for admin_dashboard with all the queries to have the desired info in the dashboard
 app.get('/Admin_dashboard', checkLogin,(req, res) => {
     db.query(`SELECT * from users where name='${req.session.username}';`, function(err,rows){
         if(err){
@@ -173,6 +174,7 @@ app.get('/Admin_dashboard', checkLogin,(req, res) => {
 }
   });
 })
+//route for analytics page with all the queries 
 app.get('/analytics',checkLogin, (req, res) => {
     db.query(`SELECT * from patient ;`, function(err,data1){
         if(err){
@@ -199,6 +201,7 @@ app.get('/analytics',checkLogin, (req, res) => {
         }
   });
 })
+//route for profile page
 app.get('/profile', checkLogin,(req, res) =>  {
     db.query(`SELECT * from users where name='${req.session.username}';`, function (err, result) {
         res.render('profile', { data: result ,username: req.session.username ,role:req.session.role})
@@ -207,7 +210,7 @@ app.get('/profile', checkLogin,(req, res) =>  {
     })
 
 
-    
+ //route for delete_client page   
 
 app.get('/delete_client',checkLogin, (req, res) => {
 
@@ -220,7 +223,7 @@ app.get('/delete_client',checkLogin, (req, res) => {
       });
     })
 
-
+// route updating  the database with the deleted client
 app.post("/delete_client",urlencodedParser,checkLogin,(req,res)=>{
     const name = req.body.searchName
     var sql = `delete FROM patient WHERE firstName='${name}';`
@@ -233,6 +236,7 @@ app.post("/delete_client",urlencodedParser,checkLogin,(req,res)=>{
         }
     })        
     })
+//route for posting to db the details in agenda
 app.post("/agenda",checkLogin,urlencodedParser,(req,res)=>{
     const FirstName=req.body.firstName
     const lastName=req.body.lastName
@@ -251,13 +255,14 @@ app.post("/agenda",checkLogin,urlencodedParser,(req,res)=>{
         }
     })        
 })
-
+//route for add_client page
 app.get('/add_client',checkLogin, (req, res) => {
     res.render('add_client', {
         title: 'Add Client',
         username: req.session.username ,role:req.session.role
       });
   });
+//route for posting to db the details of new customer
 app.post("/add_client",checkLogin,urlencodedParser, (req, res) => {    
     const f_name =req.body.firstName
     const lastName=req.body.lastName
@@ -293,13 +298,15 @@ app.post("/add_client",checkLogin,urlencodedParser, (req, res) => {
     })
 })
 
-
+//route for register page
 app.get("/register", (req, res) => {
     return res.render("register",{username: req.session.username,role:req.session.role });
   });
+//route for login page
 app.get("/login", (req, res) => {
     return res.render("login",{username: req.session.username,role:req.session.role });
   });
+// route for checking credentials of login system
 app.post("/login", urlencodedParser, (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -321,7 +328,7 @@ app.post("/login", urlencodedParser, (req, res) => {
         }
     })        
 })   
-
+// route for posting register credentials of new user
 app.post("/register", urlencodedParser, (req, res) => {    
         const username =req.body.username
         const password=req.body.password
@@ -355,13 +362,14 @@ app.get("/logout", (req, res) => {
 
   return res.render("index");
 });
+// rout for show_customers page
 app.get('/show_customers',checkLogin, (req, res) => {
     db.query('Select * from patient', function(err,rows){
       res.render('show_customers', { data1: rows,username: req.session.username,role:req.session.role  })
     })
 });
 
-
+//route for edit page
 app.get("/edit/:data?",checkLogin,(req, res,) => {
     const formData =JSON.parse(req.params.data);
     return res.render("edit", {
@@ -370,6 +378,7 @@ app.get("/edit/:data?",checkLogin,(req, res,) => {
       title: 'Edit'
     });
 })
+// route for invoice page
 app.get("/invoice/:data?",checkLogin,(req, res,) => {
     const formData =JSON.parse(req.params.data);
     return res.render("invoice", {
@@ -378,6 +387,7 @@ app.get("/invoice/:data?",checkLogin,(req, res,) => {
       title: 'invoice'
     });
 })
+// route for prescription page
 app.get("/prescription/:data?",checkLogin,(req, res,) => {
     const formData =JSON.parse(req.params.data);
     return res.render("prescription", {
@@ -386,6 +396,8 @@ app.get("/prescription/:data?",checkLogin,(req, res,) => {
       title: 'prescription'
     });
 })
+// route for consent page 
+
 app.get("/consent/:data?",checkLogin,(req, res,) => {
     const formData =JSON.parse(req.params.data);
     return res.render("consent", {
@@ -394,7 +406,7 @@ app.get("/consent/:data?",checkLogin,(req, res,) => {
       title: 'consent'
     });
 })
-
+// route to get the details of users
 app.get("/edit_user/:data?",checkLogin,(req, res,) => {
     const formData =JSON.parse(req.params.data);
     return res.render("edit_user", {
@@ -403,7 +415,7 @@ app.get("/edit_user/:data?",checkLogin,(req, res,) => {
       title: 'Edit'
     });
 })
-
+// route to post the changes in edit
 app.post("/edit/:data?",checkLogin,urlencodedParser, (req, res) => {
       const id = req.body.id;
       const firstName = req.body.name;
@@ -448,7 +460,7 @@ app.post("/edit/:data?",checkLogin,urlencodedParser, (req, res) => {
             
            
         
-    
+// route to post the changes in the edit_user
 app.post("/edit_user/:data?",checkLogin,urlencodedParser, (req, res) => {
     const id = req.body.id;
     const username = req.body.name;
@@ -464,7 +476,7 @@ app.post("/edit_user/:data?",checkLogin,urlencodedParser, (req, res) => {
         res.render("", { data:data , message: "client Edited", username: req.session.username,role:req.session.role });
     });
     });
-
+// function to check if user islogged in 
 function checkLogin(req,res,next){
     if (!req.session.username){
         return res.render('login',{message:"Login first"})
